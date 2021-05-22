@@ -1,0 +1,120 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.Earning.AttendanceModifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+        Loaded="WindowBase_Loaded"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        
+        Header="Modify Item" Height="Auto" Width="550">
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+      <TextBlock Text="Employee:"  VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+      <TextBlock Grid.Row="0" Text="{Binding Employee.Person.FullName, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" VerticalAlignment="Center" />
+      
+      <TextBlock Text="Date:"  VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+      <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}"  >
+        <Run Text="{Binding Date, StringFormat=dddd, Mode=OneWay}" />
+        <Run Text=", " />
+        <Run Text="{Binding Date, StringFormat=d, Mode=OneWay}" />
+      </TextBlock>
+
+      <TextBlock Text="Status:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="2" Margin="0 0 5 0" />
+      <tlk:RadComboBox x:Name="StatusComboBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" SelectionChanged="StatusComboBox_SelectionChanged">
+        <tlk:RadComboBox.SelectedItem>
+          <Binding Path="Status" Converter="{StaticResource NullZeroConverter}">
+            <Binding.ValidationRules>
+              <val:Required  />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadComboBox.SelectedItem>
+      </tlk:RadComboBox>
+      
+      <TextBlock Text="In:" VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadNumericUpDown x:Name="InPointsNumericUpDown" Value="{Binding InPoints, Converter={StaticResource NumericUpDownConverter}}"
+                              Minimum="-100" Maximum="100" NumberDecimalDigits="2" Width="75" SmallChange="0.1" LargeChange="0.2" />
+        <TextBlock Text="{Binding InDateTime, StringFormat=\{0:hh\\:mm tt\}}" VerticalAlignment="Center" Margin="5 0 0 0" />
+      </StackPanel>
+
+      <TextBlock Text="Out:" VerticalAlignment="Center" Grid.Row="4" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadNumericUpDown x:Name="OutPointsNumericUpDown" Value="{Binding OutPoints, Converter={StaticResource NumericUpDownConverter}}" 
+                              Minimum="-100" Maximum="100" NumberDecimalDigits="2" Width="75" SmallChange="0.1" LargeChange="0.2" />
+        <TextBlock Text="{Binding OutDateTime, StringFormat=\{0:hh\\:mm tt\}}" VerticalAlignment="Center" Margin="5 0 0 0" />
+      </StackPanel>
+
+      <TextBlock Text="Absences:"  VerticalAlignment="Center" Grid.Row="5" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadNumericUpDown x:Name="AbsencePointsNumericUpDown" Value="{Binding AbsencePoints, Converter={StaticResource NumericUpDownConverter}}" Minimum="-100" Maximum="100" NumberDecimalDigits="0" Width="75" SmallChange="1" LargeChange="1" />
+      </StackPanel>
+
+      <TextBlock Text="Extra Absences:"  VerticalAlignment="Center" Grid.Row="6" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadNumericUpDown  x:Name="ExtraAbsencePointsNumericUpDown" Value="{Binding ExtraAbsencePoints, Converter={StaticResource NumericUpDownConverter}}" Minimum="-100" Maximum="100" NumberDecimalDigits="0" Width="75" SmallChange="1" LargeChange="1" />
+      </StackPanel>
+
+      <TextBlock Text="Time-Offs:"  VerticalAlignment="Top" Grid.Row="7" Margin="0 5 5 0" />
+      <tlk:RadGridView x:Name="ItemsGridView" Grid.Row="7" Grid.Column="1" NewRowPosition="Bottom"
+                     FrozenColumnCount="2" ShowGroupPanel="False" Height="100" IsReadOnly="False"
+                     ItemsSource="{Binding TimeOffs}" RowEditEnded="ItemsGridView_RowEditEnded" Deleting="ItemsGridView_Deleting"
+                     CanUserDeleteRows="True" CanUserInsertRows="True">
+        <tlk:RadGridView.SortDescriptors>
+          <tlk:SortDescriptor Member="OutTime" SortDirection="Ascending" />
+        </tlk:RadGridView.SortDescriptors>
+        <tlk:RadGridView.Columns>
+          <tlk:GridViewDataColumn Header="Out" IsReadOnly="True" DataMemberBinding="{Binding OutDateTime, StringFormat=\{0:hh\\:mm tt\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+          <tlk:GridViewDataColumn Header="In"  IsReadOnly="True" DataMemberBinding="{Binding InDateTime, StringFormat=\{0:hh\\:mm tt\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+          <tlk:GridViewDataColumn Header="Dur" IsReadOnly="True"  DataMemberBinding="{Binding Duration, StringFormat=\{0:hh\\:mm\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+          <tlk:GridViewDataColumn Header="Pts" DataMemberBinding="{Binding Points, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+            <tlk:GridViewDataColumn.CellEditTemplate>
+              <DataTemplate>
+                <tlk:RadNumericUpDown Value="{Binding Points, Converter={StaticResource NumericUpDownConverter}}" NumberDecimalDigits="2" Minimum="-100" Maximum="100" SmallChange="0.1" LargeChange="0.2" />
+              </DataTemplate>
+            </tlk:GridViewDataColumn.CellEditTemplate>
+          </tlk:GridViewDataColumn>
+          <tlk:GridViewCheckBoxColumn Header="Edit" IsReadOnly="True"  DataMemberBinding="{Binding IsEdited}" IsGroupable="True" />
+          <tlk:GridViewCheckBoxColumn Header="Manual" IsReadOnly="True"  DataMemberBinding="{Binding IsManual}" IsGroupable="True" />
+        </tlk:RadGridView.Columns>
+      </tlk:RadGridView>
+
+        <TextBlock Text="Notes:" VerticalAlignment="Center" Grid.Row="8" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox x:Name="NotesTextBox" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <tlk:RadWatermarkTextBox.Text>
+          <Binding Path="Notes">
+          </Binding>
+        </tlk:RadWatermarkTextBox.Text>
+      </tlk:RadWatermarkTextBox>
+
+      <CheckBox x:Name="LockCheckBox" Content="Protect from recalculation" IsChecked="{Binding IsLocked}" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

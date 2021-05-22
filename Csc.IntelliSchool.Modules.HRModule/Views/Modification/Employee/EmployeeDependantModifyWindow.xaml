@@ -1,0 +1,155 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.EmployeeDependantModifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+        Loaded="WindowBase_Loaded"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        
+        Header="" Height="Auto" Width="530">
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+
+      <TextBlock Text="Employee:" FontWeight="Bold"  VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+      <TextBlock x:Name="NameTextBox" Text="{Binding Employee.Person.FullName, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
+
+      <TextBlock Text="Name:"  VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <tlk:RadWatermarkTextBox x:Name="FirstNameTextBox" WatermarkContent="First" WatermarkTemplate="{StaticResource StrongWatermarkTextBoxTemplate}" Width="100" VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.FirstName">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="MiddleNameTextBox" Margin="5 0 0 0" WatermarkContent="Middle" Width="100" VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.MiddleName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="LastNameTextBox" Margin="5 0 0 0" WatermarkContent="Last" WatermarkTemplate="{StaticResource StrongWatermarkTextBoxTemplate}" Width="100" VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.LastName">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="FamilyNameTextBox" Margin="5 0 0 0" WatermarkContent="Family" Width="100" VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.FamilyName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+      </StackPanel>
+
+      <TextBlock Text="الاسم:"  VerticalAlignment="Center" Grid.Row="2" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" FlowDirection="RightToLeft">
+        <tlk:RadWatermarkTextBox x:Name="ArabicFirstNameTextBox" WatermarkContent="الأول"  Width="100" VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicFirstName">
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="ArabicMiddleNameTextBox" Margin="5 0 0 0" WatermarkContent="الثاني" Width="100" VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicMiddleName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="ArabicLastNameTextBox" Margin="5 0 0 0" WatermarkContent="الأخير"  Width="100" VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicLastName">
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="ArabicFamilyNameTextBox" Margin="5 0 0 0" WatermarkContent="العائلة" Width="100" VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicFamilyName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+      </StackPanel>
+
+
+      <TextBlock Text="Type:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+      <tlk:RadComboBox x:Name="TypeComboBox"  VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="200" SelectionChanged="TypeComboBox_SelectionChanged">
+        <tlk:RadComboBox.SelectedItem>
+          <Binding Path="Type" Converter="{StaticResource NullZeroConverter}">
+            <Binding.ValidationRules>
+              <val:Required  />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadComboBox.SelectedItem>
+      </tlk:RadComboBox>
+
+
+      <TextBlock Text="Gender:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="4" Margin="0 0 5 0" />
+      <tlk:RadComboBox x:Name="GenderComboBox"  VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Width="200" SelectionChanged="GenderComboBox_SelectionChanged">
+        <tlk:RadComboBox.SelectedItem>
+          <Binding Path="Person.Gender" Converter="{StaticResource NullZeroConverter}">
+            <Binding.ValidationRules>
+              <val:Required  />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadComboBox.SelectedItem>
+      </tlk:RadComboBox>
+
+      <TextBlock Text="Birthdate:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="5" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="BirthdateDatePicker" DisplayFormat="Short" HorizontalAlignment="Left" Width="200" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" SelectionChanged="BirthdateDatePicker_SelectionChanged" >
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="Person.Birthdate">
+            <Binding.ValidationRules>
+              <val:Required />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+
+      <TextBlock Text="ID/Passport:" VerticalAlignment="Center" Grid.Row="6" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox x:Name="IDNumberTextBox" Grid.Row="6" HorizontalAlignment="Left" Width="200" Grid.Column="1" VerticalAlignment="Center" >
+        <tlk:RadWatermarkTextBox.Text>
+          <Binding Path="Person.IDNumber">
+            <Binding.ValidationRules>
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadWatermarkTextBox.Text>
+      </tlk:RadWatermarkTextBox>
+
+      <TextBlock Text="Nationality:" VerticalAlignment="Center" Grid.Row="7" Margin="0 0 5 0" />
+      <tlk:RadComboBox x:Name="NationalityComboBox" DisplayMemberPath="Name"  HorizontalAlignment="Left" Width="200"
+                     SelectedValuePath="NationalityID" SelectedValue="{Binding Person.NationalityID, Converter={StaticResource NullZeroConverter}}"
+                     VerticalAlignment="Center" Grid.Row="7" Grid.Column="1" />
+
+      
+      
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <tlk:RadButton x:Name="DeleteButton" Click="DeleteButton_Click" Style="{StaticResource WindowButtonStyle}"
+                     Content="Delete" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+      <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

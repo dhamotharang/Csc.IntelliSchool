@@ -1,0 +1,26 @@
+﻿<ns:WindowBase x:Class="Csc.Wpf.Views.ItemsListWindow"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ns="clr-namespace:Csc.Wpf"
+        xmlns:ctl="clr-namespace:Csc.Wpf.Controls"
+        WindowStartupLocation="CenterOwner" 
+        Header="Select Items" Width="300" Height="Auto"
+        Loaded="WindowBase_Loaded">
+
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30" />
+      <RowDefinition Height="Auto" MinHeight="150" />
+      <RowDefinition Height="30" />
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="Items" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource StrongTextBlockStyle}" />
+    <ctl:ItemsList x:Name="ItemsList" Grid.Row="1" />
+
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+      <tlk:RadButton x:Name="SelectButton" Click="SelectButton_Click" Content="Select" Style="{StaticResource WindowButtonStyle}" />
+      <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+    </StackPanel>
+  </Grid>
+</ns:WindowBase>

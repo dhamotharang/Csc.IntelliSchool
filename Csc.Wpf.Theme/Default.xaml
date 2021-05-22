@@ -1,0 +1,150 @@
+<ResourceDictionary
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="http://schemas.telerik.com/2008/xaml/compile"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="c"
+        xmlns:grid="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <!--<Style TargetType="tlk:GridViewRow" BasedOn="{StaticResource GridViewRowCoreStyle}" />
+  <Style TargetType="tlk:GridViewCell" BasedOn="{StaticResource GridViewCellCoreStyle}" />
+  <Style TargetType="tlk:TreeListViewRow" BasedOn="{StaticResource TreeListViewRowCoreStyle}" />-->
+
+  <sys:Double x:Key="DefaultButtonHeight">28</sys:Double>
+  
+  <!-- BASICS -->
+  <tlk:Windows8Theme x:Key="Theme" />
+  <SolidColorBrush x:Key="AccentBrush">#25A0DA</SolidColorBrush>
+  <SolidColorBrush x:Key="AccentBrushLight">#7F5bb7e3</SolidColorBrush>
+  <FontFamily x:Key="FontFamilyStrong">Segoe UI Semibold</FontFamily>
+  <FontFamily x:Key="FontFamily">Segoe UI</FontFamily>
+
+  <SolidColorBrush x:Key="SuccessBrush">#4BB543</SolidColorBrush>
+
+  <!--////////////////////////////////////////////////////////////////////////// -->
+
+  <Style TargetType="Control">
+    <Setter Property="FontFamily" Value="{tlk:Windows8Resource ResourceKey=FontFamily}" />
+    <Setter Property="FontSize" Value="{tlk:Windows8Resource ResourceKey=FontSize}" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+  </Style>
+
+  <Style TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{tlk:Windows8Resource ResourceKey=FontFamily}" />
+    <Setter Property="FontSize" Value="{tlk:Windows8Resource ResourceKey=FontSize}" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+  </Style>
+
+  <Style TargetType="RadioButton">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+  <Style TargetType="ScrollViewer">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+  <Style TargetType="CheckBox">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+  <Style TargetType="TextBox">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+  <Style TargetType="ListBox">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+  <Style TargetType="PasswordBox">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}" />
+  </Style>
+  <Style TargetType="RepeatButton">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+  <Style TargetType="Button">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+  <Style TargetType="ToolTip">
+    <Setter Property="tlk:StyleManager.Theme" Value="{StaticResource Theme}"/>
+  </Style>
+
+  <Style TargetType="tlk:RadWatermarkTextBox">
+    <Setter Property="SelectionOnFocus" Value="SelectAll" />
+  </Style>
+  
+  <Style TargetType="tlk:RadDropDownButton">
+    <Setter Property="AutoOpenDelay" Value="0:0:0.5" />
+  </Style>
+
+
+  <Style TargetType="tlk:RadMenuItem">
+    <Setter Property="StaysOpenOnClick" Value="False" />
+    <Setter Property="Padding" Value="20 0" />
+    <Setter Property="Height" Value="30" />
+    <Style.Triggers>
+      <Trigger Property="IsSeparator" Value="True">
+        <Setter Property="Height" Value="Auto" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <!--<Style TargetType="grid:GridViewDataControl">
+    <Setter Property="AlternateRowBackground" Value="{StaticResource AccentBrushLight}" />
+  </Style>-->
+
+  <Style TargetType="tlk:GroupHeaderRow">
+    <Setter Property="ShowGroupHeaderColumnAggregates" Value="True" />
+    <Setter Property="ShowHeaderAggregates" Value="False" />
+  </Style>
+
+  <Style TargetType="tlk:GridViewComboBoxColumn">
+    <Setter Property="IsLightweightModeEnabled" Value="True" />
+  </Style>
+
+  <Style TargetType="tlk:RadGridView">
+    <Setter Property="EnableColumnVirtualization" Value="False" />
+    <Setter Property="EnableRowVirtualization" Value="True" />
+    <Setter Property="EnableColumnGroupsVirtualization"  Value="False" />
+    <Setter Property="DataLoadMode" Value="Synchronous" />
+    <Setter Property="IsPropertyChangedAggregationEnabled" Value="False" />
+    <Setter Property="ValidatesOnDataErrors" Value="InEditMode" />
+
+    <Setter Property="SelectionMode" Value="Single" />
+    <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+
+    <Setter Property="CanUserFreezeColumns" Value="True" />
+    <Setter Property="FrozenColumnsSplitterVisibility" Value="Visible" />
+    <!--<Setter Property="RightFrozenColumnsSplitterVisibility" Value="Visible" />-->
+
+
+    <Setter Property="AlternationCount" Value="2" />
+    <Setter Property="AlternateRowBackground" Value="#2A5bb7e3" />
+    
+    <Setter Property="CanUserReorderColumns" Value="False" />
+    <Setter Property="IsReadOnly" Value="True" />
+    <Setter Property="AutoGenerateColumns" Value="False" />
+    <Setter Property="RowIndicatorVisibility" Value="Visible" />
+    <Setter Property="ShowGroupPanel" Value="True" />
+    <Setter Property="GridLinesVisibility" Value="Both" />
+    <Setter Property="ColumnWidth" Value="Auto" />
+    <Setter Property="EnableLostFocusSelectedState" Value="False" />
+
+    <Setter Property="GroupRenderMode" Value="Flat" />
+
+    <Setter Property="PinnedRowsPosition" Value="Top" />
+    <Setter Property="ShowToolTipOnTrimmedText" Value="True" />
+
+
+    <Setter Property="IsFilteringAllowed" Value="True" />
+
+    <!--<Setter Property="ShowSearchPanel" Value="True" />
+    <Setter Property="IsSearchingDeferred" Value="True" />-->
+
+    <!--<Setter Property="AlternateRowStyle">
+      <Setter.Value>
+        <Style TargetType="tlk:GridViewRow">
+          <Setter Property="Background" Value="#FF5bb7e3" />
+        </Style>
+      </Setter.Value>
+    </Setter>-->
+  </Style>
+</ResourceDictionary>

@@ -1,0 +1,89 @@
+﻿<ns:UserControlBase x:Class="Csc.Wpf.Controls.GridColumnFilterPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ns="clr-namespace:Csc.Wpf"
+             xmlns:ctl="clr-namespace:Csc.Wpf.Controls"
+             xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            x:Name="GridColumnFilterPanelObject"
+             mc:Ignorable="d"  Loaded="UserControlBase_Loaded">
+  <ns:UserControlBase.Resources>
+    <Style x:Key="ToggleButtonStyle" TargetType="tlk:RadToggleButton">
+      <Setter Property="Padding" Value="20 5" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Left" />
+      <Setter Property="BorderThickness"  Value="0" />
+    </Style>
+
+    <Style x:Key="ButtonStyle" TargetType="tlk:RadButton">
+      <Setter Property="Padding" Value="20 5" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Left" />
+      <Setter Property="BorderThickness"  Value="0" />
+    </Style>
+  </ns:UserControlBase.Resources>
+  <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" Width="Auto">
+    <StackPanel x:Name="FilterGroupsPanel" Orientation="Vertical" VerticalAlignment="Stretch" Width="Auto"
+                Visibility="{Binding CanFilterGroups, ElementName=GridColumnFilterPanelObject, Converter={StaticResource BoolVisibilityConverter}}" />
+    
+    <StackPanel x:Name="FilterColumnsPanel" Orientation="Vertical" VerticalAlignment="Stretch" Width="Auto"
+                Visibility="{Binding CanFilterGroups, ElementName=GridColumnFilterPanelObject, Converter={StaticResource ReverseBoolVisibilityConverter}}">
+      <tlk:RadListBox x:Name="FilterColumnsListBox" BorderThickness="0" Padding="0" Margin="0" MaxHeight="300">
+        <tlk:RadListBox.ItemTemplate>
+          <DataTemplate>
+            <tlk:RadToggleButton  Content="{Binding Header}" IsChecked="{Binding IsVisible, Mode=TwoWay}"
+                                  Style="{StaticResource ToggleButtonStyle}"/>
+          </DataTemplate>
+        </tlk:RadListBox.ItemTemplate>
+        <tlk:RadListBox.ItemContainerStyle>
+          <Style TargetType="{x:Type tlk:RadListBoxItem}">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+          </Style>
+        </tlk:RadListBox.ItemContainerStyle>
+      </tlk:RadListBox>
+    </StackPanel>
+
+    <Rectangle StrokeThickness="0" Height="1" HorizontalAlignment="Stretch" Fill="{tlk:Windows8Resource ResourceKey=AccentBrush}" Visibility="Visible" />
+    <!--Visibility="{Binding Visibility, ElementName=FilterButtonsPanel}" />-->
+
+    <!-- ///////////////////////////////////// -->
+    <!--  Clear Filters   -->
+    <tlk:RadButton x:Name="AdvancedFiltersButton" Content="Advanced Filters" Style="{StaticResource ButtonStyle}"  Click="AdvancedFiltersButton_Click" />
+    <tlk:RadButton x:Name="ClearFiltersButton" Content="Clear All Filters" Style="{StaticResource ButtonStyle}"  Click="ClearFiltersButton_Click" />
+    <Rectangle StrokeThickness="0" Height="1" HorizontalAlignment="Stretch" Fill="{tlk:Windows8Resource ResourceKey=AccentBrush}"
+               Visibility="{Binding Visibility, ElementName=ClearFiltersButton}" />
+
+    <!-- ///////////////////////////////////// -->
+    <!--  Footer   -->
+    <tlk:RadToggleButton x:Name="FilterFooterButton" Style="{StaticResource ToggleButtonStyle}" Content="Footer"
+                  Visibility="{Binding CanFilterFooter, ElementName=GridColumnFilterPanelObject, Converter={StaticResource BoolVisibilityConverter}}"
+                  IsChecked="{Binding Path=GridView.ShowColumnFooters, ElementName=GridColumnFilterPanelObject}" />
+    <Rectangle StrokeThickness="0" Height="1" HorizontalAlignment="Stretch" Fill="{tlk:Windows8Resource ResourceKey=AccentBrush}"
+               Visibility="{Binding Visibility, ElementName=FilterFooterButton}" />
+
+    <!-- ///////////////////////////////////// -->
+    <!--  Expand / Collapse   -->
+    <tlk:RadButton x:Name="ExportButton"  Style="{StaticResource ButtonStyle}" Click="ExportButton_Click" Padding="0 5">
+      <tlk:RadButton.Content>
+        <ctl:LeftImageText Image="/Csc.IntelliSchool.Assets;component/Images/16/save.png" ImageWidth="16" ImageHeight="16" Text="Export" />
+      </tlk:RadButton.Content>
+    </tlk:RadButton>
+  </StackPanel>
+  <!--</Grid>-->
+</ns:UserControlBase>
+
+<!-- ///////////////////////////////////// -->
+<!--  Expand / Collapse   -->
+<!--<tlk:RadButton x:Name="ExpandButton"  Style="{StaticResource ButtonStyle}" Click="ExpandButton_Click" Padding="0 5">
+      <tlk:RadButton.Content><ctl:LeftImageText Image="/Csc.IntelliSchool.Assets;component/Images/16/expand.png" ImageWidth="16" ImageHeight="16" Text="Expand Related Items" />
+  </tlk:RadButton.Content>
+    </tlk:RadButton>
+
+    <tlk:RadButton x:Name="CollapseButton"  Style="{StaticResource ButtonStyle}" Click="CollapseButton_Click" Padding="0 5">
+      <tlk:RadButton.Content><ctl:LeftImageText Image="/Csc.IntelliSchool.Assets;component/Images/16/collapse.png" ImageWidth="16" ImageHeight="16" Text="Collapse Expanded Items" />
+  </tlk:RadButton.Content>
+    </tlk:RadButton>-->
+
+<!--<Rectangle StrokeThickness="0" Height="1" HorizontalAlignment="Stretch" Fill="{tlk:Windows8Resource ResourceKey=AccentBrush}" />-->

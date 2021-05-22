@@ -1,0 +1,97 @@
+﻿<ns:UserControlBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.EmployeeModifyPersonalControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+             xmlns:ctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf"
+             xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  MinHeight="20" 
+             DataContext="{Binding Item, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}"
+             Initialized="UserControlBase_Initialized"
+             d:DesignHeight="300" d:DesignWidth="300">
+  <Grid >
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="200" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <TextBlock Text="Gender:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+    <tlk:RadComboBox x:Name="GenderComboBox"  VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+      <tlk:RadComboBox.SelectedItem>
+        <Binding Path="Person.Gender" Converter="{StaticResource NullEmptyConverter}">
+          <Binding.ValidationRules>
+            <val:Required  />
+          </Binding.ValidationRules>
+        </Binding>
+      </tlk:RadComboBox.SelectedItem>
+    </tlk:RadComboBox>
+
+    <TextBlock Text="Birthdate:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+    <tlk:RadDatePicker x:Name="BirthdateDatePicker" DisplayFormat="Short" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" SelectionChanged="BirthdateDatePicker_SelectionChanged" >
+      <tlk:RadDatePicker.SelectedValue>
+        <Binding Path="Person.Birthdate">
+          <Binding.ValidationRules>
+            <val:Required />
+          </Binding.ValidationRules>
+        </Binding>
+      </tlk:RadDatePicker.SelectedValue>
+    </tlk:RadDatePicker>
+
+
+    <TextBlock Text="Marital Status:"  VerticalAlignment="Center" Grid.Row="2" Margin="0 0 5 0" />
+    <tlk:RadComboBox x:Name="MaritalComboBox"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
+      <tlk:RadComboBox.SelectedItem>
+        <Binding Path="Person.MaritalStatus" Converter="{StaticResource NullEmptyConverter}">
+          <Binding.ValidationRules>
+          </Binding.ValidationRules>
+        </Binding>
+      </tlk:RadComboBox.SelectedItem>
+    </tlk:RadComboBox>
+
+    <TextBlock Text="ID/Passport:" VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+    <tlk:RadMaskedTextInput x:Name="IDNumberTextBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Mask="a aa aa aa aaaaaaa aaaaaa" HorizontalAlignment="Stretch"
+                          SelectionOnFocus="SelectAll" Placeholder=" ">
+      <tlk:RadMaskedTextInput.Value>
+        <Binding Path="Person.IDNumber">
+        </Binding>
+      </tlk:RadMaskedTextInput.Value>
+    </tlk:RadMaskedTextInput>
+    <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Text="{Binding Value.Length, ElementName=IDNumberTextBox}" Margin="5 0 0 0" VerticalAlignment="Center" />
+
+
+    <!-- Nationality --> 
+    <TextBlock Text="Nationality:" VerticalAlignment="Center" Grid.Row="4" Margin="0 0 5 0" />
+    <tlk:RadComboBox x:Name="NationalityComboBox" DisplayMemberPath="Name" 
+                     SelectedValuePath="NationalityID" SelectedValue="{Binding Person.NationalityID, Converter={StaticResource NullZeroConverter}}"
+                     VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+    
+    <tlk:RadButton x:Name="AddNationalityButton" ToolTip="Add New Item" Grid.Row="4" Grid.Column="2" Margin="5 0 0 0" HorizontalAlignment="Center"
+                   Click="AddNationalityButton_Click" VerticalAlignment="Center" Style="{StaticResource GridButtonStyle}">
+      <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/add.png" Stretch="Uniform" Width="16" Height="16" />
+    </tlk:RadButton>
+
+    <!-- Religion -->
+
+    <TextBlock Text="Religion:" VerticalAlignment="Center" Grid.Row="5" Margin="0 0 5 0" />
+    <tlk:RadComboBox x:Name="ReligionComboBox" DisplayMemberPath="Name" 
+                     SelectedValuePath="ReligionID" SelectedValue="{Binding Person.ReligionID, Converter={StaticResource NullZeroConverter}}"
+                     VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" />
+
+    <tlk:RadButton x:Name="AddReligionButton" ToolTip="Add New Item" Grid.Row="5" Grid.Column="2" Margin="5 0 0 0" HorizontalAlignment="Center"
+                    Click="AddReligionButton_Click" VerticalAlignment="Center" Style="{StaticResource GridButtonStyle}">
+      <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/add.png" Stretch="Uniform" Width="16" Height="16" />
+    </tlk:RadButton>
+  </Grid>
+</ns:UserControlBase>

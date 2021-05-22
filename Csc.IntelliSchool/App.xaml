@@ -1,0 +1,21 @@
+﻿<Application x:Class="Csc.IntelliSchool.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+             StartupUri="MainWindow.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Assets/Resources/Helpers.xaml" />
+
+        <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Theme/Telerik.ReportViewer.Wpf.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Default.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.GridView.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.TextBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.TextBox.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

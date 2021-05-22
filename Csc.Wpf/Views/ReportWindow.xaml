@@ -1,0 +1,12 @@
+﻿<ns:WindowBase x:Class="Csc.Wpf.Views.ReportWindow"
+        xmlns:tlk="http://schemas.telerik.com/wpf"  
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ns="clr-namespace:Csc.Wpf"
+        WindowStartupLocation="CenterOwner" ResizeMode="CanResize" 
+        HideMaximizeButton="False"
+        Header="" Width="1000" Height="600" Closed="WindowBase_Closed">
+  <Grid>
+    <tlk:ReportViewer x:Name="ReportViewer" ViewMode="PrintPreview" Error="ReportViewer_Error" RenderingEnd="ReportViewer_RenderingEnd"   />
+  </Grid>
+</ns:WindowBase>

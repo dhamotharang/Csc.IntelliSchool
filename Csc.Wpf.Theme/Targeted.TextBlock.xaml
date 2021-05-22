@@ -1,0 +1,43 @@
+<ResourceDictionary
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="http://schemas.telerik.com/2008/xaml/compile"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="c"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation">
+
+  
+  
+  <Style x:Key="SectionHeaderTextBlockStyle" TargetType="TextBlock">
+    <Setter Property="FontSize" Value="{tlk:Windows8Resource ResourceKey=FontSizeXL}" />
+    <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamilyStrong}" />
+  </Style>
+
+  <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock">
+    <Setter Property="FontSize" Value="{tlk:Windows8Resource ResourceKey=FontSizeL}" />
+    <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamilyStrong}" />
+  </Style>
+  
+  <Style x:Key="StrongTextBlockStyle" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamilyStrong}" />
+  </Style>
+
+  <Style x:Key="NoteTextBlockStyle" TargetType="TextBlock">
+    <Setter Property="FontSize" Value="{tlk:Windows8Resource ResourceKey=FontSizeS}" />
+  </Style>
+
+
+  <Style x:Key="HighlightedValueTextBlockStyle" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+  </Style>
+
+  <Style x:Key="ErrorTextBlockStyle" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{tlk:Windows8Resource ResourceKey=ValidationBrush}" />
+    <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+  </Style>
+
+</ResourceDictionary>

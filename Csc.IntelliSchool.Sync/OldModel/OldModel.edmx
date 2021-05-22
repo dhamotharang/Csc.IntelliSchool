@@ -1,0 +1,1875 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Csc.IntelliSchool.Sync.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CscIntelliSchoolSyncStoreContainer">
+          <EntitySet Name="absences" EntityType="Csc.IntelliSchool.Sync.Store.absences" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="absents" EntityType="Csc.IntelliSchool.Sync.Store.absents" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="borrows" EntityType="Csc.IntelliSchool.Sync.Store.borrows" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="bouns" EntityType="Csc.IntelliSchool.Sync.Store.bouns" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="bus_drivers_and_supervisors" EntityType="Csc.IntelliSchool.Sync.Store.bus_drivers_and_supervisors" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="bus_users_bonous" EntityType="Csc.IntelliSchool.Sync.Store.bus_users_bonous" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="bus_users_cuts" EntityType="Csc.IntelliSchool.Sync.Store.bus_users_cuts" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="bus_users_monthly_salaries" EntityType="Csc.IntelliSchool.Sync.Store.bus_users_monthly_salaries" store:Type="Tables" store:Schema="salaries" store:Name="bus_users_monthly_salaries">
+            <DefiningQuery>SELECT
+      `bus_users_monthly_salaries`.`user_id`, 
+      `bus_users_monthly_salaries`.`salary_month`, 
+      `bus_users_monthly_salaries`.`salary_year`, 
+      `bus_users_monthly_salaries`.`salary`, 
+      `bus_users_monthly_salaries`.`cutsDays`, 
+      `bus_users_monthly_salaries`.`cutsDaysValue`, 
+      `bus_users_monthly_salaries`.`cutsValues`, 
+      `bus_users_monthly_salaries`.`total`
+      FROM `bus_users_monthly_salaries` AS `bus_users_monthly_salaries`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="departments" EntityType="Csc.IntelliSchool.Sync.Store.departments" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_att" EntityType="Csc.IntelliSchool.Sync.Store.employee_att" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_data" EntityType="Csc.IntelliSchool.Sync.Store.employee_data" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_fin" EntityType="Csc.IntelliSchool.Sync.Store.employee_fin" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_salaries" EntityType="Csc.IntelliSchool.Sync.Store.employee_salaries" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_salaries_hist" EntityType="Csc.IntelliSchool.Sync.Store.employee_salaries_hist" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_status" EntityType="Csc.IntelliSchool.Sync.Store.employee_status" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_trans" EntityType="Csc.IntelliSchool.Sync.Store.employee_trans" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employee_types" EntityType="Csc.IntelliSchool.Sync.Store.employee_types" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employeedependants" EntityType="Csc.IntelliSchool.Sync.Store.employeedependants" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employees_ids" EntityType="Csc.IntelliSchool.Sync.Store.employees_ids" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="employees_signed_out" EntityType="Csc.IntelliSchool.Sync.Store.employees_signed_out" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="empolyee_absents" EntityType="Csc.IntelliSchool.Sync.Store.empolyee_absents" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="empolyee_points" EntityType="Csc.IntelliSchool.Sync.Store.empolyee_points" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="insuranceconcessions" EntityType="Csc.IntelliSchool.Sync.Store.insuranceconcessions" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="insurancelist" EntityType="Csc.IntelliSchool.Sync.Store.insurancelist" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="insurancelistitems" EntityType="Csc.IntelliSchool.Sync.Store.insurancelistitems" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="insuranceprograms" EntityType="Csc.IntelliSchool.Sync.Store.insuranceprograms" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="insuranceproviders" EntityType="Csc.IntelliSchool.Sync.Store.insuranceproviders" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="insurancerates" EntityType="Csc.IntelliSchool.Sync.Store.insurancerates" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="lating" EntityType="Csc.IntelliSchool.Sync.Store.lating" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="loans" EntityType="Csc.IntelliSchool.Sync.Store.loans" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="papers" EntityType="Csc.IntelliSchool.Sync.Store.papers" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="penalty" EntityType="Csc.IntelliSchool.Sync.Store.penalty" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="salaries_monthly" EntityType="Csc.IntelliSchool.Sync.Store.salaries_monthly" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="salaries_monthly_facts" EntityType="Csc.IntelliSchool.Sync.Store.salaries_monthly_facts" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="salaries_users" EntityType="Csc.IntelliSchool.Sync.Store.salaries_users" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="sectors" EntityType="Csc.IntelliSchool.Sync.Store.sectors" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="settings" EntityType="Csc.IntelliSchool.Sync.Store.settings" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="shifts" EntityType="Csc.IntelliSchool.Sync.Store.shifts" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="sis_vacancies" EntityType="Csc.IntelliSchool.Sync.Store.sis_vacancies" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="terminals" EntityType="Csc.IntelliSchool.Sync.Store.terminals" store:Type="Tables" Schema="salaries" />
+          <EntitySet Name="vacations" EntityType="Csc.IntelliSchool.Sync.Store.vacations" store:Type="Tables" Schema="salaries" />
+        </EntityContainer>
+        <EntityType Name="absences">
+          <Key>
+            <PropertyRef Name="AbsenceID" />
+          </Key>
+          <Property Name="AbsenceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="absents">
+          <Key>
+            <PropertyRef Name="terminal_ip" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="employee_date" />
+          </Key>
+          <Property Name="terminal_ip" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="employee_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="borrows">
+          <Key>
+            <PropertyRef Name="borrow_id" />
+          </Key>
+          <Property Name="borrow_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="borrow_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bouns">
+          <Key>
+            <PropertyRef Name="bouns_id" />
+          </Key>
+          <Property Name="bouns_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bouns_date" Type="date" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="bouns_reason" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="bouns_static_value" Type="int" Nullable="false" />
+          <Property Name="bouns_per_value" Type="int" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="last_modified_by" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bus_drivers_and_supervisors">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="user_type" Type="int" Nullable="false" />
+          <Property Name="user_social_id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_driving_license_number" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_driving_license_due_date" Type="date" Nullable="false" />
+          <Property Name="user_driving_license_type" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="salary" Type="double" Nullable="false" />
+          <Property Name="personal_mobile" Type="varchar" MaxLength="15" />
+          <Property Name="school_mobile" Type="varchar" MaxLength="15" />
+          <Property Name="employment_date" Type="date" />
+          <Property Name="EnglishName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FamilyName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="bus_users_bonous">
+          <Key>
+            <PropertyRef Name="bonous_id" />
+          </Key>
+          <Property Name="bonous_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="bonous_type" Type="int" Nullable="false" />
+          <Property Name="bonous_value" Type="double" Nullable="false" />
+          <Property Name="bonous_reason" Type="text" Nullable="false" />
+          <Property Name="bonous_date" Type="date" Nullable="false" />
+          <Property Name="accepted" Type="varchar" Nullable="false" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="bus_users_cuts">
+          <Key>
+            <PropertyRef Name="cut_id" />
+          </Key>
+          <Property Name="cut_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="cut_type" Type="int" Nullable="false" />
+          <Property Name="cut_value" Type="double" Nullable="false" />
+          <Property Name="cut_reason" Type="text" Nullable="false" />
+          <Property Name="cut_date" Type="date" Nullable="false" />
+          <Property Name="cut_details" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'salaries.bus_users_monthly_salaries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="bus_users_monthly_salaries">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="salary_month" />
+            <PropertyRef Name="salary_year" />
+            <PropertyRef Name="salary" />
+            <PropertyRef Name="cutsDays" />
+            <PropertyRef Name="cutsDaysValue" />
+            <PropertyRef Name="cutsValues" />
+            <PropertyRef Name="total" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="salary_month" Type="int" Nullable="false" />
+          <Property Name="salary_year" Type="int" Nullable="false" />
+          <Property Name="salary" Type="double" Nullable="false" />
+          <Property Name="cutsDays" Type="double" Nullable="false" />
+          <Property Name="cutsDaysValue" Type="double" Nullable="false" />
+          <Property Name="cutsValues" Type="double" Nullable="false" />
+          <Property Name="total" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departments">
+          <Key>
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="department_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="sector_id" Type="int" Nullable="false" />
+          <Property Name="department_code" Type="int" Nullable="false" />
+          <Property Name="department_name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="department_number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_att">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="day" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="terminal_ip" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="employee_name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="in" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="out" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_data">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="terminal_ip" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="employee_name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FamilyName" Type="varchar" MaxLength="50" />
+          <Property Name="FullName" Type="varchar" MaxLength="100" />
+          <Property Name="salary" Type="int" Nullable="false" />
+          <Property Name="employee_bd" Type="date" Nullable="false" />
+          <Property Name="employee_nationality" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="employee_gender" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="employee_mstatus" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="employee_phone" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="employee_add" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="employee_working_date" Type="date" Nullable="false" />
+          <Property Name="vacations" Type="int" Nullable="false" />
+          <Property Name="sector_id" Type="int" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="shift_id" Type="int" Nullable="false" />
+          <Property Name="category" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="insurance" Type="int" Nullable="false" />
+          <Property Name="tax" Type="int" Nullable="false" />
+          <Property Name="housing" Type="int" Nullable="false" />
+          <Property Name="ticket" Type="int" Nullable="false" />
+          <Property Name="settelement" Type="int" Nullable="false" />
+          <Property Name="loan" Type="int" Nullable="false" />
+          <Property Name="atm" Type="int" Nullable="false" />
+          <Property Name="we_exception" Type="int" Nullable="false" />
+          <Property Name="points_exception" Type="int" Nullable="false" />
+          <Property Name="ex_employee" Type="bool" Nullable="false" />
+          <Property Name="fp_exception" Type="int" Nullable="false" />
+          <Property Name="enc_salary" Type="int" Nullable="false" />
+          <Property Name="teacher_lock" Type="int" Nullable="false" />
+          <Property Name="IsAttendanceHidden" Type="bit" />
+          <Property Name="SuggestedInsuranceProgram" Type="varchar" MaxLength="50" />
+          <Property Name="Group" Type="varchar" MaxLength="50" />
+          <Property Name="InsuranceProgram" Type="varchar" MaxLength="50" />
+          <Property Name="InsuranceRate" Type="int" />
+          <Property Name="InsuranceConcession" Type="decimal" Precision="4" Scale="3" />
+          <Property Name="InsuranceMonthly" Type="int" />
+          <Property Name="IDNumber" Type="varchar" MaxLength="20" />
+          <Property Name="RefID" Type="int" />
+          <Property Name="RefType" Type="varchar" MaxLength="50" />
+          <Property Name="InsuranceActiveDate" Type="date" />
+        </EntityType>
+        <EntityType Name="employee_fin">
+          <Key>
+            <PropertyRef Name="fin_id" />
+          </Key>
+          <Property Name="fin_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="salary" Type="int" Nullable="false" />
+          <Property Name="housing" Type="int" Nullable="false" />
+          <Property Name="traveling" Type="int" Nullable="false" />
+          <Property Name="transport" Type="int" Nullable="false" />
+          <Property Name="food" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_salaries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="salary" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_salaries_hist">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="salary" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="employee_trans">
+          <Key>
+            <PropertyRef Name="machine_ip" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="inOutMode" />
+            <PropertyRef Name="year" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="day" />
+            <PropertyRef Name="hour" />
+            <PropertyRef Name="minute" />
+          </Key>
+          <Property Name="machine_ip" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="inOutMode" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="hour" Type="int" Nullable="false" />
+          <Property Name="minute" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_types">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="employeedependants">
+          <Key>
+            <PropertyRef Name="DependantID" />
+          </Key>
+          <Property Name="DependantID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Birthdate" Type="datetime" Nullable="false" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="InsuranceProgram" Type="varchar" MaxLength="60" />
+          <Property Name="InsuranceRate" Type="int" />
+          <Property Name="InsuranceConcession" Type="decimal" Precision="4" Scale="3" />
+          <Property Name="InsuranceMonthly" Type="int" />
+          <Property Name="InsuranceActiveDate" Type="date" />
+        </EntityType>
+        <EntityType Name="employees_ids">
+          <Key>
+            <PropertyRef Name="terminal_ip" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="terminal_ip" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="used" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employees_signed_out">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="employee_name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="terminal_ip" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="att_date" Type="date" Nullable="false" />
+          <Property Name="signed_in" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="empolyee_absents">
+          <Key>
+            <PropertyRef Name="machine_ip" />
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="machine_ip" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="absents" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empolyee_points">
+          <Key>
+            <PropertyRef Name="machine_ip" />
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="machine_ip" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="points" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insuranceconcessions">
+          <Key>
+            <PropertyRef Name="ConcessionID" />
+          </Key>
+          <Property Name="ConcessionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramID" Type="int" Nullable="false" />
+          <Property Name="MinYears" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Precision="4" Scale="3" />
+        </EntityType>
+        <EntityType Name="insurancelist">
+          <Key>
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="ListID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastUpdateUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insurancelistitems">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ListID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="ProgramID" Type="int" />
+          <Property Name="SchoolShare" Type="decimal" Nullable="false" Precision="4" Scale="3" />
+          <Property Name="Group" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="insuranceprograms">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProviderID" Type="int" Nullable="false" />
+          <Property Name="PolicyNumber" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="insuranceproviders">
+          <Key>
+            <PropertyRef Name="ProviderID" />
+          </Key>
+          <Property Name="ProviderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="insurancerates">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramID" Type="int" Nullable="false" />
+          <Property Name="From" Type="int" Nullable="false" />
+          <Property Name="To" Type="int" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="DependantValue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="time" Type="time" Nullable="false" />
+          <Property Name="points" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="loans">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="loan_date" Type="date" Nullable="false" />
+          <Property Name="loan_value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="papers">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="graduation" Type="bool" Nullable="false" />
+          <Property Name="birth" Type="bool" Nullable="false" />
+          <Property Name="recruitment" Type="bool" Nullable="false" />
+          <Property Name="feesh" Type="bool" Nullable="false" />
+          <Property Name="id" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="penalty">
+          <Key>
+            <PropertyRef Name="penalty_id" />
+          </Key>
+          <Property Name="penalty_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="penalty_date" Type="date" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="penalty_reason" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="penalty_static_value" Type="int" Nullable="false" />
+          <Property Name="penalty_per_value" Type="int" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="last_modified_by" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salaries_monthly">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="terminal_id" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="terminal_id" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="salary" Type="int" />
+          <Property Name="points" Type="float" />
+          <Property Name="points_val" Type="int" />
+          <Property Name="absents" Type="int" />
+          <Property Name="absents_val" Type="int" />
+          <Property Name="loans" Type="int" />
+          <Property Name="pen" Type="int" />
+          <Property Name="pen_val" Type="int" />
+          <Property Name="bon" Type="int" Nullable="false" />
+          <Property Name="bon_val" Type="int" Nullable="false" />
+          <Property Name="insurance" Type="int" Nullable="false" />
+          <Property Name="housing" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" />
+          <Property Name="is_adjust" Type="int" Nullable="false" />
+          <Property Name="AutoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salaries_monthly_facts">
+          <Key>
+            <PropertyRef Name="employee_name" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="employee_name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="salary" Type="int" />
+          <Property Name="department_name" Type="varchar" MaxLength="250" />
+          <Property Name="ex_employee" Type="int" />
+          <Property Name="enc_salary" Type="int" />
+          <Property Name="points" Type="float" />
+          <Property Name="points_val" Type="double" />
+          <Property Name="absents" Type="double" />
+          <Property Name="absents_val" Type="double" />
+          <Property Name="loans" Type="double" />
+          <Property Name="pen" Type="double" />
+          <Property Name="pen_val" Type="double" />
+          <Property Name="bon" Type="double" />
+          <Property Name="bon_val" Type="double" />
+          <Property Name="insurance" Type="double" />
+          <Property Name="housing" Type="double" />
+          <Property Name="total" Type="double" />
+          <Property Name="is_adjust" Type="double" />
+          <Property Name="atm" Type="double" Nullable="false" />
+          <Property Name="tax" Type="double" Nullable="false" />
+          <Property Name="HealthInsurance" Type="int" />
+        </EntityType>
+        <EntityType Name="salaries_users">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="users_name" Type="varchar" MaxLength="250" />
+          <Property Name="users_full_name" Type="varchar" MaxLength="250" />
+          <Property Name="users_pwd" Type="varchar" MaxLength="20" />
+          <Property Name="users_type" Type="int" />
+          <Property Name="user_school" Type="int" Nullable="false" />
+          <Property Name="users_creation" Type="varchar" MaxLength="250" />
+          <Property Name="users_comment" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sectors">
+          <Key>
+            <PropertyRef Name="sector_id" />
+          </Key>
+          <Property Name="sector_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="sector_name" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="settings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="sname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="svalue" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="shifts">
+          <Key>
+            <PropertyRef Name="shift_id" />
+          </Key>
+          <Property Name="shift_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="shift_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="sat_from" Type="time" Nullable="false" />
+          <Property Name="sat_to" Type="time" Nullable="false" />
+          <Property Name="sun_from" Type="time" Nullable="false" />
+          <Property Name="sun_to" Type="time" Nullable="false" />
+          <Property Name="mon_from" Type="time" Nullable="false" />
+          <Property Name="mon_to" Type="time" Nullable="false" />
+          <Property Name="tue_from" Type="time" Nullable="false" />
+          <Property Name="tue_to" Type="time" Nullable="false" />
+          <Property Name="wed_from" Type="time" Nullable="false" />
+          <Property Name="wed_to" Type="time" Nullable="false" />
+          <Property Name="thr_from" Type="time" Nullable="false" />
+          <Property Name="thr_to" Type="time" Nullable="false" />
+          <Property Name="fri_from" Type="time" Nullable="false" />
+          <Property Name="fri_to" Type="time" Nullable="false" />
+          <Property Name="sat_in" Type="int" Nullable="false" />
+          <Property Name="sun_in" Type="int" Nullable="false" />
+          <Property Name="mon_in" Type="int" Nullable="false" />
+          <Property Name="tue_in" Type="int" Nullable="false" />
+          <Property Name="wed_in" Type="int" Nullable="false" />
+          <Property Name="thr_in" Type="int" Nullable="false" />
+          <Property Name="fri_in" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sis_vacancies">
+          <Key>
+            <PropertyRef Name="sis_vacancy_id" />
+          </Key>
+          <Property Name="sis_vacancy_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="school_id" Type="int" Nullable="false" />
+          <Property Name="sis_vacancy_name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="sis_vacancy_date_from" Type="date" Nullable="false" />
+          <Property Name="sis_vacancy_date_to" Type="date" Nullable="false" />
+          <Property Name="sis_vacancy_comment" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="terminals">
+          <Key>
+            <PropertyRef Name="terminal_id" />
+          </Key>
+          <Property Name="terminal_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="terminal_ip" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="terminal_name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="vacations">
+          <Key>
+            <PropertyRef Name="vacation_id" />
+          </Key>
+          <Property Name="vacation_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="vacation_from" Type="date" Nullable="false" />
+          <Property Name="vacation_to" Type="date" Nullable="false" />
+          <Property Name="vacation_comment" Type="text" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Csc.IntelliSchool.Sync" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OldEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="departments" EntityType="Csc.IntelliSchool.Sync.department" />
+          <EntitySet Name="employee_types" EntityType="Csc.IntelliSchool.Sync.employee_types" />
+          <EntitySet Name="employee_data" EntityType="Csc.IntelliSchool.Sync.employee_data" />
+          <AssociationSet Name="departmentemployee_data" Association="Csc.IntelliSchool.Sync.departmentemployee_data">
+            <End Role="department" EntitySet="departments" />
+            <End Role="employee_data" EntitySet="employee_data" />
+          </AssociationSet>
+          <AssociationSet Name="employee_typesemployee_data" Association="Csc.IntelliSchool.Sync.employee_typesemployee_data">
+            <End Role="employee_types" EntitySet="employee_types" />
+            <End Role="employee_data" EntitySet="employee_data" />
+          </AssociationSet>
+          <EntitySet Name="loans" EntityType="Csc.IntelliSchool.Sync.loan" />
+          <EntitySet Name="penalties" EntityType="Csc.IntelliSchool.Sync.penalty" />
+          <EntitySet Name="employee_trans" EntityType="Csc.IntelliSchool.Sync.employee_trans" />
+          <EntitySet Name="bouns" EntityType="Csc.IntelliSchool.Sync.boun" />
+          <EntitySet Name="absences" EntityType="Csc.IntelliSchool.Sync.absence" />
+          <EntitySet Name="absents" EntityType="Csc.IntelliSchool.Sync.absent" />
+          <EntitySet Name="borrows" EntityType="Csc.IntelliSchool.Sync.borrow" />
+          <EntitySet Name="bus_drivers_and_supervisors" EntityType="Csc.IntelliSchool.Sync.bus_drivers_and_supervisors" />
+          <EntitySet Name="bus_users_bonous" EntityType="Csc.IntelliSchool.Sync.bus_users_bonous" />
+          <EntitySet Name="bus_users_cuts" EntityType="Csc.IntelliSchool.Sync.bus_users_cuts" />
+          <EntitySet Name="bus_users_monthly_salaries" EntityType="Csc.IntelliSchool.Sync.bus_users_monthly_salaries" />
+          <EntitySet Name="employee_att" EntityType="Csc.IntelliSchool.Sync.employee_att" />
+          <EntitySet Name="employee_fin" EntityType="Csc.IntelliSchool.Sync.employee_fin" />
+          <EntitySet Name="employee_salaries" EntityType="Csc.IntelliSchool.Sync.employee_salaries" />
+          <EntitySet Name="employee_salaries_hist" EntityType="Csc.IntelliSchool.Sync.employee_salaries_hist" />
+          <EntitySet Name="employee_status" EntityType="Csc.IntelliSchool.Sync.employee_status" />
+          <EntitySet Name="employeedependants" EntityType="Csc.IntelliSchool.Sync.employeedependant" />
+          <EntitySet Name="employees_ids" EntityType="Csc.IntelliSchool.Sync.employees_ids" />
+          <EntitySet Name="employees_signed_out" EntityType="Csc.IntelliSchool.Sync.employees_signed_out" />
+          <EntitySet Name="empolyee_absents" EntityType="Csc.IntelliSchool.Sync.empolyee_absents" />
+          <EntitySet Name="empolyee_points" EntityType="Csc.IntelliSchool.Sync.empolyee_points" />
+          <EntitySet Name="insuranceconcessions" EntityType="Csc.IntelliSchool.Sync.insuranceconcession" />
+          <EntitySet Name="insurancelists" EntityType="Csc.IntelliSchool.Sync.insurancelist" />
+          <EntitySet Name="insurancelistitems" EntityType="Csc.IntelliSchool.Sync.insurancelistitem" />
+          <EntitySet Name="insuranceprograms" EntityType="Csc.IntelliSchool.Sync.insuranceprogram" />
+          <EntitySet Name="insuranceproviders" EntityType="Csc.IntelliSchool.Sync.insuranceprovider" />
+          <EntitySet Name="insurancerates" EntityType="Csc.IntelliSchool.Sync.insurancerate" />
+          <EntitySet Name="latings" EntityType="Csc.IntelliSchool.Sync.lating" />
+          <EntitySet Name="papers" EntityType="Csc.IntelliSchool.Sync.paper" />
+          <EntitySet Name="salaries_monthly" EntityType="Csc.IntelliSchool.Sync.salaries_monthly" />
+          <EntitySet Name="salaries_monthly_facts" EntityType="Csc.IntelliSchool.Sync.salaries_monthly_facts" />
+          <EntitySet Name="salaries_users" EntityType="Csc.IntelliSchool.Sync.salaries_users" />
+          <EntitySet Name="sectors" EntityType="Csc.IntelliSchool.Sync.sector" />
+          <EntitySet Name="settings" EntityType="Csc.IntelliSchool.Sync.setting" />
+          <EntitySet Name="shifts" EntityType="Csc.IntelliSchool.Sync.shift" />
+          <EntitySet Name="sis_vacancies" EntityType="Csc.IntelliSchool.Sync.sis_vacancies" />
+          <EntitySet Name="terminals" EntityType="Csc.IntelliSchool.Sync.terminal" />
+          <EntitySet Name="vacations" EntityType="Csc.IntelliSchool.Sync.vacation" />
+        </EntityContainer>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="department_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="sector_id" Type="Int32" Nullable="false" />
+          <Property Name="department_code" Type="Int32" Nullable="false" />
+          <Property Name="department_name" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="department_number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employee_data" Relationship="Csc.IntelliSchool.Sync.departmentemployee_data" FromRole="department" ToRole="employee_data" />
+        </EntityType>
+        <EntityType Name="employee_types">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="employee_data" Relationship="Csc.IntelliSchool.Sync.employee_typesemployee_data" FromRole="employee_types" ToRole="employee_data" />
+        </EntityType>
+        <EntityType Name="employee_data">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Type="Int32" Name="employee_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="terminal_ip" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="String" Name="employee_name" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="salary" Nullable="false" />
+          <Property Type="DateTime" Name="employee_bd" Nullable="false" />
+          <Property Type="String" Name="employee_nationality" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employee_gender" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employee_mstatus" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employee_phone" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="employee_add" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="employee_working_date" Nullable="false" />
+          <Property Type="Int32" Name="vacations" Nullable="false" />
+          <Property Type="Int32" Name="sector_id" Nullable="false" />
+          <Property Type="Int32" Name="department_id" Nullable="false" />
+          <Property Type="Int32" Name="type_id" Nullable="false" />
+          <Property Type="Int32" Name="status_id" Nullable="false" />
+          <Property Type="Int32" Name="shift_id" Nullable="false" />
+          <Property Type="String" Name="category" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="insurance" Nullable="false" />
+          <Property Type="Int32" Name="tax" Nullable="false" />
+          <Property Type="Int32" Name="housing" Nullable="false" />
+          <Property Type="Int32" Name="ticket" Nullable="false" />
+          <Property Type="Int32" Name="settelement" Nullable="false" />
+          <Property Type="Int32" Name="loan" Nullable="false" />
+          <Property Type="Int32" Name="atm" Nullable="false" />
+          <Property Type="Int32" Name="we_exception" Nullable="false" />
+          <Property Type="Int32" Name="points_exception" Nullable="false" />
+          <Property Type="Boolean" Name="ex_employee" Nullable="false" />
+          <Property Type="Int32" Name="fp_exception" Nullable="false" />
+          <Property Type="Int32" Name="enc_salary" Nullable="false" />
+          <Property Type="Int32" Name="teacher_lock" Nullable="false" />
+          <Property Type="Boolean" Name="IsAttendanceHidden" />
+          <Property Type="String" Name="SuggestedInsuranceProgram" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Group" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InsuranceProgram" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="InsuranceRate" />
+          <Property Type="Decimal" Name="InsuranceConcession" />
+          <Property Type="Int32" Name="InsuranceMonthly" />
+          <Property Type="String" Name="IDNumber" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RefID" />
+          <Property Type="String" Name="RefType" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="InsuranceActiveDate" />
+          <NavigationProperty Name="department" Relationship="Csc.IntelliSchool.Sync.departmentemployee_data" FromRole="employee_data" ToRole="department" />
+          <NavigationProperty Name="employee_types" Relationship="Csc.IntelliSchool.Sync.employee_typesemployee_data" FromRole="employee_data" ToRole="employee_types" />
+          <Property Type="String" Name="FamilyName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FullName" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="departmentemployee_data">
+          <End Type="Csc.IntelliSchool.Sync.department" Role="department" Multiplicity="1" />
+          <End Type="Csc.IntelliSchool.Sync.employee_data" Role="employee_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="department_id" />
+            </Principal>
+            <Dependent Role="employee_data">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employee_typesemployee_data">
+          <End Type="Csc.IntelliSchool.Sync.employee_types" Role="employee_types" Multiplicity="1" />
+          <End Type="Csc.IntelliSchool.Sync.employee_data" Role="employee_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee_types">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="employee_data">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="loan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="status" Nullable="false" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="DateTime" Name="loan_date" Nullable="false" />
+          <Property Type="Int32" Name="loan_value" Nullable="false" />
+        </EntityType>
+        <EntityType Name="penalty">
+          <Key>
+            <PropertyRef Name="penalty_id" />
+          </Key>
+          <Property Type="Int32" Name="penalty_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="penalty_date" Nullable="false" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="String" Name="penalty_reason" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="penalty_static_value" Nullable="false" />
+          <Property Type="Int32" Name="penalty_per_value" Nullable="false" />
+          <Property Type="Int32" Name="created_by" Nullable="false" />
+          <Property Type="Int32" Name="last_modified_by" Nullable="false" />
+          <Property Type="Int32" Name="status" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_trans">
+          <Key>
+            <PropertyRef Name="machine_ip" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="inOutMode" />
+            <PropertyRef Name="year" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="day" />
+            <PropertyRef Name="hour" />
+            <PropertyRef Name="minute" />
+          </Key>
+          <Property Type="String" Name="machine_ip" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="inOutMode" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="day" Nullable="false" />
+          <Property Type="Int32" Name="hour" Nullable="false" />
+          <Property Type="Int32" Name="minute" Nullable="false" />
+        </EntityType>
+        <EntityType Name="boun">
+          <Key>
+            <PropertyRef Name="bouns_id" />
+          </Key>
+          <Property Type="Int32" Name="bouns_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="bouns_date" Nullable="false" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="String" Name="bouns_reason" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="bouns_static_value" Nullable="false" />
+          <Property Type="Int32" Name="bouns_per_value" Nullable="false" />
+          <Property Type="Int32" Name="created_by" Nullable="false" />
+          <Property Type="Int32" Name="last_modified_by" Nullable="false" />
+          <Property Type="Int32" Name="status" Nullable="false" />
+        </EntityType>
+        <EntityType Name="absence">
+          <Key>
+            <PropertyRef Name="AbsenceID" />
+          </Key>
+          <Property Type="Int32" Name="AbsenceID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="absent">
+          <Key>
+            <PropertyRef Name="terminal_ip" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="employee_date" />
+          </Key>
+          <Property Type="String" Name="terminal_ip" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="DateTime" Name="employee_date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="borrow">
+          <Key>
+            <PropertyRef Name="borrow_id" />
+          </Key>
+          <Property Type="Int32" Name="borrow_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="DateTime" Name="borrow_date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bus_drivers_and_supervisors">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Type="Int32" Name="user_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="user_name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_type" Nullable="false" />
+          <Property Type="String" Name="user_social_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_driving_license_number" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="user_driving_license_due_date" Nullable="false" />
+          <Property Type="String" Name="user_driving_license_type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="salary" Nullable="false" />
+          <Property Type="String" Name="personal_mobile" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="school_mobile" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="employment_date" />
+          <Property Type="String" Name="EnglishName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FamilyName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="bus_users_bonous">
+          <Key>
+            <PropertyRef Name="bonous_id" />
+          </Key>
+          <Property Type="Int32" Name="bonous_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="bonous_type" Nullable="false" />
+          <Property Type="Double" Name="bonous_value" Nullable="false" />
+          <Property Type="String" Name="bonous_reason" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="bonous_date" Nullable="false" />
+          <Property Type="String" Name="accepted" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="bus_users_cuts">
+          <Key>
+            <PropertyRef Name="cut_id" />
+          </Key>
+          <Property Type="Int32" Name="cut_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="cut_type" Nullable="false" />
+          <Property Type="Double" Name="cut_value" Nullable="false" />
+          <Property Type="String" Name="cut_reason" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="cut_date" Nullable="false" />
+          <Property Type="SByte" Name="cut_details" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bus_users_monthly_salaries">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="salary_month" />
+            <PropertyRef Name="salary_year" />
+            <PropertyRef Name="salary" />
+            <PropertyRef Name="cutsDays" />
+            <PropertyRef Name="cutsDaysValue" />
+            <PropertyRef Name="cutsValues" />
+            <PropertyRef Name="total" />
+          </Key>
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="salary_month" Nullable="false" />
+          <Property Type="Int32" Name="salary_year" Nullable="false" />
+          <Property Type="Double" Name="salary" Nullable="false" />
+          <Property Type="Double" Name="cutsDays" Nullable="false" />
+          <Property Type="Double" Name="cutsDaysValue" Nullable="false" />
+          <Property Type="Double" Name="cutsValues" Nullable="false" />
+          <Property Type="Double" Name="total" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_att">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="day" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="String" Name="terminal_ip" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="String" Name="employee_name" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="day" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="String" Name="in" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="out" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_fin">
+          <Key>
+            <PropertyRef Name="fin_id" />
+          </Key>
+          <Property Type="Int32" Name="fin_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="Int32" Name="salary" Nullable="false" />
+          <Property Type="Int32" Name="housing" Nullable="false" />
+          <Property Type="Int32" Name="traveling" Nullable="false" />
+          <Property Type="Int32" Name="transport" Nullable="false" />
+          <Property Type="Int32" Name="food" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_salaries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="Int32" Name="salary" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_salaries_hist">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="Int32" Name="salary" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Type="Int32" Name="status_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="employeedependant">
+          <Key>
+            <PropertyRef Name="DependantID" />
+          </Key>
+          <Property Type="Int32" Name="DependantID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nationality" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Birthdate" Nullable="false" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InsuranceProgram" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="InsuranceRate" />
+          <Property Type="Decimal" Name="InsuranceConcession" />
+          <Property Type="Int32" Name="InsuranceMonthly" />
+          <Property Type="DateTime" Name="InsuranceActiveDate" />
+        </EntityType>
+        <EntityType Name="employees_ids">
+          <Key>
+            <PropertyRef Name="terminal_ip" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Type="String" Name="terminal_ip" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="used" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employees_signed_out">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="employee_name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="terminal_ip" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="day" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="DateTime" Name="att_date" Nullable="false" />
+          <Property Type="String" Name="signed_in" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="empolyee_absents">
+          <Key>
+            <PropertyRef Name="machine_ip" />
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Type="String" Name="machine_ip" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="Single" Name="absents" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empolyee_points">
+          <Key>
+            <PropertyRef Name="machine_ip" />
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Type="String" Name="machine_ip" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="Single" Name="points" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insuranceconcession">
+          <Key>
+            <PropertyRef Name="ConcessionID" />
+          </Key>
+          <Property Type="Int32" Name="ConcessionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProgramID" Nullable="false" />
+          <Property Type="Int32" Name="MinYears" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insurancelist">
+          <Key>
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Type="Int32" Name="ListID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LastUpdateUtc" Nullable="false" />
+        </EntityType>
+        <EntityType Name="insurancelistitem">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Type="Int32" Name="ItemID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ListID" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="Int32" Name="ProgramID" />
+          <Property Type="Decimal" Name="SchoolShare" Nullable="false" />
+          <Property Type="String" Name="Group" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="insuranceprogram">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Type="Int32" Name="ProgramID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ProviderID" Nullable="false" />
+          <Property Type="String" Name="PolicyNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="insuranceprovider">
+          <Key>
+            <PropertyRef Name="ProviderID" />
+          </Key>
+          <Property Type="Int32" Name="ProviderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="insurancerate">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Type="Int32" Name="RateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProgramID" Nullable="false" />
+          <Property Type="Int32" Name="From" Nullable="false" />
+          <Property Type="Int32" Name="To" Nullable="false" />
+          <Property Type="Int32" Name="Value" Nullable="false" />
+          <Property Type="Int32" Name="DependantValue" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Time" Name="time" Nullable="false" />
+          <Property Type="Single" Name="points" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paper">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="Boolean" Name="graduation" Nullable="false" />
+          <Property Type="Boolean" Name="birth" Nullable="false" />
+          <Property Type="Boolean" Name="recruitment" Nullable="false" />
+          <Property Type="Boolean" Name="feesh" Nullable="false" />
+          <Property Type="Boolean" Name="id" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salaries_monthly">
+          <Key>
+            <PropertyRef Name="employee_id" />
+            <PropertyRef Name="terminal_id" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="String" Name="terminal_id" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="Int32" Name="salary" />
+          <Property Type="Single" Name="points" />
+          <Property Type="Int32" Name="points_val" />
+          <Property Type="Int32" Name="absents" />
+          <Property Type="Int32" Name="absents_val" />
+          <Property Type="Int32" Name="loans" />
+          <Property Type="Int32" Name="pen" />
+          <Property Type="Int32" Name="pen_val" />
+          <Property Type="Int32" Name="bon" Nullable="false" />
+          <Property Type="Int32" Name="bon_val" Nullable="false" />
+          <Property Type="Int32" Name="insurance" Nullable="false" />
+          <Property Type="Int32" Name="housing" Nullable="false" />
+          <Property Type="Int32" Name="total" />
+          <Property Type="Int32" Name="is_adjust" Nullable="false" />
+          <Property Type="Int32" Name="AutoID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salaries_monthly_facts">
+          <Key>
+            <PropertyRef Name="employee_name" />
+            <PropertyRef Name="month" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Type="String" Name="employee_name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="month" Nullable="false" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+          <Property Type="Int32" Name="salary" />
+          <Property Type="String" Name="department_name" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ex_employee" />
+          <Property Type="Int32" Name="enc_salary" />
+          <Property Type="Single" Name="points" />
+          <Property Type="Double" Name="points_val" />
+          <Property Type="Double" Name="absents" />
+          <Property Type="Double" Name="absents_val" />
+          <Property Type="Double" Name="loans" />
+          <Property Type="Double" Name="pen" />
+          <Property Type="Double" Name="pen_val" />
+          <Property Type="Double" Name="bon" />
+          <Property Type="Double" Name="bon_val" />
+          <Property Type="Double" Name="insurance" />
+          <Property Type="Double" Name="housing" />
+          <Property Type="Double" Name="total" />
+          <Property Type="Double" Name="is_adjust" />
+          <Property Type="Double" Name="atm" Nullable="false" />
+          <Property Type="Double" Name="tax" Nullable="false" />
+          <Property Type="Int32" Name="HealthInsurance" />
+        </EntityType>
+        <EntityType Name="salaries_users">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Type="Int32" Name="users_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="users_name" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="users_full_name" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="users_pwd" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="users_type" />
+          <Property Type="Int32" Name="user_school" Nullable="false" />
+          <Property Type="String" Name="users_creation" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="users_comment" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sector">
+          <Key>
+            <PropertyRef Name="sector_id" />
+          </Key>
+          <Property Type="Int32" Name="sector_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="sector_name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="setting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="sname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="svalue" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="shift">
+          <Key>
+            <PropertyRef Name="shift_id" />
+          </Key>
+          <Property Type="Int32" Name="shift_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="shift_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Time" Name="sat_from" Nullable="false" />
+          <Property Type="Time" Name="sat_to" Nullable="false" />
+          <Property Type="Time" Name="sun_from" Nullable="false" />
+          <Property Type="Time" Name="sun_to" Nullable="false" />
+          <Property Type="Time" Name="mon_from" Nullable="false" />
+          <Property Type="Time" Name="mon_to" Nullable="false" />
+          <Property Type="Time" Name="tue_from" Nullable="false" />
+          <Property Type="Time" Name="tue_to" Nullable="false" />
+          <Property Type="Time" Name="wed_from" Nullable="false" />
+          <Property Type="Time" Name="wed_to" Nullable="false" />
+          <Property Type="Time" Name="thr_from" Nullable="false" />
+          <Property Type="Time" Name="thr_to" Nullable="false" />
+          <Property Type="Time" Name="fri_from" Nullable="false" />
+          <Property Type="Time" Name="fri_to" Nullable="false" />
+          <Property Type="Int32" Name="sat_in" Nullable="false" />
+          <Property Type="Int32" Name="sun_in" Nullable="false" />
+          <Property Type="Int32" Name="mon_in" Nullable="false" />
+          <Property Type="Int32" Name="tue_in" Nullable="false" />
+          <Property Type="Int32" Name="wed_in" Nullable="false" />
+          <Property Type="Int32" Name="thr_in" Nullable="false" />
+          <Property Type="Int32" Name="fri_in" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sis_vacancies">
+          <Key>
+            <PropertyRef Name="sis_vacancy_id" />
+          </Key>
+          <Property Type="Int32" Name="sis_vacancy_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="school_id" Nullable="false" />
+          <Property Type="String" Name="sis_vacancy_name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="sis_vacancy_date_from" Nullable="false" />
+          <Property Type="DateTime" Name="sis_vacancy_date_to" Nullable="false" />
+          <Property Type="String" Name="sis_vacancy_comment" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="terminal">
+          <Key>
+            <PropertyRef Name="terminal_id" />
+          </Key>
+          <Property Type="Int32" Name="terminal_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="terminal_ip" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="terminal_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vacation">
+          <Key>
+            <PropertyRef Name="vacation_id" />
+          </Key>
+          <Property Type="Int32" Name="vacation_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="department_id" Nullable="false" />
+          <Property Type="DateTime" Name="vacation_from" Nullable="false" />
+          <Property Type="DateTime" Name="vacation_to" Nullable="false" />
+          <Property Type="String" Name="vacation_comment" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CscIntelliSchoolSyncStoreContainer" CdmEntityContainer="OldEntities">
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.department">
+              <MappingFragment StoreEntitySet="departments">
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="sector_id" ColumnName="sector_id" />
+                <ScalarProperty Name="department_code" ColumnName="department_code" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="department_number" ColumnName="department_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_types">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_types">
+              <MappingFragment StoreEntitySet="employee_types">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_data">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_data">
+              <MappingFragment StoreEntitySet="employee_data">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+                <ScalarProperty Name="InsuranceActiveDate" ColumnName="InsuranceActiveDate" />
+                <ScalarProperty Name="RefType" ColumnName="RefType" />
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="InsuranceMonthly" ColumnName="InsuranceMonthly" />
+                <ScalarProperty Name="InsuranceConcession" ColumnName="InsuranceConcession" />
+                <ScalarProperty Name="InsuranceRate" ColumnName="InsuranceRate" />
+                <ScalarProperty Name="InsuranceProgram" ColumnName="InsuranceProgram" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="SuggestedInsuranceProgram" ColumnName="SuggestedInsuranceProgram" />
+                <ScalarProperty Name="IsAttendanceHidden" ColumnName="IsAttendanceHidden" />
+                <ScalarProperty Name="teacher_lock" ColumnName="teacher_lock" />
+                <ScalarProperty Name="enc_salary" ColumnName="enc_salary" />
+                <ScalarProperty Name="fp_exception" ColumnName="fp_exception" />
+                <ScalarProperty Name="ex_employee" ColumnName="ex_employee" />
+                <ScalarProperty Name="points_exception" ColumnName="points_exception" />
+                <ScalarProperty Name="we_exception" ColumnName="we_exception" />
+                <ScalarProperty Name="atm" ColumnName="atm" />
+                <ScalarProperty Name="loan" ColumnName="loan" />
+                <ScalarProperty Name="settelement" ColumnName="settelement" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="housing" ColumnName="housing" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="insurance" ColumnName="insurance" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="sector_id" ColumnName="sector_id" />
+                <ScalarProperty Name="vacations" ColumnName="vacations" />
+                <ScalarProperty Name="employee_working_date" ColumnName="employee_working_date" />
+                <ScalarProperty Name="employee_add" ColumnName="employee_add" />
+                <ScalarProperty Name="employee_phone" ColumnName="employee_phone" />
+                <ScalarProperty Name="employee_mstatus" ColumnName="employee_mstatus" />
+                <ScalarProperty Name="employee_gender" ColumnName="employee_gender" />
+                <ScalarProperty Name="employee_nationality" ColumnName="employee_nationality" />
+                <ScalarProperty Name="employee_bd" ColumnName="employee_bd" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="terminal_ip" ColumnName="terminal_ip" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loans">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.loan">
+              <MappingFragment StoreEntitySet="loans">
+                <ScalarProperty Name="loan_value" ColumnName="loan_value" />
+                <ScalarProperty Name="loan_date" ColumnName="loan_date" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="penalties">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.penalty">
+              <MappingFragment StoreEntitySet="penalty">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="last_modified_by" ColumnName="last_modified_by" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="penalty_per_value" ColumnName="penalty_per_value" />
+                <ScalarProperty Name="penalty_static_value" ColumnName="penalty_static_value" />
+                <ScalarProperty Name="penalty_reason" ColumnName="penalty_reason" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="penalty_date" ColumnName="penalty_date" />
+                <ScalarProperty Name="penalty_id" ColumnName="penalty_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_trans">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_trans">
+              <MappingFragment StoreEntitySet="employee_trans">
+                <ScalarProperty Name="minute" ColumnName="minute" />
+                <ScalarProperty Name="hour" ColumnName="hour" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="inOutMode" ColumnName="inOutMode" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="machine_ip" ColumnName="machine_ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bouns">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.boun">
+              <MappingFragment StoreEntitySet="bouns">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="last_modified_by" ColumnName="last_modified_by" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="bouns_per_value" ColumnName="bouns_per_value" />
+                <ScalarProperty Name="bouns_static_value" ColumnName="bouns_static_value" />
+                <ScalarProperty Name="bouns_reason" ColumnName="bouns_reason" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="bouns_date" ColumnName="bouns_date" />
+                <ScalarProperty Name="bouns_id" ColumnName="bouns_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="absences">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.absence">
+              <MappingFragment StoreEntitySet="absences">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="AbsenceID" ColumnName="AbsenceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="absents">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.absent">
+              <MappingFragment StoreEntitySet="absents">
+                <ScalarProperty Name="employee_date" ColumnName="employee_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="terminal_ip" ColumnName="terminal_ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="borrows">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.borrow">
+              <MappingFragment StoreEntitySet="borrows">
+                <ScalarProperty Name="borrow_date" ColumnName="borrow_date" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="borrow_id" ColumnName="borrow_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bus_drivers_and_supervisors">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.bus_drivers_and_supervisors">
+              <MappingFragment StoreEntitySet="bus_drivers_and_supervisors">
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
+                <ScalarProperty Name="employment_date" ColumnName="employment_date" />
+                <ScalarProperty Name="school_mobile" ColumnName="school_mobile" />
+                <ScalarProperty Name="personal_mobile" ColumnName="personal_mobile" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="user_driving_license_type" ColumnName="user_driving_license_type" />
+                <ScalarProperty Name="user_driving_license_due_date" ColumnName="user_driving_license_due_date" />
+                <ScalarProperty Name="user_driving_license_number" ColumnName="user_driving_license_number" />
+                <ScalarProperty Name="user_social_id" ColumnName="user_social_id" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bus_users_bonous">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.bus_users_bonous">
+              <MappingFragment StoreEntitySet="bus_users_bonous">
+                <ScalarProperty Name="accepted" ColumnName="accepted" />
+                <ScalarProperty Name="bonous_date" ColumnName="bonous_date" />
+                <ScalarProperty Name="bonous_reason" ColumnName="bonous_reason" />
+                <ScalarProperty Name="bonous_value" ColumnName="bonous_value" />
+                <ScalarProperty Name="bonous_type" ColumnName="bonous_type" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="bonous_id" ColumnName="bonous_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bus_users_cuts">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.bus_users_cuts">
+              <MappingFragment StoreEntitySet="bus_users_cuts">
+                <ScalarProperty Name="cut_details" ColumnName="cut_details" />
+                <ScalarProperty Name="cut_date" ColumnName="cut_date" />
+                <ScalarProperty Name="cut_reason" ColumnName="cut_reason" />
+                <ScalarProperty Name="cut_value" ColumnName="cut_value" />
+                <ScalarProperty Name="cut_type" ColumnName="cut_type" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="cut_id" ColumnName="cut_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bus_users_monthly_salaries">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.bus_users_monthly_salaries">
+              <MappingFragment StoreEntitySet="bus_users_monthly_salaries">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="cutsValues" ColumnName="cutsValues" />
+                <ScalarProperty Name="cutsDaysValue" ColumnName="cutsDaysValue" />
+                <ScalarProperty Name="cutsDays" ColumnName="cutsDays" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="salary_year" ColumnName="salary_year" />
+                <ScalarProperty Name="salary_month" ColumnName="salary_month" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_att">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_att">
+              <MappingFragment StoreEntitySet="employee_att">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="out" ColumnName="out" />
+                <ScalarProperty Name="in" ColumnName="in" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="terminal_ip" ColumnName="terminal_ip" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_fin">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_fin">
+              <MappingFragment StoreEntitySet="employee_fin">
+                <ScalarProperty Name="food" ColumnName="food" />
+                <ScalarProperty Name="transport" ColumnName="transport" />
+                <ScalarProperty Name="traveling" ColumnName="traveling" />
+                <ScalarProperty Name="housing" ColumnName="housing" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="fin_id" ColumnName="fin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_salaries">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_salaries">
+              <MappingFragment StoreEntitySet="employee_salaries">
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_salaries_hist">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_salaries_hist">
+              <MappingFragment StoreEntitySet="employee_salaries_hist">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_status">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employee_status">
+              <MappingFragment StoreEntitySet="employee_status">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeedependants">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employeedependant">
+              <MappingFragment StoreEntitySet="employeedependants">
+                <ScalarProperty Name="InsuranceActiveDate" ColumnName="InsuranceActiveDate" />
+                <ScalarProperty Name="InsuranceMonthly" ColumnName="InsuranceMonthly" />
+                <ScalarProperty Name="InsuranceConcession" ColumnName="InsuranceConcession" />
+                <ScalarProperty Name="InsuranceRate" ColumnName="InsuranceRate" />
+                <ScalarProperty Name="InsuranceProgram" ColumnName="InsuranceProgram" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DependantID" ColumnName="DependantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees_ids">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employees_ids">
+              <MappingFragment StoreEntitySet="employees_ids">
+                <ScalarProperty Name="used" ColumnName="used" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="terminal_ip" ColumnName="terminal_ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees_signed_out">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.employees_signed_out">
+              <MappingFragment StoreEntitySet="employees_signed_out">
+                <ScalarProperty Name="signed_in" ColumnName="signed_in" />
+                <ScalarProperty Name="att_date" ColumnName="att_date" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="terminal_ip" ColumnName="terminal_ip" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empolyee_absents">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.empolyee_absents">
+              <MappingFragment StoreEntitySet="empolyee_absents">
+                <ScalarProperty Name="absents" ColumnName="absents" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="machine_ip" ColumnName="machine_ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empolyee_points">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.empolyee_points">
+              <MappingFragment StoreEntitySet="empolyee_points">
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="machine_ip" ColumnName="machine_ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insuranceconcessions">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.insuranceconcession">
+              <MappingFragment StoreEntitySet="insuranceconcessions">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="MinYears" ColumnName="MinYears" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="ConcessionID" ColumnName="ConcessionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insurancelists">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.insurancelist">
+              <MappingFragment StoreEntitySet="insurancelist">
+                <ScalarProperty Name="LastUpdateUtc" ColumnName="LastUpdateUtc" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ListID" ColumnName="ListID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insurancelistitems">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.insurancelistitem">
+              <MappingFragment StoreEntitySet="insurancelistitems">
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="SchoolShare" ColumnName="SchoolShare" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ListID" ColumnName="ListID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insuranceprograms">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.insuranceprogram">
+              <MappingFragment StoreEntitySet="insuranceprograms">
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insuranceproviders">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.insuranceprovider">
+              <MappingFragment StoreEntitySet="insuranceproviders">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="insurancerates">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.insurancerate">
+              <MappingFragment StoreEntitySet="insurancerates">
+                <ScalarProperty Name="DependantValue" ColumnName="DependantValue" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="latings">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.lating">
+              <MappingFragment StoreEntitySet="lating">
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="papers">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.paper">
+              <MappingFragment StoreEntitySet="papers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="feesh" ColumnName="feesh" />
+                <ScalarProperty Name="recruitment" ColumnName="recruitment" />
+                <ScalarProperty Name="birth" ColumnName="birth" />
+                <ScalarProperty Name="graduation" ColumnName="graduation" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaries_monthly">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.salaries_monthly">
+              <MappingFragment StoreEntitySet="salaries_monthly">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="is_adjust" ColumnName="is_adjust" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="housing" ColumnName="housing" />
+                <ScalarProperty Name="insurance" ColumnName="insurance" />
+                <ScalarProperty Name="bon_val" ColumnName="bon_val" />
+                <ScalarProperty Name="bon" ColumnName="bon" />
+                <ScalarProperty Name="pen_val" ColumnName="pen_val" />
+                <ScalarProperty Name="pen" ColumnName="pen" />
+                <ScalarProperty Name="loans" ColumnName="loans" />
+                <ScalarProperty Name="absents_val" ColumnName="absents_val" />
+                <ScalarProperty Name="absents" ColumnName="absents" />
+                <ScalarProperty Name="points_val" ColumnName="points_val" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="terminal_id" ColumnName="terminal_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaries_monthly_facts">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.salaries_monthly_facts">
+              <MappingFragment StoreEntitySet="salaries_monthly_facts">
+                <ScalarProperty Name="HealthInsurance" ColumnName="HealthInsurance" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="atm" ColumnName="atm" />
+                <ScalarProperty Name="is_adjust" ColumnName="is_adjust" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="housing" ColumnName="housing" />
+                <ScalarProperty Name="insurance" ColumnName="insurance" />
+                <ScalarProperty Name="bon_val" ColumnName="bon_val" />
+                <ScalarProperty Name="bon" ColumnName="bon" />
+                <ScalarProperty Name="pen_val" ColumnName="pen_val" />
+                <ScalarProperty Name="pen" ColumnName="pen" />
+                <ScalarProperty Name="loans" ColumnName="loans" />
+                <ScalarProperty Name="absents_val" ColumnName="absents_val" />
+                <ScalarProperty Name="absents" ColumnName="absents" />
+                <ScalarProperty Name="points_val" ColumnName="points_val" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="enc_salary" ColumnName="enc_salary" />
+                <ScalarProperty Name="ex_employee" ColumnName="ex_employee" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaries_users">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.salaries_users">
+              <MappingFragment StoreEntitySet="salaries_users">
+                <ScalarProperty Name="users_comment" ColumnName="users_comment" />
+                <ScalarProperty Name="users_creation" ColumnName="users_creation" />
+                <ScalarProperty Name="user_school" ColumnName="user_school" />
+                <ScalarProperty Name="users_type" ColumnName="users_type" />
+                <ScalarProperty Name="users_pwd" ColumnName="users_pwd" />
+                <ScalarProperty Name="users_full_name" ColumnName="users_full_name" />
+                <ScalarProperty Name="users_name" ColumnName="users_name" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sectors">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.sector">
+              <MappingFragment StoreEntitySet="sectors">
+                <ScalarProperty Name="sector_name" ColumnName="sector_name" />
+                <ScalarProperty Name="sector_id" ColumnName="sector_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="settings">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.setting">
+              <MappingFragment StoreEntitySet="settings">
+                <ScalarProperty Name="svalue" ColumnName="svalue" />
+                <ScalarProperty Name="sname" ColumnName="sname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shifts">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.shift">
+              <MappingFragment StoreEntitySet="shifts">
+                <ScalarProperty Name="fri_in" ColumnName="fri_in" />
+                <ScalarProperty Name="thr_in" ColumnName="thr_in" />
+                <ScalarProperty Name="wed_in" ColumnName="wed_in" />
+                <ScalarProperty Name="tue_in" ColumnName="tue_in" />
+                <ScalarProperty Name="mon_in" ColumnName="mon_in" />
+                <ScalarProperty Name="sun_in" ColumnName="sun_in" />
+                <ScalarProperty Name="sat_in" ColumnName="sat_in" />
+                <ScalarProperty Name="fri_to" ColumnName="fri_to" />
+                <ScalarProperty Name="fri_from" ColumnName="fri_from" />
+                <ScalarProperty Name="thr_to" ColumnName="thr_to" />
+                <ScalarProperty Name="thr_from" ColumnName="thr_from" />
+                <ScalarProperty Name="wed_to" ColumnName="wed_to" />
+                <ScalarProperty Name="wed_from" ColumnName="wed_from" />
+                <ScalarProperty Name="tue_to" ColumnName="tue_to" />
+                <ScalarProperty Name="tue_from" ColumnName="tue_from" />
+                <ScalarProperty Name="mon_to" ColumnName="mon_to" />
+                <ScalarProperty Name="mon_from" ColumnName="mon_from" />
+                <ScalarProperty Name="sun_to" ColumnName="sun_to" />
+                <ScalarProperty Name="sun_from" ColumnName="sun_from" />
+                <ScalarProperty Name="sat_to" ColumnName="sat_to" />
+                <ScalarProperty Name="sat_from" ColumnName="sat_from" />
+                <ScalarProperty Name="shift_name" ColumnName="shift_name" />
+                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_vacancies">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.sis_vacancies">
+              <MappingFragment StoreEntitySet="sis_vacancies">
+                <ScalarProperty Name="sis_vacancy_comment" ColumnName="sis_vacancy_comment" />
+                <ScalarProperty Name="sis_vacancy_date_to" ColumnName="sis_vacancy_date_to" />
+                <ScalarProperty Name="sis_vacancy_date_from" ColumnName="sis_vacancy_date_from" />
+                <ScalarProperty Name="sis_vacancy_name" ColumnName="sis_vacancy_name" />
+                <ScalarProperty Name="school_id" ColumnName="school_id" />
+                <ScalarProperty Name="sis_vacancy_id" ColumnName="sis_vacancy_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="terminals">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.terminal">
+              <MappingFragment StoreEntitySet="terminals">
+                <ScalarProperty Name="terminal_name" ColumnName="terminal_name" />
+                <ScalarProperty Name="terminal_ip" ColumnName="terminal_ip" />
+                <ScalarProperty Name="terminal_id" ColumnName="terminal_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vacations">
+            <EntityTypeMapping TypeName="Csc.IntelliSchool.Sync.vacation">
+              <MappingFragment StoreEntitySet="vacations">
+                <ScalarProperty Name="vacation_comment" ColumnName="vacation_comment" />
+                <ScalarProperty Name="vacation_to" ColumnName="vacation_to" />
+                <ScalarProperty Name="vacation_from" ColumnName="vacation_from" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="vacation_id" ColumnName="vacation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

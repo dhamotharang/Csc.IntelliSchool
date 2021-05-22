@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{131E9E90-5949-4619-BCFC-854D9C386F42}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Csc.IntelliSchool.Business</RootNamespace>
+    <AssemblyName>Csc.IntelliSchool.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Assembly\csc.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AccountDataManager.DependencyMonitor.cs" />
+    <Compile Include="Account\AccountDataManager.Authentication.cs" />
+    <Compile Include="Account\AccountDataManager.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Charges.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Allowances.cs" />
+    <Compile Include="People\PeopleDataManager.cs" />
+    <Compile Include="DataManagement\FileManagerExtensions.cs" />
+    <Compile Include="DataManagement\LocalFileType.cs" />
+    <Compile Include="DataManagement\FileManager.Upload.cs" />
+    <Compile Include="DataManagement\FileManager.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="DataManager.Data.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Branches.cs" />
+    <Compile Include="Employees\EmployeesDataManager.EmployeeDependant.cs" />
+    <Compile Include="Employees\EmployeesDataManager.MedicalClaims.cs" />
+    <Compile Include="Employees\EmployeesDataManager.MedicalCertificates.cs" />
+    <Compile Include="Employees\EmployeesDataManager.MedicalRequests.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Terminals.cs" />
+    <Compile Include="Employees\EmployeesDataManager.TransactionRules.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Shifts.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Employees.cs" />
+    <Compile Include="Employees\EmployeesDataManager.DepartmentVacations.cs" />
+    <Compile Include="Employees\EmployeeSelectionType.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Attendance.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Communication.cs" />
+    <Compile Include="Employees\EmployeesDataManager.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Earning.cs" />
+    <Compile Include="Employees\EmployeesDataManager.MedicalInsurance.cs" />
+    <Compile Include="Employees\EmployeesDataManager.OfficialDocuments.cs" />
+    <Compile Include="People\PeopleDataManager.Communication.cs" />
+    <Compile Include="People\PeopleDataManager.Education.cs" />
+    <Compile Include="People\PeopleDataManager.Personal.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\SystemDataManager.Log.cs" />
+    <Compile Include="SystemAdmin\SystemDataManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Csc.Components.Common\Csc.Components.Common.csproj">
+      <Project>{a966afb3-b653-4211-a78f-ec7664123b0f}</Project>
+      <Name>Csc.Components.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.Components.Data\Csc.Components.Data.csproj">
+      <Project>{4d784d14-43f1-4573-8754-629f5a5b0a37}</Project>
+      <Name>Csc.Components.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.Components.Services\Csc.Components.Services.csproj">
+      <Project>{bf389cf8-fa14-435b-a468-8b5645ad9807}</Project>
+      <Name>Csc.Components.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Data\Csc.IntelliSchool.Data.csproj">
+      <Project>{efcd9931-d5c5-4c5e-a1c1-7f35af922aa4}</Project>
+      <Name>Csc.IntelliSchool.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Service\Csc.IntelliSchool.Service.csproj">
+      <Project>{5530e10d-1bd4-482c-b86a-08376a415a40}</Project>
+      <Name>Csc.IntelliSchool.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Employees\EmployeesDataManager.Departments.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Positions.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Lists.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Loans.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Deductions.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Bonuses.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Vacations.cs" />
+    <Compile Include="Employees\EmployeesDataManager.Documents.cs" />
+    <None Include="Assembly\csc.snk" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.Employee.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeAttendance.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeAttendanceObject.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeBonus.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeBranch.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeContactDetails.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeDeduction.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeDepartment.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeDepartmentVacation.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeDependant.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeDocument.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeEarning.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeEarningSummary.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeList.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeLoan.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalCertificate.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalCertificateGroup.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalClaim.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalClaimStatus.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalClaimType.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalProgram.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalProgramTemplate.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeMedicalRequestType.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeOfficialDocument.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeOfficialDocumentSummary.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeOfficialDocumentType.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeePosition.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeSalaryUpdate.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeShift.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeShiftOverride.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeTerminal.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeTerminalTransaction.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeTransactionRule.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.EmployeeVacation.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.Nationality.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.Religion.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.SingleEmployeeEarningSummary.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.SystemLog.datasource" />
+    <None Include="Properties\DataSources\Csc.IntelliSchool.Data.User.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A4E14E2-7114-45F4-802F-968D966E2E83}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Csc.IntelliSchool.Sync</RootNamespace>
+    <AssemblyName>Csc.IntelliSchool.Sync</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NewModel\ContactReference.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeAttendanceTimeOff.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeDepartmentList.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeDepartmentOfficialDocument.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeDepartmentVacation.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalClaim.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalClaimDocument.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalClaimType.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalProgramTemplate.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalRequest.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalRequestDependant.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalRequestEmployee.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalRequestType.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeOfficialDocument.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeOfficialDocumentType.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeePositionList.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeShiftOverride.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\SystemLog.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\SystemLogData.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.Drivers.cs" />
+    <Compile Include="Program.Employees.cs" />
+    <Compile Include="Program.Basics.cs" />
+    <Compile Include="NewModel\Bank.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\Contact.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\ContactAddress.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\ContactEmail.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\ContactNumber.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\Employee.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeAttendance.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeBankAccount.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeBonus.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeBranch.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeCustody.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeCustodyItem.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeDeduction.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeDepartment.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeDependant.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeDocument.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeEarning.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeList.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeLoan.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeLoanInstallment.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalCertificate.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalConcession.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalProgram.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalProvider.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeMedicalRate.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeePosition.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeSalary.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeSalaryUpdate.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeShift.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeSocialInsurance.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeTerminal.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeTerminalTransaction.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeTransactionRule.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\EmployeeVacation.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\Nationality.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\NewModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\NewModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\NewModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\NewModel.Partial.cs" />
+    <Compile Include="NewModel\Religion.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\SystemFlag.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\User.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\UserView.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewModel\View.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\absence.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\absent.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\borrow.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\boun.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\bus_drivers_and_supervisors.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\bus_users_bonous.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\bus_users_cuts.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\bus_users_monthly_salaries.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\department.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employeedependant.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employees_ids.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employees_signed_out.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_att.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_data.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_fin.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_salaries.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_salaries_hist.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_status.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_trans.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\employee_types.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\empolyee_absents.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\empolyee_points.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\insuranceconcession.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\insurancelist.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\insurancelistitem.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\insuranceprogram.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\insuranceprovider.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\insurancerate.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\lating.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\loan.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\OldModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\OldModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\OldModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\paper.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\penalty.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\OldModel.Partial.cs" />
+    <Compile Include="OldModel\salaries_monthly.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\salaries_monthly_facts.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\salaries_users.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\sector.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\setting.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\shift.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\sis_vacancies.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\terminal.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel\vacation.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="OldModel\OldModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OldModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="NewModel\NewModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NewModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="NewModel\NewModel.edmx.diagram">
+      <DependentUpon>NewModel.edmx</DependentUpon>
+    </None>
+    <None Include="OldModel\OldModel.edmx.diagram">
+      <DependentUpon>OldModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NewModel\NewModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+      <LastGenOutput>NewModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="NewModel\NewModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+      <LastGenOutput>NewModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="OldModel\OldModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldModel.edmx</DependentUpon>
+      <LastGenOutput>OldModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="OldModel\OldModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldModel.edmx</DependentUpon>
+      <LastGenOutput>OldModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

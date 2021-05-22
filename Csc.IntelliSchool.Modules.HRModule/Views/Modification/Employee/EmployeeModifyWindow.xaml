@@ -1,0 +1,187 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.EmployeeModifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+        xmlns:vw="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Views"
+        xmlns:cnt="clr-namespace:Csc.IntelliSchool.Modules.PeopleModule.Views.ContactInfo;assembly=Csc.IntelliSchool.Modules.PeopleModule"
+        Loaded="WindowBase_Loaded"  ResizeMode="CanResize"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        Header="" Height="600" Width="700">
+
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="100" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+
+      <Grid Grid.Row="0" Grid.RowSpan="3" Margin="0 0 10 5">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image x:Name="PhotoImage" Source="{Binding Person.FullPhotoUrl, FallbackValue={StaticResource DefaultAvatarImage}, TargetNullValue={StaticResource DefaultAvatarImage}}" Stretch="Uniform" />
+
+        <tlk:RadButton x:Name="ChangePhotoButton" Click="ChangePhotoButton_Click" ToolTip="Change Photo" Grid.Row="1" Width="22"  Height="22" Style="{StaticResource ImageButtonStyle}" HorizontalAlignment="Left">
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/Photo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadButton>
+        <tlk:RadButton x:Name="RemovePhotoButton" Click="RemovePhotoButton_Click" ToolTip="Remove Photo" Grid.Row="1" Width="22" Height="22" Style="{StaticResource ImageButtonStyle}" HorizontalAlignment="Right">
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/delete.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadButton>
+      </Grid>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+      <TextBlock Text="ID:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding EmployeeID}" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" />
+
+      <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0 0 5 0" />
+
+      <Grid Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="5" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="5" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="5" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <tlk:RadWatermarkTextBox x:Name="FirstNameTextBox" Grid.Column="0" WatermarkContent="First" WatermarkTemplate="{StaticResource StrongWatermarkTextBoxTemplate}" VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.FirstName">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+
+        <tlk:RadWatermarkTextBox x:Name="MiddleNameTextBox" Grid.Column="2"   WatermarkContent="Middle"  VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.MiddleName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+
+        <tlk:RadWatermarkTextBox x:Name="LastNameTextBox"  Grid.Column="4" WatermarkContent="Last" WatermarkTemplate="{StaticResource StrongWatermarkTextBoxTemplate}"  VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.LastName">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="FamilyNameTextBox"  Grid.Column="6"  WatermarkContent="Family"  VerticalAlignment="Center" >
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.FamilyName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+      </Grid>
+
+
+      <TextBlock Text="الاسم:" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="0 0 5 0" />
+
+      <Grid Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" FlowDirection="RightToLeft">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="5" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="5" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="5" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <tlk:RadWatermarkTextBox x:Name="ArabicFirstNameTextBox" Grid.Column="0" WatermarkContent="الأول"  VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicFirstName">
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="ArabicMiddleNameTextBox" Grid.Column="2" WatermarkContent="الثاني"  VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicMiddleName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="ArabicLastNameTextBox" Grid.Column="4" WatermarkContent="الأخير"  VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicLastName">
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadWatermarkTextBox x:Name="ArabicFamilyNameTextBox" Grid.Column="6" WatermarkContent="العائلة"  VerticalAlignment="Center">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Person.ArabicFamilyName" />
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+      </Grid>
+
+      <tlk:RadTabControl Grid.Row="3" Grid.ColumnSpan="3" SelectionChanged="RadTabControl_SelectionChanged">
+        <tlk:RadTabItem Header="Personal" x:Name="PersonalTabItem">
+          <AdornerDecorator>
+            <vw:EmployeeModifyPersonalControl x:Name="ModifyPersonalControl" Margin="5 0" HorizontalAlignment="Stretch"  />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Education" x:Name="EducationTabItem">
+          <AdornerDecorator>
+            <vw:EmployeeModifyEducationControl x:Name="ModifyEducationControl" Margin="5 0" HorizontalAlignment="Stretch"  />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Contact" x:Name="ContactTabItem">
+          <AdornerDecorator>
+            <cnt:ModifyContactControl x:Name="ModifyContactControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding Person.Contact}"  />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Employment" x:Name="EmploymentTabItem">
+          <AdornerDecorator>
+            <vw:EmployeeModifyEmploymentControl x:Name="ModifyEmploymentControl" Margin="5 0" HorizontalAlignment="Stretch"  ListID="{Binding ListID}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Official Documents" x:Name="OfficialDocumentsTabItem">
+          <AdornerDecorator>
+            <vw:EmployeeModifyOfficialDocumentsControl x:Name="ModifyOfficialDocumentsControl" Margin="5 0" HorizontalAlignment="Stretch"   />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Salary Updates" x:Name="SalaryUpdatesTabItem">
+          <AdornerDecorator>
+            <vw:EmployeeSalaryUpdatesControl x:Name="SalaryUpdatesControl" Margin="5 0" HorizontalAlignment="Stretch"  />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Salary" x:Name="SalaryTabItem">
+          <AdornerDecorator>
+            <vw:EmployeeModifySalaryControl x:Name="ModifySalaryControl" Margin="5 0" HorizontalAlignment="Stretch"  />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+      </tlk:RadTabControl>
+
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <StackPanel x:Name="ExtraWindowOptionsPanel" Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <tlk:RadButton x:Name="TerminateButton" Click="TerminateButton_Click" Style="{StaticResource WindowButtonStyle}"
+                     Visibility="{Binding IsTerminated, Converter={StaticResource ReverseBoolVisibilityConverter}}"
+                     Content="Terminate" VerticalAlignment="Center" />
+        <tlk:RadButton x:Name="Reenroll" Click="ReenrollButton_Click" Style="{StaticResource WindowButtonStyle}"
+                     Visibility="{Binding IsTerminated, Converter={StaticResource BoolVisibilityConverter}}"
+                     Content="Reenroll" VerticalAlignment="Center"  />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

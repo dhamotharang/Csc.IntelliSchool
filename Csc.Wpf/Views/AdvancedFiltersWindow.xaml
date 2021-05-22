@@ -1,0 +1,40 @@
+﻿<ns:WindowBase x:Class="Csc.Wpf.Views.AdvancedFiltersWindow"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ns="clr-namespace:Csc.Wpf"
+        xmlns:ctl="clr-namespace:Csc.Wpf.Controls"
+        WindowStartupLocation="CenterOwner" 
+        Header="Advanced Filter" Width="450" Height="Auto"
+        Loaded="WindowBase_Loaded" >
+  <ns:WindowBase.Resources>
+    <Style x:Key="WindowButtonStyle" TargetType="tlk:RadButton">
+      <Setter Property="Padding" Value="15 3" />
+      <Setter Property="MinWidth"  Value="70" />
+    </Style>
+  </ns:WindowBase.Resources>
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30" />
+      <RowDefinition Height="250" />
+      <RowDefinition Height="30" />
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="Criteria" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource StrongTextBlockStyle}" />
+
+    <tlk:RadDataFilter x:Name="DataFilter"  Grid.Row="1"
+                       Source="{Binding GridView.Items, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" 
+                       AutoGenerateItemPropertyDefinitions="False" />
+    <!--<ScrollViewer Grid.Row="1" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+      <tlk:RadDataFilter x:Name="DataFilter" 
+                       Source="{Binding GridView.Items, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" 
+                       AutoGenerateItemPropertyDefinitions="False" />
+    </ScrollViewer>-->
+
+
+    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+      <tlk:RadButton x:Name="OKButton" Click="OKButton_Click" Content="OK" Style="{StaticResource WindowButtonStyle}" />
+      <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+    </StackPanel>
+  </Grid>
+</ns:WindowBase>

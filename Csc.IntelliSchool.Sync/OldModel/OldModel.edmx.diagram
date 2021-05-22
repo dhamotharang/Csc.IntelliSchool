@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b828319f857a440eb5c53b188e0fd6e5" Name="Diagram1" ZoomLevel="116">
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.department" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_types" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_data" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="Csc.IntelliSchool.Sync.departmentemployee_data" />
+        <AssociationConnector Association="Csc.IntelliSchool.Sync.employee_typesemployee_data" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.loan" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.penalty" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_trans" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.boun" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.absence" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.absent" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.borrow" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.bus_drivers_and_supervisors" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.bus_users_bonous" Width="1.5" PointX="9.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.bus_users_cuts" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.bus_users_monthly_salaries" Width="1.5" PointX="11.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_att" Width="1.5" PointX="5.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_fin" Width="1.5" PointX="11.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_salaries" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_salaries_hist" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employee_status" Width="1.5" PointX="7.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employeedependant" Width="1.5" PointX="9.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employees_ids" Width="1.5" PointX="11.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.employees_signed_out" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.empolyee_absents" Width="1.5" PointX="13.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.empolyee_points" Width="1.5" PointX="13.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.insuranceconcession" Width="1.5" PointX="13.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.insurancelist" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.insurancelistitem" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.insuranceprogram" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.insuranceprovider" Width="1.5" PointX="2.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.insurancerate" Width="1.5" PointX="15.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.lating" Width="1.5" PointX="4.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.paper" Width="1.5" PointX="15.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.salaries_monthly" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.salaries_monthly_facts" Width="1.5" PointX="15.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.salaries_users" Width="1.5" PointX="11.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.sector" Width="1.5" PointX="13.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.setting" Width="1.5" PointX="15.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.shift" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.sis_vacancies" Width="1.5" PointX="17.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.terminal" Width="1.5" PointX="8.75" PointY="17.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.Sync.vacation" Width="1.5" PointX="17.75" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

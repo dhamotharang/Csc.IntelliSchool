@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Csc.IntelliSchool.WebService.Services.HumanResources.IService">
+    <Position X="5.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AEoEAFQGAIAAXQCZIAIhIAQ6BAQAjAAAgYAALCAAhFk=</HashCode>
+      <FileName>Services\HumanResources\Interface\IService.Attendance.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,12 @@
+﻿<ns:WindowBase x:Class="Csc.Wpf.Views.WebBrowserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ns="clr-namespace:Csc.Wpf"
+        WindowStartupLocation="CenterOwner" ResizeMode="CanResize" 
+        HideMaximizeButton="False" 
+        Header="" Width="1000" Height="600">
+  <Grid>
+    <WebBrowser x:Name="WebBrowser" Navigated="WebBrowser_Navigated"  />
+  </Grid>
+</ns:WindowBase>

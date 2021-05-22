@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5530E10D-1BD4-482C-B86A-08376A415A40}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Csc.IntelliSchool.Service</RootNamespace>
+    <AssemblyName>Csc.IntelliSchool.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Assembly\csc.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AccountService.Login.cs" />
+    <Compile Include="Employees\Calculations\EmployeeService.EarningCalculations.cs" />
+    <Compile Include="Employees\Calculations\EmployeeService.EarningState.cs" />
+    <Compile Include="Employees\Calculations\EmployeeService.AttendaneState.cs" />
+    <Compile Include="Employees\Calculations\EmployeeService.AttendaneCalculations.cs" />
+    <Compile Include="Employees\EmployeesService.AttendanceSummary.cs" />
+    <Compile Include="Employees\EmployeesService.Charges.cs" />
+    <Compile Include="Employees\EmployeesService.Allowances.cs" />
+    <Compile Include="Employees\EmployeesService.EarningsSummary.cs" />
+    <Compile Include="Generic\GenericService.cs" />
+    <Compile Include="Account\AccountService.cs" />
+    <Compile Include="People\PeopleService.Contact.cs" />
+    <Compile Include="People\PeopleService.Education.cs" />
+    <Compile Include="People\PeopleService.Personal.cs" />
+    <Compile Include="Employees\EmployeesService.Attendance.cs" />
+    <Compile Include="Employees\EmployeesService.Bonuses.cs" />
+    <Compile Include="Employees\EmployeesService.Branches.cs" />
+    <Compile Include="Employees\EmployeesService.Communication.cs" />
+    <Compile Include="Employees\EmployeesService.Deductions.cs" />
+    <Compile Include="Employees\EmployeesService.Departments.cs" />
+    <Compile Include="Employees\EmployeesService.DepartmentVacations.cs" />
+    <Compile Include="Employees\EmployeesService.Documents.cs" />
+    <Compile Include="Employees\EmployeesService.Earnings.cs" />
+    <Compile Include="Employees\EmployeesService.EmployeeDependant.cs" />
+    <Compile Include="Employees\EmployeesService.Employees.cs" />
+    <Compile Include="System\SystemService.Flags.cs" />
+    <Compile Include="Employees\EmployeesService.Lists.cs" />
+    <Compile Include="Employees\EmployeesService.Loans.cs" />
+    <Compile Include="Employees\EmployeesService.MedicalCertificates.cs" />
+    <Compile Include="Employees\EmployeesService.MedicalClaims.cs" />
+    <Compile Include="Employees\EmployeesService.MedicalInsurance.cs" />
+    <Compile Include="Employees\EmployeesService.MedicalRequests.cs" />
+    <Compile Include="Employees\EmployeesService.OfficialDocuments.cs" />
+    <Compile Include="Employees\EmployeesService.Positions.cs" />
+    <Compile Include="Employees\EmployeesService.Shifts.cs" />
+    <Compile Include="Employees\EmployeesService.Terminals.cs" />
+    <Compile Include="Employees\EmployeesService.TransactionRules.cs" />
+    <Compile Include="Employees\EmployeesService.Transactions.cs" />
+    <Compile Include="Employees\EmployeeService.cs" />
+    <Compile Include="Employees\EmployeesService.Vacations.cs" />
+    <Compile Include="Employees\MedicalRequestParam.cs" />
+    <Compile Include="People\PeopleService.People.cs" />
+    <Compile Include="People\PeopleService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataService.cs" />
+    <Compile Include="System\SystemService.cs" />
+    <Compile Include="System\SystemService.Log.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Csc.Components.Common\Csc.Components.Common.csproj">
+      <Project>{a966afb3-b653-4211-a78f-ec7664123b0f}</Project>
+      <Name>Csc.Components.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.Components.Data\Csc.Components.Data.csproj">
+      <Project>{4D784D14-43F1-4573-8754-629F5A5B0A37}</Project>
+      <Name>Csc.Components.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.Components.Security\Csc.Components.Security.csproj">
+      <Project>{c3173d90-ce78-4d28-98fb-378594e1644e}</Project>
+      <Name>Csc.Components.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Data\Csc.IntelliSchool.Data.csproj">
+      <Project>{efcd9931-d5c5-4c5e-a1c1-7f35af922aa4}</Project>
+      <Name>Csc.IntelliSchool.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Assembly\csc.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

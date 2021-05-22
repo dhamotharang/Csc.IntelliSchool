@@ -1,0 +1,323 @@
+﻿<ns:PageBase x:Name="EmployeesPageBase" x:Class="Csc.IntelliSchool.Modules.HRModule.Views.EmployeesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+      
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+      xmlns:ctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf" 
+      xmlns:tlkCtl="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls"
+      mc:Ignorable="d" Loaded="PageBase_Loaded" d:DesignHeight="500" d:DesignWidth="1400"
+      Title="Employees" DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
+  <ns:PageBase.Resources>
+    <tlk:RadContextMenu x:Key="EmployeesContextMenu" Opening="EmployeesContextMenu_Opening">
+      <tlk:RadMenuItem x:Name="NewEmployeeMenuItem" Header="Enroll New..." Click="NewEmployeeMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/add.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+      <tlk:RadMenuItem x:Name="NewEmployeeSeparatorMenuItem" IsSeparator="True" />
+      <tlk:RadMenuItem x:Name="EditEmployeeMenuItem" Header="Edit..." Click="EditEmployeeMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/edit.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+      <tlk:RadMenuItem x:Name="EmployeeEarningMenuItem" Header="Earning..." Click="EmployeeEarningMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/earning.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+      <tlk:RadMenuItem x:Name="EmployeeDocumentsMenuItem" Header="Documents" Click="EmployeeDocumentsMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/documents.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+      <tlk:RadMenuItem x:Name="AddDependantMenuItem" Header="Add Dependant..." Click="AddDependantMenuItem_Click" >
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/add.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+      <tlk:RadMenuItem IsSeparator="True" />
+
+      <tlk:RadMenuItem x:Name="ReloadMenuItem" Header="Reload" Click="ReloadMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/refresh.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+    </tlk:RadContextMenu>
+
+    <tlk:RadContextMenu x:Key="DependantsContextMenu" Opening="DependantsContextMenu_Opening">
+      <tlk:RadMenuItem x:Name="EditDependantMenuItem" Header="Edit..." Click="EditDependantMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/edit.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+      <tlk:RadMenuItem x:Name="DeleteDependantMenuItem" Header="Delete" Click="DeleteDependantMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/delete.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+      <tlk:RadMenuItem IsSeparator="True" />
+
+      <tlk:RadMenuItem x:Name="DependantReloadMenuItem" Header="Reload" Click="ReloadMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/refresh.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+    </tlk:RadContextMenu>
+
+  </ns:PageBase.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition MinHeight="30" Height="Auto" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    
+    <WrapPanel x:Name="LoadPanel" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Lists:" VerticalAlignment="Center" />
+        <tlk:RadComboBox x:Name="ListsComboBox" VerticalAlignment="Center" Width="200" Margin="5 0 0 0" DisplayMemberPath="Name" AllowMultipleSelection="True" SelectionChanged="FilterComboBox_SelectionChanged" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Branch:" VerticalAlignment="Center" Margin="0 0 5 0" />
+        <tlk:RadComboBox x:Name="BranchComboBox" SelectedValuePath="BranchID" SelectedIndex="0" ItemsSource="{Binding Branches}" DisplayMemberPath="Name" VerticalAlignment="Center" Width="150" SelectionChanged="FilterComboBox_SelectionChanged" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Department:" VerticalAlignment="Center" Margin="0 0 5 0" />
+        <tlk:RadComboBox x:Name="DepartmentComboBox" SelectedValuePath="DepartmentID" SelectedIndex="0" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" VerticalAlignment="Center" Width="150" SelectionChanged="FilterComboBox_SelectionChanged" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Position:" VerticalAlignment="Center" Margin="0 0 5 0" />
+        <tlk:RadComboBox x:Name="PositionComboBox" SelectedValuePath="PositionID" SelectedIndex="0" ItemsSource="{Binding Positions}" DisplayMemberPath="Name" VerticalAlignment="Center" Width="150" SelectionChanged="FilterComboBox_SelectionChanged" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Month:" VerticalAlignment="Center" Margin="0 0 5 0" />
+        <tlk:RadDatePicker x:Name="MonthDatePicker" Width="150" VerticalAlignment="Center" SelectionChanged="MonthDatePicker_SelectionChanged" />
+      </StackPanel>
+    </WrapPanel>
+
+    <StackPanel Grid.Row="1" Height="30" Visibility="Visible" Orientation="Horizontal" VerticalAlignment="Center">
+      <TextBlock Text="Name:" VerticalAlignment="Center" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox x:Name="NameTextBox" VerticalAlignment="Center" Width="200" KeyUp="NameTextBox_KeyUp" />
+      <tlk:RadButton x:Name="FilterButton" Content="Filter" VerticalAlignment="Center" Margin="5 0 0 0" Width="70" Click="FilterButton_Click" />
+    </StackPanel>
+
+    <!-- Second Row (Left) -->
+    <StackPanel  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+      <tlk:RadButton x:Name="ReloadButton" Click="ReloadButton_Click">
+        <tlk:RadButton.Content>
+          <ctl:LeftImageText Text="Reload" Image="/Csc.IntelliSchool.Assets;component/Images/20/refresh.png" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+    </StackPanel>
+
+    <!-- Second Row (Right) -->
+    <StackPanel  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+      <tlk:RadButton x:Name="AddButton" Click="AddButton_Click" Visibility="{Binding ShowCurrent, Converter={StaticResource BoolVisibilityConverter}}">
+        <tlk:RadButton.Content>
+        <ctl:RightImageText Text="Enroll New Employee" Image="/Csc.IntelliSchool.Assets;component/Images/20/add.png" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+    </StackPanel>
+
+    <tlk:RadGridView x:Name="ItemsGridView" Grid.Row="3" DataLoaded="ItemsGridView_DataLoaded"
+                     RowActivated="ItemsGridView_RowActivated" FrozenColumnCount="3" Loaded="ItemsGridView_Loaded"
+                     ItemsSource="{Binding Items}"
+                     tlk:RadContextMenu.ContextMenu="{StaticResource EmployeesContextMenu}"
+                     RowStyle="{StaticResource ChildrenGridViewRowStyle}" AlternateRowStyle="{StaticResource ChildrenGridViewAlternateRowStyle}">
+      <tlk:RadGridView.ControlPanelItems>
+        <tlk:ControlPanelItem>
+          <tlk:ControlPanelItem.ButtonContent>
+            <ctl:RightImageText Text="Actions" Image="/Csc.IntelliSchool.Assets;component/Images/16/actions.png" Padding="5 0" ImageWidth="16" ImageHeight="16" />
+          </tlk:ControlPanelItem.ButtonContent>
+          <tlk:ControlPanelItem.Content>
+            <tlk:RadContextMenu x:Name="ActionsMenu">
+              <tlk:RadContextMenu.Items>
+                <tlk:RadMenuItem x:Name="FilterListedMenuItem" Click="FilterListedMenuItem_Click" Header="Filter Listed Employees" />
+                <tlk:RadMenuItem x:Name="ClearFiltersMenuItem" Click="ClearFiltersMenuItem_Click" Header="Clear All Filters" />
+              </tlk:RadContextMenu.Items>
+            </tlk:RadContextMenu>
+          </tlk:ControlPanelItem.Content>
+        </tlk:ControlPanelItem>
+
+        <tlk:ControlPanelItem ButtonTooltip="Grid Options">
+          <tlk:ControlPanelItem.Content>
+            <ctl:GridColumnFilterPanel x:Name="GridColumnFilterPanel" GridView="{Binding }" />
+          </tlk:ControlPanelItem.Content>
+        </tlk:ControlPanelItem>
+      </tlk:RadGridView.ControlPanelItems>
+      <tlk:RadGridView.ColumnGroups>
+        <tlk:GridViewColumnGroup Name="Name" Header="Name" />
+        <tlk:GridViewColumnGroup Name="ArabicName" Header="Name (Arabic)" />
+        <tlk:GridViewColumnGroup Name="Photo" Header="Photo" />
+        <tlk:GridViewColumnGroup Name="Personal" Header="Personal" />
+        <tlk:GridViewColumnGroup Name="Education" Header="Education" />
+        <tlk:GridViewColumnGroup Name="ArabicEducation" Header="Education (Arabic)" />
+        <tlk:GridViewColumnGroup Name="Contact" Header="Contact" />
+        <tlk:GridViewColumnGroup Name="Employment" Header="Employment" />
+        <tlk:GridViewColumnGroup Name="Position" Header="Position" />
+        <tlk:GridViewColumnGroup Name="Terminal" Header="Terminal" />
+        <tlk:GridViewColumnGroup Name="Salary" Header="Salary" />
+        <tlk:GridViewColumnGroup Name="Bank" Header="Bank" />
+      </tlk:RadGridView.ColumnGroups>
+      <tlk:RadGridView.SortDescriptors>
+        <tlk:SortDescriptor Member="Person.FullName" />
+      </tlk:RadGridView.SortDescriptors>
+      <tlk:RadGridView.Columns>
+        <tlk:GridViewDataColumn Header="ID" ColumnGroupName="Name" DataMemberBinding="{Binding EmployeeID}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Name" ColumnGroupName="Name" UniqueName="Name" DataMemberBinding="{Binding Person.FullName}" IsGroupable="False">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:CountFunction Caption="Count: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="Dep" ColumnGroupName="Name" UniqueName="DependantsCount" DataMemberBinding="{Binding Dependants.Count}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+
+        <tlk:GridViewDataColumn Header="الاسم" ColumnGroupName="ArabicName" UniqueName="ArabicName" DataMemberBinding="{Binding Person.ArabicFullName}" HeaderTextAlignment="Right" TextAlignment="Right" IsGroupable="False">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:CountFunction Caption="Count: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+
+        <tlk:GridViewImageColumn Header="Photo" ColumnGroupName="Photo" DataMemberBinding="{Binding Person.FullPhotoUrl}" ImageWidth="64" ImageHeight="64" ImageStretch="Uniform" />
+        
+        <!-- Personal -->
+        <tlk:GridViewDataColumn Header="Gender" ColumnGroupName="Personal" DataMemberBinding="{Binding Person.Gender}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="Birthdate" ColumnGroupName="Personal" DataMemberBinding="{Binding Person.Birthdate, StringFormat=d}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Age" ColumnGroupName="Personal" DataMemberBinding="{Binding Person.Age}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Marital" ColumnGroupName="Personal" DataMemberBinding="{Binding Employee.Person.MaritalStatus}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="ID Number" ColumnGroupName="Personal" DataMemberBinding="{Binding Person.IDNumber}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Nationality" ColumnGroupName="Personal" DataMemberBinding="{Binding Person.Nationality.Name}" IsGroupable="True" />
+        <tlk:GridViewCheckBoxColumn Header="Loc" ColumnGroupName="Personal" DataMemberBinding="{Binding Person.IsLocal}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="Religion" ColumnGroupName="Personal" DataMemberBinding="{Binding Person.Religion.Name}" IsGroupable="True" />
+
+        <!-- Education -->
+        <tlk:GridViewDataColumn Header="Degree" ColumnGroupName="Education" DataMemberBinding="{Binding Person.EducationDegree.Name}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="Field" ColumnGroupName="Education" DataMemberBinding="{Binding Person.EducationField.Name}" IsGroupable="True" />
+
+        <tlk:GridViewDataColumn Header="الدرجة" ColumnGroupName="ArabicEducation" DataMemberBinding="{Binding Person.EducationDegree.ArabicName}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="التخصص" ColumnGroupName="ArabicEducation" DataMemberBinding="{Binding Person.EducationField.ArabicName}" IsGroupable="True" />
+        
+        <!-- Contact -->
+        <tlk:GridViewDataColumn Header="Mobile" ColumnGroupName="Contact" DataMemberBinding="{Binding Person.Contact.DefaultNumber.Number}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+
+        <!-- Employment -->
+        <tlk:GridViewDataColumn Header="Hire" ColumnGroupName="Employment" DataMemberBinding="{Binding HireDate, StringFormat=d}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Termn" ColumnGroupName="Employment"  DataMemberBinding="{Binding TerminationDate, StringFormat=d}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:CountFunction Caption="Count: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="Termn Reason" ColumnGroupName="Employment" UniqueName="TerminationReason" DataMemberBinding="{Binding TerminationReason}" IsGroupable="False" />
+
+
+        <tlk:GridViewDataColumn Header="Yrs" ColumnGroupName="Employment" DataMemberBinding="{Binding HireYears}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Mos" ColumnGroupName="Employment" DataMemberBinding="{Binding HireMonths}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+
+        <tlk:GridViewDataColumn Header="Branch" ColumnGroupName="Position" DataMemberBinding="{Binding Branch.Name}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="Department" ColumnGroupName="Position" DataMemberBinding="{Binding Department.Name}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="Position" ColumnGroupName="Position" DataMemberBinding="{Binding Position.Name}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="List" UniqueName="List" ColumnGroupName="Position" DataMemberBinding="{Binding List.Name}" IsGroupable="True" />
+
+        <tlk:GridViewDataColumn Header="Shift" ColumnGroupName="Terminal" DataMemberBinding="{Binding Shift.Name}" IsGroupable="True" />
+        <tlk:GridViewCheckBoxColumn Header="Tml" ColumnGroupName="Terminal" DataMemberBinding="{Binding IsTerminalUser}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="Name" ColumnGroupName="Terminal" DataMemberBinding="{Binding Terminal.Name}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="ID" ColumnGroupName="Terminal" DataMemberBinding="{Binding TerminalUserID}" IsGroupable="False" HeaderTextAlignment="Right" TextAlignment="Right" />
+
+        <tlk:GridViewDataColumn Header="Salary" ColumnGroupName="Salary" DataMemberBinding="{Binding Salary.Salary, StringFormat=N0}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:MinFunction Caption="Min: " ResultFormatString="{}{0:N0}" />
+            <tlk:AverageFunction  Caption="Avg: " ResultFormatString="{}{0:N0}" />
+            <tlk:MaxFunction  Caption="Max: " ResultFormatString="{}{0:N0}" />
+            <tlk:SumFunction  Caption="Total: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="Social" ColumnGroupName="Salary" DataMemberBinding="{Binding Salary.Social, StringFormat=N0}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:MinFunction Caption="Min: " ResultFormatString="{}{0:N0}" />
+            <tlk:AverageFunction  Caption="Avg: " ResultFormatString="{}{0:N0}" />
+            <tlk:MaxFunction  Caption="Max: " ResultFormatString="{}{0:N0}" />
+            <tlk:SumFunction  Caption="Total: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="Medical" ColumnGroupName="Salary" DataMemberBinding="{Binding Salary.Medical, StringFormat=N0}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:MinFunction Caption="Min: " ResultFormatString="{}{0:N0}" />
+            <tlk:AverageFunction  Caption="Avg: " ResultFormatString="{}{0:N0}" />
+            <tlk:MaxFunction  Caption="Max: " ResultFormatString="{}{0:N0}" />
+            <tlk:SumFunction  Caption="Total: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="Taxes" ColumnGroupName="Salary" DataMemberBinding="{Binding Salary.Taxes, StringFormat=N0}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:MinFunction Caption="Min: " ResultFormatString="{}{0:N0}" />
+            <tlk:AverageFunction  Caption="Avg: " ResultFormatString="{}{0:N0}" />
+            <tlk:MaxFunction  Caption="Max: " ResultFormatString="{}{0:N0}" />
+            <tlk:SumFunction  Caption="Total: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="Gross" ColumnGroupName="Salary" DataMemberBinding="{Binding Salary.Gross, StringFormat=N0}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:MinFunction Caption="Min: " ResultFormatString="{}{0:N0}" />
+            <tlk:AverageFunction  Caption="Avg: " ResultFormatString="{}{0:N0}" />
+            <tlk:MaxFunction  Caption="Max: " ResultFormatString="{}{0:N0}" />
+            <tlk:SumFunction  Caption="Total: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewCheckBoxColumn Header="Hidden" ColumnGroupName="Salary" DataMemberBinding="{Binding Salary.HideFromReports}" IsGroupable="True" />
+
+        <tlk:GridViewColumn>
+          <tlk:GridViewColumn.CellTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <tlk:RadButton x:Name="MenuButton" ToolTip="Menu" Style="{StaticResource GridButtonStyle}" 
+                                     tlk:RadContextMenu.ContextMenu="{StaticResource EmployeesContextMenu}" Click="MenuButton_Click">
+                  <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/menu.png" Stretch="Uniform" Width="16" Height="16" />
+                </tlk:RadButton>
+              </StackPanel>
+            </DataTemplate>
+          </tlk:GridViewColumn.CellTemplate>
+        </tlk:GridViewColumn>
+      </tlk:RadGridView.Columns>
+      <tlk:RadGridView.ChildTableDefinitions>
+        <tlk:GridViewTableDefinition />
+      </tlk:RadGridView.ChildTableDefinitions>
+      <tlk:RadGridView.HierarchyChildTemplate>
+        <DataTemplate>
+          <tlk:RadGridView ShowGroupPanel="False" ItemsSource="{Binding Dependants}" tlk:RadContextMenu.ContextMenu="{StaticResource DependantsContextMenu}">
+            <tlk:RadGridView.SortDescriptors>
+              <tlk:SortDescriptor Member="Type" SortDirection="Ascending" />
+              <tlk:SortDescriptor Member="FullName" SortDirection="Ascending" />
+            </tlk:RadGridView.SortDescriptors>
+            <tlk:RadGridView.Columns>
+              <tlk:GridViewDataColumn Header="Name" DataMemberBinding="{Binding Person.FullName}" IsGroupable="False" />
+              <tlk:GridViewDataColumn Header="Type" DataMemberBinding="{Binding Type}" IsGroupable="False" />
+              <tlk:GridViewDataColumn Header="Birthdate" DataMemberBinding="{Binding Person.Birthdate, StringFormat=d}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+              <tlk:GridViewDataColumn Header="Age" DataMemberBinding="{Binding Person.Age}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+              <tlk:GridViewColumn>
+                <tlk:GridViewColumn.CellTemplate>
+                  <DataTemplate>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                      <tlk:RadButton x:Name="MenuButton" ToolTip="Menu" Style="{StaticResource GridButtonStyle}" 
+                                     tlk:RadContextMenu.ContextMenu="{StaticResource DependantsContextMenu}" Click="MenuButton_Click">
+                        <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/menu.png" Stretch="Uniform" Width="16" Height="16" />
+                      </tlk:RadButton>
+                    </StackPanel>
+                  </DataTemplate>
+                </tlk:GridViewColumn.CellTemplate>
+              </tlk:GridViewColumn>
+            </tlk:RadGridView.Columns>
+          </tlk:RadGridView>
+        </DataTemplate>
+      </tlk:RadGridView.HierarchyChildTemplate>
+    </tlk:RadGridView>
+
+    <tlk:RadDataPager x:Name="DataPager" Grid.Row="4" DisplayMode="All" Source="{Binding Items, ElementName=ItemsGridView}" 
+                      PageSize="0" />
+  </Grid>
+</ns:PageBase>

@@ -1,0 +1,211 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.MedicalInsurance.MedicalCertificateModifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:data="clr-namespace:Csc.Wpf.Data;assembly=Csc.Wpf"
+        Loaded="WindowBase_Loaded"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        
+        Header="Medical Certificate" Height="Auto" Width="420">
+  <ns:WindowBase.Resources>
+    <data:ValueComparerConverter x:Key="OwnerBoolConverter">
+      <data:ValueComparerConverter.TrueValue>True</data:ValueComparerConverter.TrueValue>
+      <data:ValueComparerConverter.FalseValue>False</data:ValueComparerConverter.FalseValue>
+    </data:ValueComparerConverter>
+    <data:ValueComparerConverter x:Key="OwnerVisibilityConverter" TrueValue="{x:Static Visibility.Visible}" FalseValue="{x:Static Visibility.Collapsed}" />
+  </ns:WindowBase.Resources>
+
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+
+      <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+      <TextBlock x:Name="NameTextBox" 
+                 Text="{Binding OwnerObject.Person.FullName, Mode=OneWay}"
+                 Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
+
+      <TextBlock Text="Type:" VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+      <TextBlock x:Name="TypeTextBox" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+
+      <TextBlock Text="Birthdate:" VerticalAlignment="Center" Grid.Row="2" Margin="0 0 5 0" />
+      <TextBlock HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+        <TextBlock.Text>
+          <MultiBinding StringFormat="{}{0:d} ({1})" Mode="OneWay">
+            <Binding Path="OwnerObject.Person.Birthdate" />
+            <Binding Path="OwnerObject.Person.Age" />
+          </MultiBinding>
+        </TextBlock.Text>
+      </TextBlock>
+
+      <TextBlock Text="Hire Date:" VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+      <TextBlock x:Name="HireDateTextBox" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" />
+
+      <TextBlock Text="Program:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="4" Margin="0 0 5 0" />
+      <tlk:RadComboBox x:Name="ProgramComboBox" HorizontalAlignment="Left" Width="260"
+                             DisplayMemberPath="LongName" SelectedValuePath="ProgramID"
+                             VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" SelectionChanged="ProgramComboBox_SelectionChanged">
+        <tlk:RadComboBox.SelectedValue>
+          <Binding Path="ProgramID" Mode="TwoWay">
+            <Binding.ValidationRules>
+              <val:RequiredSelector />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadComboBox.SelectedValue>
+      </tlk:RadComboBox>
+
+      <TextBlock Text="Rate Type:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="5" Margin="0 0 5 0" />
+      <StackPanel x:Name="TypeStackPanel"
+                  IsEnabled="{Binding Owner, Converter={StaticResource OwnerBoolConverter}, Mode=OneWay, ConverterParameter='Dependant'}"
+                  Orientation="Horizontal" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" >
+        <tlk:RadRadioButton x:Name="TypeEmployeeRadioButton" Content="Employee" 
+                            IsChecked="{Binding RateType, Converter={StaticResource OwnerBoolConverter}, Mode=OneWay, ConverterParameter='Employee'}"
+                            Style="{StaticResource DefaultRadioButtonStyle}" Click="TypeRadioButton_Click" />
+        <tlk:RadRadioButton x:Name="TypeDependantRadioButton" Content="Dependant" 
+                            IsChecked="{Binding RateType, Converter={StaticResource OwnerBoolConverter}, Mode=OneWay, ConverterParameter='Dependant'}"
+                            Style="{StaticResource DefaultRadioButtonStyle}" Click="TypeRadioButton_Click" />
+      </StackPanel>
+
+      <TextBlock Text="Code:" VerticalAlignment="Center" Grid.Row="6" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadWatermarkTextBox x:Name="CodeTextBox" VerticalAlignment="Center" Width="100">
+          <tlk:RadWatermarkTextBox.Text>
+            <Binding Path="Code" Mode="TwoWay">
+            </Binding>
+          </tlk:RadWatermarkTextBox.Text>
+        </tlk:RadWatermarkTextBox>
+        <tlk:RadButton x:Name="CodeEmployeeIDButton" Content="Use Employee ID"
+                      Visibility="{Binding Owner, Converter={StaticResource OwnerVisibilityConverter}, Mode=OneWay, ConverterParameter='Employee'}"
+                       Margin="5 0 0 0" VerticalAlignment="Center" Style="{StaticResource WindowButtonStyle}" Click="CodeEmployeeIDButton_Click" />
+        <tlk:RadButton x:Name="CodeParentCodeButton" Content="Use Member Code"
+                      Visibility="{Binding Owner, Converter={StaticResource OwnerVisibilityConverter}, Mode=OneWay, ConverterParameter='Dependant'}"
+                       Margin="5 0 0 0" VerticalAlignment="Center" Style="{StaticResource WindowButtonStyle}" Click="CodeParentCodeButton_Click" />
+      </StackPanel>
+
+
+      <TextBlock Text="Enrollment:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="7" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="EnrollmentDatePicker" DisplayFormat="Short" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="180" >
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="EnrollmentDate">
+            <Binding.ValidationRules>
+              <val:Required />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+
+      <TextBlock Text="Cancellation:" VerticalAlignment="Center" Grid.Row="8" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="CancellationDatePicker" DisplayFormat="Short" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="180" >
+        <tlk:RadDatePicker.Resources>
+          <data:BindingProxy x:Key="TargetProxy" Data="{Binding EnrollmentDate}" />
+          <data:BindingProxy x:Key="SourceProxy" Data="{Binding SelectedValue, ElementName=CancellationDatePicker, Mode=TwoWay}" />
+        </tlk:RadDatePicker.Resources>
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="CancellationDate">
+            <Binding.ValidationRules>
+              <val:DateRange Required="False" >
+                <val:DateRange.StartDate>
+                  <data:DependencyValue Value="{Binding Data,  Source={StaticResource TargetProxy}}" BindingToTrigger="{Binding Data, Source={StaticResource SourceProxy}}" />
+                </val:DateRange.StartDate>
+              </val:DateRange>
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+      <tlk:RadWatermarkTextBox x:Name="CancellationReasonTextBox" 
+                               IsReadOnly="{Binding SelectedValue, ElementName=CancellationDatePicker, Converter={StaticResource ReverseNullBoolConverter}}"
+                               Text="{Binding CancellationReason}" WatermarkContent="Reason" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" />
+
+      <TextBlock Text="Rate:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="10" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox x:Name="RateNumericUpDown" Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Style="{StaticResource ReadOnlyTextBoxStyle}" >
+        <tlk:RadWatermarkTextBox.Text>
+          <Binding Path="Rate" StringFormat="N0" Mode="OneWay">
+            <Binding.ValidationRules>
+              <val:RequiredNumber NonZero="True" />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadWatermarkTextBox.Text>
+      </tlk:RadWatermarkTextBox>
+
+      <TextBlock Text="Concession:"  VerticalAlignment="Center" Grid.Row="11" Margin="0 0 5 0" />
+      <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadWatermarkTextBox x:Name="ConcessionTextBox" 
+                               Text="{Binding Concession, Mode=OneWay, StringFormat=P0}" 
+                               Style="{StaticResource ReadOnlyTextBoxStyle}" Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" />
+      </StackPanel>
+
+      <TextBlock Text="Monthly:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="12" Margin="0 0 5 0" />
+      <Grid VerticalAlignment="Center" Grid.Row="12" Grid.Column="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <tlk:RadNumericUpDown x:Name="MonthlyNumericUpDown" NumberDecimalDigits="0"
+                            Visibility="{Binding Concession, Converter={StaticResource ReverseNullVisibilityConverter}}"
+                            VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="0"
+                            ValueChanged="MonthlyNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Monthly" Converter="{StaticResource NumericUpDownConverter}">
+              <Binding.ValidationRules>
+                <val:RequiredNumber />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+
+        <tlk:RadWatermarkTextBox x:Name="MonthlyTextBox" 
+                            Visibility="{Binding Concession, Converter={StaticResource NullVisibilityConverter}}"
+                            Text="{Binding Monthly, Mode=OneWay, StringFormat=N0}" 
+                            Style="{StaticResource ReadOnlyTextBoxStyle}" VerticalAlignment="Center" 
+                            HorizontalAlignment="Stretch" />
+
+        <tlk:RadToggleButton x:Name="CustomMonthlyButton" 
+                             IsChecked="{Binding Concession, Mode=OneWay, Converter={StaticResource ReverseNullBoolConverter}}" 
+                             Click="CustomMonthlyButton_Click" Content="Custom" Grid.Column="1" Margin="5 0 0 0" Style="{StaticResource DefaultToggleButtonStyle}" />
+      </Grid>
+
+      <TextBlock Text="Yearly:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="13" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox x:Name="YearlyNumericUpDown" Text="{Binding Yearly, Mode=OneWay, StringFormat=N0}" Style="{StaticResource ReadOnlyTextBoxStyle}" 
+                               Grid.Row="13" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" />
+
+
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="14" Grid.ColumnSpan="2">
+        <tlk:RadButton x:Name="DeleteButton" Click="DeleteButton_Click" Style="{StaticResource WindowButtonStyle}"
+                     Content="Delete"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+        <tlk:RadButton x:Name="RecalculateButton" Click="RecalculateButton_Click" Style="{StaticResource WindowButtonStyle}"
+                     Content="Recalculate" Margin="5 0 0 0"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+      </StackPanel>
+
+      <StackPanel Orientation="Horizontal" Grid.Row="14" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

@@ -1,0 +1,42 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.MedicalInsurance.ProgramItemsSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:ctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf"
+         
+        
+        Header="Select Items" Width="600" Height="Auto"
+        Loaded="WindowBase_Loaded">
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="Auto" MinHeight="150" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="0.5*" />
+        <ColumnDefinition Width="10" />
+        <ColumnDefinition Width="0.5*" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+      <TextBlock Text="Employees" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource StrongTextBlockStyle}" />
+      <ctl:ItemsFilterList x:Name="FilterList" GridView="{Binding GridView, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" Grid.Row="1" />
+
+      <TextBlock Text="Programs:" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Style="{StaticResource StrongTextBlockStyle}" />
+      <tlk:RadTreeView x:Name="ProgramsTreeView" ItemPrepared="ProgramsTreeView_ItemPrepared" DisplayMemberPath="Name" Margin="0 3"
+                       Grid.Row="1" Grid.Column="2" Style="{StaticResource CheckBoxTreeViewStyle}" />
+
+
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="SelectButton" Click="SelectButton_Click" Content="Select" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

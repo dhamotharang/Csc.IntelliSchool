@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Csc.IntelliSchool.Business.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Service_Base" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:30868</Value>
+    </Setting>
+    <Setting Name="Service_Data" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">App_Data</Value>
+    </Setting>
+    <Setting Name="Path_Root" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\cscvm02\appdata$\IntelliSchool</Value>
+    </Setting>
+    <Setting Name="Path_HumanResources_MedicalTemplates" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HumanResources\Medical Templates</Value>
+    </Setting>
+    <Setting Name="Path_Components" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Components</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

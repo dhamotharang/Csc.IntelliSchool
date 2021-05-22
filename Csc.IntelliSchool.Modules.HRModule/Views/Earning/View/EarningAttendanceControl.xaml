@@ -1,0 +1,194 @@
+﻿<ns:UserControlBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.Earning.EarningAttendanceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+             xmlns:ctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf"
+             xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+             xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  MinHeight="20" Loaded="UserControlBase_Loaded"
+             Initialized="UserControlBase_Initialized" DataContextChanged="UserControlBase_DataContextChanged"
+             d:DesignHeight="300" d:DesignWidth="500">
+  <ns:UserControlBase.Resources>
+    <tlk:RadContextMenu x:Key="ItemsContextMenu" Opening="ItemsContextMenu_Opening">
+      <!--<tlk:RadMenuItem x:Name="EditMenuItem" Header="Edit..." Click="EditMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/edit.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>-->
+
+      <tlk:RadMenuItem x:Name="RecalculateMenuItem" Header="Recalculate..." Click="RecalculateMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/calculate.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+
+      <tlk:RadMenuItem x:Name="ViewTransactionsMenuItem" Header="View Transactions" Click="ViewTransactionsMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/fingerprint.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+
+      <tlk:RadMenuItem IsSeparator="True" />
+
+      <tlk:RadMenuItem x:Name="ReloadMenuItem" Header="Reload" Click="ReloadMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/refresh.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+    </tlk:RadContextMenu>
+
+    <hlpr:EmployeeAttendanceStyleSelector x:Key="AbsenceStyleSelector" Type="{x:Static hlpr:EmployeeAttendanceStyleType.Absence}" NegativeStyle="{StaticResource FailGridViewCellStyle}" PositiveStyle="{StaticResource SuccessGridViewCellStyle}" />
+    <hlpr:EmployeeAttendanceStyleSelector x:Key="AttendanceStyleSelector" Type="{x:Static hlpr:EmployeeAttendanceStyleType.Attendance}" NegativeStyle="{StaticResource FailGridViewCellStyle}" PositiveStyle="{StaticResource SuccessGridViewCellStyle}" />
+    <hlpr:EmployeeAttendanceStyleSelector x:Key="OvertimeStyleSelector" Type="{x:Static hlpr:EmployeeAttendanceStyleType.Overtime}" NegativeStyle="{StaticResource FailGridViewCellStyle}" PositiveStyle="{StaticResource SuccessGridViewCellStyle}" />
+    <hlpr:EmployeeAttendanceStyleSelector x:Key="TimeOffsStyleSelector" Type="{x:Static hlpr:EmployeeAttendanceStyleType.TimeOffs}" NegativeStyle="{StaticResource FailGridViewCellStyle}" PositiveStyle="{StaticResource SuccessGridViewCellStyle}" />
+  </ns:UserControlBase.Resources>
+  
+  
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <StackPanel Visibility="{Binding IsTerminalUser, Converter={StaticResource ReverseBoolVisibilityConverter}}" Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Left">
+      <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/error.png" VerticalAlignment="Center" Stretch="Uniform" Width="16" Height="16" />
+      <TextBlock Text="This employee is not linked to a terminal or terminal information is not set correctly." Style="{StaticResource ErrorTextBlockStyle}" Margin="5 0 0 0" VerticalAlignment="Center" />
+    </StackPanel>
+
+    <StackPanel Visibility="{Binding IsTerminalUser, Converter={StaticResource BoolVisibilityConverter}}" Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Left">
+      <TextBlock Text="Terminal:" Margin="0 0 5 0" VerticalAlignment="Center" />
+      <TextBlock Style="{StaticResource HighlightedValueTextBlockStyle}" VerticalAlignment="Center">
+        <TextBlock.Text>
+          <MultiBinding StringFormat="{}Terminal: {0}, User ID: {1}">
+            <Binding Path="Terminal.Name" />
+            <Binding Path="TerminalUserID" />
+          </MultiBinding>
+        </TextBlock.Text>
+      </TextBlock>
+    </StackPanel>
+
+
+
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Left">
+      <TextBlock Text="Month:" Margin="0 0 5 0" VerticalAlignment="Center" />
+      <tlk:RadDatePicker x:Name="MonthDatePicker" DateSelectionMode="Month" Width="150" SelectionChanged="MonthDatePicker_SelectionChanged" />
+    </StackPanel>
+
+
+    <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+      <tlk:RadButton x:Name="RecalculateButton" Click="RecalculateButton_Click" Margin="0 0 5 0"  Style="{StaticResource ImageButtonStyle}">
+        <tlk:RadButton.Content>
+          <ctl:LeftImageText Text="Recalculate" Image="/Csc.IntelliSchool.Assets;component/Images/20/calculate.png" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+
+      <tlk:RadButton x:Name="ViewTransactionsButton" Visibility="{Binding IsTerminalUser, Converter={StaticResource BoolVisibilityConverter}}" ToolTip="View Transactions" Click="ViewTransactionsButton_Click" Margin="0 0 5 0" VerticalAlignment="Center" Style="{StaticResource GridButtonStyle}">
+        <tlk:RadButton.Content>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/fingerprint.png" Stretch="Uniform" Width="16" Height="16" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+
+      <tlk:RadButton x:Name="ReloadButton" ToolTip="Reload" Click="ReloadButton_Click" VerticalAlignment="Center" Style="{StaticResource GridButtonStyle}">
+        <tlk:RadButton.Content>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/refresh.png" Stretch="Uniform" Width="16" Height="16" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+    </StackPanel>
+
+    <tlk:RadGridView x:Name="ItemsGridView" Grid.Row="2"  tlk:RadContextMenu.ContextMenu="{StaticResource ItemsContextMenu}"
+                     FrozenColumnCount="3"  ShowColumnFooters="True"
+                     ItemsSource="{Binding Items, RelativeSource={RelativeSource AncestorType=ns:UserControlBase}}"
+                     RowStyle="{StaticResource ChildrenGridViewRowStyle}" AlternateRowStyle="{StaticResource ChildrenGridViewAlternateRowStyle}">
+      <tlk:RadGridView.ControlPanelItems>
+        <tlk:ControlPanelItem ButtonTooltip="Grid Options">
+          <tlk:ControlPanelItem.Content>
+            <ctl:GridColumnFilterPanel x:Name="GridColumnFilterPanel" GridView="{Binding}" />
+          </tlk:ControlPanelItem.Content>
+        </tlk:ControlPanelItem>
+      </tlk:RadGridView.ControlPanelItems>
+      <tlk:RadGridView.ColumnGroups>
+        <tlk:GridViewColumnGroup Header="Day" Name="Day" />
+        <tlk:GridViewColumnGroup Header="Clock-In" Name="In" />
+        <tlk:GridViewColumnGroup Header="Clock-Out" Name="Out" />
+        <tlk:GridViewColumnGroup Header="Other" Name="Other" />
+        <tlk:GridViewColumnGroup Header="Total" Name="Total" />
+      </tlk:RadGridView.ColumnGroups>
+      <tlk:RadGridView.SortDescriptors>
+        <tlk:SortDescriptor Member="Date.Day"/>
+      </tlk:RadGridView.SortDescriptors>
+      <tlk:RadGridView.Columns>
+        <tlk:GridViewDataColumn Header="No" ColumnGroupName="Day" UniqueName="DayNo" DataMemberBinding="{Binding Date.Day}"  IsGroupable="False"  TextAlignment="Right" HeaderTextAlignment="Right"  />
+        <tlk:GridViewDataColumn Header="Day" ColumnGroupName="Day" DataMemberBinding="{Binding Date.DayOfWeek}"  />
+        <tlk:GridViewDataColumn Header="Status" ColumnGroupName="Day" DataMemberBinding="{Binding AttendanceStatus}" />
+        <tlk:GridViewDataColumn Header="Dur" ColumnGroupName="Day" DataMemberBinding="{Binding Duration, StringFormat=\{0:hh\\:mm\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+
+        <tlk:GridViewDataColumn Header="In" ColumnGroupName="In" DataMemberBinding="{Binding InDateTime, StringFormat=\{0:hh\\:mm tt\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Pts" ColumnGroupName="In" DataMemberBinding="{Binding InPoints, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="OT" ColumnGroupName="In" DataMemberBinding="{Binding InOvertimePoints, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        
+        <tlk:GridViewDataColumn Header="Out" ColumnGroupName="Out" DataMemberBinding="{Binding OutDateTime, StringFormat=\{0:hh\\:mm tt\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Pts" ColumnGroupName="Out" DataMemberBinding="{Binding OutPoints, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="OT" ColumnGroupName="Out" DataMemberBinding="{Binding OutOvertimePoints, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+
+        <tlk:GridViewDataColumn Header="Pts" ColumnGroupName="Total" CellStyleSelector="{StaticResource AttendanceStyleSelector}" DataMemberBinding="{Binding TotalAttendancePoints, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:SumFunction Caption="" ResultFormatString="{}{0:N2}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="OT" ColumnGroupName="Total" CellStyleSelector="{StaticResource OvertimeStyleSelector}" DataMemberBinding="{Binding TotalOvertimePoints, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:SumFunction Caption="" ResultFormatString="{}{0:N2}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="TimeOffs" ColumnGroupName="Total" CellStyleSelector="{StaticResource TimeOffsStyleSelector}" DataMemberBinding="{Binding TotalTimeOffPoints, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:SumFunction Caption="" ResultFormatString="{}{0:N2}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+        <tlk:GridViewDataColumn Header="Abs" ColumnGroupName="Total" CellStyleSelector="{StaticResource AbsenceStyleSelector}" DataMemberBinding="{Binding TotalAbsencePoints, StringFormat=N0}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:SumFunction Caption="" ResultFormatString="{}{0:N2}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+
+        <!--<tlk:GridViewCheckBoxColumn Header="Edit" DataMemberBinding="{Binding IsEdited}"  IsGroupable="True"  />
+        <tlk:GridViewCheckBoxColumn Header="Lock" DataMemberBinding="{Binding IsLocked}"  IsGroupable="True"  />-->
+        <!--<tlk:GridViewDataColumn Header="Notes"  DataMemberBinding="{Binding Notes}"  IsGroupable="False" />-->
+        <!--<tlk:GridViewColumn>
+          <tlk:GridViewColumn.CellTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <tlk:RadButton x:Name="MenuButton" ToolTip="Menu" Style="{StaticResource GridButtonStyle}" 
+                                     tlk:RadContextMenu.ContextMenu="{StaticResource ItemsContextMenu}" Click="MenuButton_Click">
+                  <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/menu.png" Stretch="Uniform" Width="16" Height="16" />
+                </tlk:RadButton>
+              </StackPanel>
+            </DataTemplate>
+          </tlk:GridViewColumn.CellTemplate>
+        </tlk:GridViewColumn>-->
+
+      </tlk:RadGridView.Columns>
+      <tlk:RadGridView.ChildTableDefinitions>
+        <tlk:GridViewTableDefinition />
+      </tlk:RadGridView.ChildTableDefinitions>
+      <tlk:RadGridView.HierarchyChildTemplate>
+        <DataTemplate>
+          <tlk:RadGridView ShowGroupPanel="True" ItemsSource="{Binding TimeOffs}">
+            <tlk:RadGridView.SortDescriptors>
+              <tlk:SortDescriptor Member="OutTime" SortDirection="Ascending" />
+            </tlk:RadGridView.SortDescriptors>
+            <tlk:RadGridView.Columns>
+              <tlk:GridViewDataColumn Header="Out" DataMemberBinding="{Binding OutDateTime, StringFormat=\{0:hh\\:mm tt\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+              <tlk:GridViewDataColumn Header="In" DataMemberBinding="{Binding InDateTime, StringFormat=\{0:hh\\:mm tt\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+              <tlk:GridViewDataColumn Header="Dur" DataMemberBinding="{Binding Duration, StringFormat=\{0:hh\\:mm\}}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+              <tlk:GridViewDataColumn Header="Pts" DataMemberBinding="{Binding Points, StringFormat=N2}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+            </tlk:RadGridView.Columns>
+          </tlk:RadGridView>
+        </DataTemplate>
+      </tlk:RadGridView.HierarchyChildTemplate>
+    </tlk:RadGridView>
+  </Grid>
+</ns:UserControlBase>

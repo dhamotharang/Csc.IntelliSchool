@@ -1,0 +1,35 @@
+<ResourceDictionary
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="http://schemas.telerik.com/2008/xaml/compile"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="c"
+        xmlns:data="clr-namespace:Csc.Wpf.Data;assembly=Csc.Wpf"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation">
+
+  <data:BoolConverter x:Key="BoolVisibilityConverter" TrueValue="{x:Static Visibility.Visible}" FalseValue="{x:Static Visibility.Collapsed}" />
+  <data:BoolConverter x:Key="ReverseBoolVisibilityConverter" TrueValue="{x:Static Visibility.Collapsed}" FalseValue="{x:Static Visibility.Visible}" />
+
+  <data:NullValueConverter x:Key="NullVisibilityConverter" NullValue="{x:Static Visibility.Collapsed}" NonNullValue="{x:Static Visibility.Visible}" />
+  <data:NullValueConverter x:Key="ReverseNullVisibilityConverter" NullValue="{x:Static Visibility.Visible}" NonNullValue="{x:Static Visibility.Collapsed}" />
+
+  <data:BoolConverter x:Key="ReverseBoolConverter" TrueValue="False" FalseValue="True" />
+  <data:TimeSpanDateTimeConverter x:Key="TimeSpanDateTimeConverter" />
+  <data:NullConverter x:Key="NullZeroConverter" TargetNull="0" />
+  <data:NullConverter x:Key="NullEmptyConverter" TargetNull="" />
+  <data:RightToLeftConverter x:Key="RightToLeftConverter"  />
+  <data:FlowDirectionConverter x:Key="FlowDirectionConverter"  />
+  
+  
+  <data:NullValueConverter x:Key="NullBoolConverter" NullValue="False" NonNullValue="True" />
+  <data:NullValueConverter x:Key="ReverseNullBoolConverter" NullValue="True" NonNullValue="False" />
+
+  <data:DateTimeNullConverter x:Key="DateTimeNullConverter" />
+  <data:PercentConverter x:Key="PercentConverter" />
+
+  <data:DeclineEmptyStringConverter x:Key="DeclineEmptyStringConverter" Trim="True" />
+
+  <data:NumericUpDownConverter x:Key="NumericUpDownConverter" />
+
+  <BitmapImage x:Key="DefaultAvatarImage" UriSource="/Csc.IntelliSchool.Assets;component/Images/128/avatar.png" />
+</ResourceDictionary>

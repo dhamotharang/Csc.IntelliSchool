@@ -1,0 +1,34 @@
+<ResourceDictionary
+        mc:Ignorable="c"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="http://schemas.telerik.com/2008/xaml/compile"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:grid="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation">
+  <ResourceDictionary.MergedDictionaries>
+
+    <!--<ResourceDictionary Source="/Assets/Resources/System.Windows.xaml" />-->
+    
+    <!--<ResourceDictionary Source="/Assets/Resources/Telerik.Windows.Controls.Data.xaml" />
+        <ResourceDictionary Source="/Assets/Resources/Telerik.Windows.Controls.GridView.xaml" />
+        <ResourceDictionary Source="/Assets/Resources/Telerik.Windows.Controls.xaml" />
+        <ResourceDictionary Source="/Assets/Resources/Telerik.Windows.Controls.Input.xaml" />
+        <ResourceDictionary Source="/Assets/Resources/Telerik.Windows.Controls.Navigation.xaml" />-->
+
+    <!--<ResourceDictionary Source="/Assets/Resources/Theme/Telerik.Windows.Controls.xaml" />
+        <ResourceDictionary Source="/Assets/Resources/Theme/Telerik.Windows.Controls.GridView.xaml" />
+        <ResourceDictionary Source="/Assets/Resources/Theme/Telerik.Windows.Controls.Input.xaml" />
+        <ResourceDictionary Source="/Assets/Resources/Theme/Telerik.Windows.Controls.Navigation.xaml" />-->
+
+    <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Theme/Telerik.ReportViewer.Wpf.xaml" />
+
+    <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Default.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.Button.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.GridView.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.TextBlock.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/Csc.Wpf.Theme;component/Targeted.TextBox.xaml" />
+
+  </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

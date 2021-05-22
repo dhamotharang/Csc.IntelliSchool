@@ -1,0 +1,70 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.Structure.TerminalFetchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+        Loaded="WindowBase_Loaded"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        
+        Header="Fetch Terminal Transactions" Height="Auto" Width="400">
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+      <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding Name}" Style="{StaticResource HeaderTextBlockStyle}"  VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" />
+
+      <TextBlock Text="Model:" VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding Model}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+
+      <TextBlock Text="Address:" VerticalAlignment="Center" Grid.Row="2" Margin="0 0 5 0" />
+      <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
+        <TextBlock.Text>
+          <MultiBinding StringFormat="{}{0}:{1}" Mode="OneWay">
+            <Binding Path="IP" />
+            <Binding Path="Port" />
+          </MultiBinding>
+        </TextBlock.Text>
+      </TextBlock>
+
+      <TextBlock Text="Machine ID:" VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding MachineID}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" />
+
+      <TextBlock Text="Password:" VerticalAlignment="Center" Grid.Row="4" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding Password}" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+
+      <TextBlock Text="Extras:" VerticalAlignment="Center" Grid.Row="5" Margin="0 0 5 0" />
+      <CheckBox x:Name="ClearDeviceCheckBox" IsChecked="True" Grid.Row="5" Grid.Column="1"
+              Content="Clear device after completion" HorizontalAlignment="Left" />
+      <!--<StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="0 7"  HorizontalAlignment="Left">
+   
+
+        <CheckBox x:Name="CalculateAttendanceCheckBox"  Margin="0 5 0 0" IsChecked="True"
+              Content="Calculate terminal attendance" HorizontalAlignment="Left" />
+      </StackPanel>-->
+      
+
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="FetchButton" Click="FetchButton_Click" Content="Fetch" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

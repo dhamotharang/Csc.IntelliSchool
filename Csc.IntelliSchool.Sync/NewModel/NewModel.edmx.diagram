@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77b86376e2ac43f89f90c1a4b8aae812" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeBranch" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeDepartment" Width="1.5" PointX="3.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeePosition" Width="1.5" PointX="3.75" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeSalary" Width="1.5" PointX="9.375" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeShift" Width="1.5" PointX="3.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeTerminal" Width="1.5" PointX="3.75" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.ContactAddress" Width="1.5" PointX="3" PointY="78.125" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.ContactNumber" Width="1.5" PointX="3" PointY="30.875" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.Contact" Width="1.5" PointX="0.75" PointY="34.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.Nationality" Width="1.5" PointX="3.75" PointY="24.875" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.Religion" Width="1.5" PointX="3.75" PointY="44.625" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_ContactAddresses_Contacts" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_ContactNumbers_Contacts" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.Employee" Width="2.625" PointX="6" PointY="30.125" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_Contacts" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_EmployeeBranches" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_EmployeeDepartments" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_EmployeePositions" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_EmployeeShifts" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_EmployeeTerminals" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_Nationalities" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_Religions" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeSalaries_Employees" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeLoanInstallment" Width="1.5" PointX="11.625" PointY="15.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeDeduction" Width="1.5" PointX="9.375" PointY="22.5" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDeductions_Employees" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeLoan" Width="1.5" PointX="9.375" PointY="15.5" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeLoanInstallments_EmployeeLoans" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeLoans_Employees" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeTerminalTransaction" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeTransactionRule" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeAttendance" Width="1.5" PointX="9.375" PointY="31.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeBonus" Width="1.5" PointX="9.375" PointY="35.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeEarning" Width="1.5" PointX="9.375" PointY="45.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeSalaryUpdate" Width="1.5" PointX="9.375" PointY="52.375" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeAttendance_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeBonuses_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeEarnings_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeSalaryUpdates_Employees" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.Bank" Width="1.5" PointX="7.125" PointY="42.875" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.ContactEmail" Width="1.5" PointX="3" PointY="75.25" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeBankAccount" Width="1.5" PointX="9.375" PointY="39.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeCustody" Width="1.5" PointX="11.625" PointY="43" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeCustodyItem" Width="1.5" PointX="9.375" PointY="56" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeDocument" Width="1.5" PointX="9.375" PointY="59.375" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeList" Width="1.5" PointX="3.75" PointY="47.375" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalConcession" Width="1.5" PointX="3.75" PointY="54.875" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalProgram" Width="1.5" PointX="1.5" PointY="50.25" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalProvider" Width="1.5" PointX="1.5" PointY="47.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalRate" Width="1.5" PointX="3.75" PointY="57.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeSocialInsurance" Width="1.5" PointX="9.375" PointY="62.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeVacation" Width="1.5" PointX="9.375" PointY="66.125" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.SystemFlag" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.User" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.UserView" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.View" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeBankAccounts_Banks" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_ContactEmails_Contacts" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeBankAccounts_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeCustodies_EmployeeCustodyItems" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeCustodies_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeCustodyItems_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDocuments_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_EmployeeLists" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalConcessions_EmployeeMedicalPrograms" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalPrograms_EmployeeMedicalProviders" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalRates_EmployeeMedicalPrograms" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeSocialInsurance_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeVacations_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_UserViews_Users" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_UserViews_Views" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Views_Views" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalCertificate" Width="1.5" PointX="3.75" PointY="49.75" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalCertificates_EmployeeMedicalPrograms" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_Employees_EmployeeMedicalCertificates" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeDependant" Width="1.5" PointX="12.375" PointY="35.25" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDependants_EmployeeMedicalCertificates" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDependants_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDependants_Nationalities" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDependants_Religions" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.ContactReference" Width="1.5" PointX="0.01935154573030376" PointY="13.710657826490076" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeDepartmentList" Width="1.5" PointX="11.223259308945043" PointY="21.777641202219595" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalClaimDocument" Width="1.5" PointX="5.1549504833086166" PointY="29.605460195618431" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalClaim" Width="1.5" PointX="8.4981878495301064" PointY="13.842289007195406" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalClaimType" Width="1.5" PointX="8.339531017625486" PointY="28.772317452715857" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeePositionList" Width="1.5" PointX="2.0192626630977086" PointY="20.05345312694714" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDepartmentLists_EmployeeDepartments" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDepartmentLists_EmployeeLists" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeePositionLists_EmployeeLists" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalClaims_EmployeeMedicalCertificates" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalClaimDocuments_EmployeeMedicalClaims" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalClaims_EmployeeMedicalClaimTypes" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeePositionLists_EmployeePositions" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeAttendanceTimeOff" Width="1.5" PointX="5.4204484063295872" PointY="19.362965637521338" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeDepartmentVacation" Width="1.5" PointX="10.799811053462239" PointY="18.218550616045739" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalProgramTemplate" Width="1.5" PointX="3.1033931575265683" PointY="18.478660413286956" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalRequestDependant" Width="1.5" PointX="1.9104770989671711" PointY="14.435383654402282" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalRequestEmployee" Width="1.5" PointX="0.556275017818564" PointY="28.63090738497251" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalRequest" Width="1.5" PointX="5.3459414566615324" PointY="6.8344686808225088" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeMedicalRequestType" Width="1.5" PointX="7.0183695103127368" PointY="31.670937672104191" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeOfficialDocument" Width="1.5" PointX="14" PointY="29.625" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeOfficialDocumentType" Width="1.5" PointX="4.8382423561244474" PointY="31.448815002780787" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeShiftOverride" Width="1.5" PointX="10.080760347694513" PointY="28.03175224179018" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeAttendanceTimeOffs_EmployeeAttendance" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDepartmentVacations_EmployeeDepartments" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalRequestDependants_EmployeeDependants" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalProgramTemplates_EmployeeMedicalPrograms" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalRequests_EmployeeMedicalPrograms" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalProgramTemplates_EmployeeMedicalRequestTypes" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalRequestDependants_EmployeeMedicalRequests" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalRequestEmployees_EmployeeMedicalRequests" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalRequestEmployees_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeMedicalRequests_EmployeeMedicalRequestTypes" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeOfficialDocuments_EmployeeOfficialDocumentTypes" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeOfficialDocuments_Employees" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeShiftOverrides_EmployeeShifts" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.EmployeeDepartmentOfficialDocument" Width="1.5" PointX="1.877747102583641" PointY="9.452820886603007" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDepartmentOfficialDocuments_EmployeeDepartments" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_EmployeeDepartmentOfficialDocuments_EmployeeOfficialDocumentTypes" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.SystemLogData" Width="1.5" PointX="9.625" PointY="5.75" />
+        <EntityTypeShape EntityType="Csc.IntelliSchool.NewModel.SystemLog" Width="1.5" PointX="7.375" PointY="5" />
+        <AssociationConnector Association="Csc.IntelliSchool.NewModel.FK_SystemLogData_SystemLogs" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

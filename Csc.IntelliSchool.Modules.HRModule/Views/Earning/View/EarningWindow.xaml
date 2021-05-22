@@ -1,0 +1,107 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.Earning.EarningWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:vw="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Views.Earning"
+        Loaded="WindowBase_Loaded"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        ResizeMode="CanResize"
+        Header="Employee Earning" Height="600" Width="1000" MinWidth="800" MinHeight="600" >
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+      <TextBlock Text="ID:" VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding EmployeeID}" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
+
+      <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding Person.FullName}" Grid.Row="1" Grid.Column="1" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+      <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+        <TextBlock Text="Position:" VerticalAlignment="Center"  Margin="0 0 5 0" />
+        <TextBlock Text="{Binding FullPositionString}" Style="{StaticResource HighlightedValueTextBlockStyle}" VerticalAlignment="Center" />
+      </StackPanel>
+
+      <!--<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+        <TextBlock Text="Hire Date:" VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+        <TextBlock Text="{Binding HireDate, StringFormat=d}" HorizontalAlignment="Left" Grid.Row="3" Style="{StaticResource HighlightedValueTextBlockStyle}" Grid.Column="1" VerticalAlignment="Center" />
+      </StackPanel>-->
+
+      <tlk:RadTabControl Grid.Row="2" Grid.ColumnSpan="2" SelectionChanged="RadTabControl_SelectionChanged">
+        <tlk:RadTabItem Header="Info" x:Name="InfoTabItem">
+          <AdornerDecorator>
+            <vw:EarningInfoControl x:Name="InfoControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Attendance" x:Name="AttendanceTabItem">
+          <AdornerDecorator>
+            <vw:EarningAttendanceControl x:Name="AttendanceControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Allowances" x:Name="AllowancesTabItem">
+          <AdornerDecorator>
+            <vw:EarningAllowancesControl x:Name="AllowancesControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Charges" x:Name="ChargesTabItem">
+          <AdornerDecorator>
+            <vw:EarningChargesControl x:Name="ChargesControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Bonuses" x:Name="BonusesTabItem">
+          <AdornerDecorator>
+            <vw:EarningBonusesControl x:Name="BonusesControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Deductions" x:Name="DeductionsTabItem">
+          <AdornerDecorator>
+            <vw:EarningDeductionsControl x:Name="DeductionsControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Vacations" x:Name="VacationsTabItem">
+          <AdornerDecorator>
+            <vw:EarningVacationsControl x:Name="VacationsControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Department Vacations" x:Name="DepartmentVacationsTabItem">
+          <AdornerDecorator>
+            <vw:EarningDepartmentVacationsControl x:Name="DepartmentVacationsControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Loans" x:Name="LoansTabItem">
+          <AdornerDecorator>
+            <vw:EarningLoansControl x:Name="LoansControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="History" x:Name="HistoryTabItem">
+          <AdornerDecorator>
+            <vw:EarningHistoryControl x:Name="HistoryControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+        <tlk:RadTabItem Header="Summary" x:Name="SummaryTabItem">
+          <AdornerDecorator>
+            <vw:EarningSummaryControl x:Name="SummaryControl" Margin="5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+          </AdornerDecorator>
+        </tlk:RadTabItem>
+      </tlk:RadTabControl>
+
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="OKButton" Click="OKButton_Click" Content="OK" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

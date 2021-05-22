@@ -1,0 +1,800 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{21D21084-D6C1-4676-84B9-A9CB033259E0}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Csc.IntelliSchool.Modules.HRModule</RootNamespace>
+    <AssemblyName>Csc.IntelliSchool.Modules.HRModule</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Assembly\csc.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=10.2.16.1025, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\Reporting R3 2016\Bin\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.OpenXmlRendering, Version=10.2.16.1025, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\Reporting R3 2016\Bin\Telerik.Reporting.OpenXmlRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=10.2.16.1025, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\Reporting R3 2016\Bin\Telerik.Reporting.XpsRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2018.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2018.1.116.45\Telerik.Windows.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2018.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2018.1.116.45\Telerik.Windows.Controls.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2018.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2018.1.116.45\Telerik.Windows.Controls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2018.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2018.1.116.45\Telerik.Windows.Controls.Input.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2018.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2018.1.116.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2018.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2018.1.116.45\Telerik.Windows.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Helpers\EmployeeAttendanceStyleSelector.cs" />
+    <Compile Include="Assets\Helpers\EmployeeAttendanceValueConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reports\AttendanceSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AttendanceSummaryReport.Designer.cs">
+      <DependentUpon>AttendanceSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\EarningsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\EarningsReport.Designer.cs">
+      <DependentUpon>EarningsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\EarningsSummaryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\EarningsSummaryReport.Designer.cs">
+      <DependentUpon>EarningsSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MedicalConsentReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\MedicalConsentReport.Designer.cs">
+      <DependentUpon>MedicalConsentReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MedicalListReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\MedicalListReport.Designer.cs">
+      <DependentUpon>MedicalListReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MedicalProposalReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\MedicalProposalReport.Designer.cs">
+      <DependentUpon>MedicalProposalReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChargesPage.xaml.cs">
+      <DependentUpon>ChargesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attendance\AttendanceMatrixPage.xaml.cs">
+      <DependentUpon>AttendanceMatrixPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Communication\ContactDetailsPage.xaml.cs">
+      <DependentUpon>ContactDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DepartmentVacationsPage.xaml.cs">
+      <DependentUpon>DepartmentVacationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\DocumentModifyWindow.xaml.cs">
+      <DependentUpon>DocumentModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\DocumentsWindow.xaml.cs">
+      <DependentUpon>DocumentsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Attendance\AttendanceSummaryPage.xaml.cs">
+      <DependentUpon>AttendanceSummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\EarningsPage.xaml.cs">
+      <DependentUpon>EarningsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\EarningsSummaryPage.xaml.cs">
+      <DependentUpon>EarningsSummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningChargesControl.xaml.cs">
+      <DependentUpon>EarningChargesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningAttendanceControl.xaml.cs">
+      <DependentUpon>EarningAttendanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningBonusesControl.xaml.cs">
+      <DependentUpon>EarningBonusesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningDeductionsControl.xaml.cs">
+      <DependentUpon>EarningDeductionsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningDepartmentVacationsControl.xaml.cs">
+      <DependentUpon>EarningDepartmentVacationsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningHistoryControl.xaml.cs">
+      <DependentUpon>EarningHistoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningInfoControl.xaml.cs">
+      <DependentUpon>EarningInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningLoansControl.xaml.cs">
+      <DependentUpon>EarningLoansControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningSummaryControl.xaml.cs">
+      <DependentUpon>EarningSummaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningAllowancesControl.xaml.cs">
+      <DependentUpon>EarningAllowancesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningVacationsControl.xaml.cs">
+      <DependentUpon>EarningVacationsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EarningWindow.xaml.cs">
+      <DependentUpon>EarningWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\View\EmployeeEarningSection.cs" />
+    <Compile Include="Views\Earning\View\IEarningControl.cs" />
+    <Compile Include="Views\Lookup\ChargeTypesPage.xaml.cs">
+      <DependentUpon>ChargeTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\Modification\ChargeTypeModifyWindow.xaml.cs">
+      <DependentUpon>ChargeTypeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\ChargeModifyWindow.xaml.cs">
+      <DependentUpon>ChargeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\AllowanceModifyWindow.xaml.cs">
+      <DependentUpon>AllowanceModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\BonusModifyWindow.xaml.cs">
+      <DependentUpon>BonusModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\DeductionModifyWindow.xaml.cs">
+      <DependentUpon>DeductionModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\LoanModifyWindow.xaml.cs">
+      <DependentUpon>LoanModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\VacationModifyWindow.xaml.cs">
+      <DependentUpon>VacationModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\MonthlyCalculatorPage.xaml.cs">
+      <DependentUpon>MonthlyCalculatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Earning\TerminalTransactionsWindow.xaml.cs">
+      <DependentUpon>TerminalTransactionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllowancesPage.xaml.cs">
+      <DependentUpon>AllowancesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BonusesPage.xaml.cs">
+      <DependentUpon>BonusesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\AllowanceTypesPage.xaml.cs">
+      <DependentUpon>AllowanceTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\Modification\AllowanceTypeModifyWindow.xaml.cs">
+      <DependentUpon>AllowanceTypeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShiftOverridesPage.xaml.cs">
+      <DependentUpon>ShiftOverridesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VacationsPage.xaml.cs">
+      <DependentUpon>VacationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeductionsPage.xaml.cs">
+      <DependentUpon>DeductionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Common\EmployeeFilterWindow.xaml.cs">
+      <DependentUpon>EmployeeFilterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoansPage.xaml.cs">
+      <DependentUpon>LoansPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Common\EmployeeSelectionControl.xaml.cs">
+      <DependentUpon>EmployeeSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Common\EmployeeSelectionWindow.xaml.cs">
+      <DependentUpon>EmployeeSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeesPage.xaml.cs">
+      <DependentUpon>EmployeesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\Modification\ShiftOverrideTypeModifyWindow.xaml.cs">
+      <DependentUpon>ShiftOverrideTypeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\ShiftOverrideTypesPage.xaml.cs">
+      <DependentUpon>ShiftOverrideTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalApplySalariesWindow.xaml.cs">
+      <DependentUpon>MedicalApplySalariesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalCertificateModifyWindow.xaml.cs">
+      <DependentUpon>MedicalCertificateModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalClaimModifyWindow.xaml.cs">
+      <DependentUpon>MedicalClaimModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalClaimsPage.xaml.cs">
+      <DependentUpon>MedicalClaimsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalInsurancePage.xaml.cs">
+      <DependentUpon>MedicalInsurancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalRecalculateWindow.xaml.cs">
+      <DependentUpon>MedicalRecalculateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalRequestWindow.xaml.cs">
+      <DependentUpon>MedicalRequestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\ProgramItemsSelectionWindow.xaml.cs">
+      <DependentUpon>ProgramItemsSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicalInsurance\MedicalProposalListWindow.xaml.cs">
+      <DependentUpon>MedicalProposalListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\DepartmentVacationModifyWindow.xaml.cs">
+      <DependentUpon>DepartmentVacationModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeDependantModifyWindow.xaml.cs">
+      <DependentUpon>EmployeeDependantModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeModificationSection.cs" />
+    <Compile Include="Views\Modification\Employee\EmployeeModifyEmploymentControl.xaml.cs">
+      <DependentUpon>EmployeeModifyEmploymentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeModifyOfficialDocumentsControl.xaml.cs">
+      <DependentUpon>EmployeeModifyOfficialDocumentsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeModifyEducationControl.xaml.cs">
+      <DependentUpon>EmployeeModifyEducationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeModifyPersonalControl.xaml.cs">
+      <DependentUpon>EmployeeModifyPersonalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeModifySalaryControl.xaml.cs">
+      <DependentUpon>EmployeeModifySalaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeModifyWindow.xaml.cs">
+      <DependentUpon>EmployeeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeReenrollWindow.xaml.cs">
+      <DependentUpon>EmployeeReenrollWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeSalaryUpdatesControl.xaml.cs">
+      <DependentUpon>EmployeeSalaryUpdatesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\Employee\EmployeeTerminationWindow.xaml.cs">
+      <DependentUpon>EmployeeTerminationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OfficialDocumentsPage.xaml.cs">
+      <DependentUpon>OfficialDocumentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\Modification\VacationTypeModifyWindow.xaml.cs">
+      <DependentUpon>VacationTypeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\VacationTypesPage.xaml.cs">
+      <DependentUpon>VacationTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\DeductionTypesPage.xaml.cs">
+      <DependentUpon>DeductionTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\Modification\DeductionTypeModifyWindow.xaml.cs">
+      <DependentUpon>DeductionTypeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\BonusTypesPage.xaml.cs">
+      <DependentUpon>BonusTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\BranchesPage.xaml.cs">
+      <DependentUpon>BranchesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookup\Modification\BonusTypeModifyWindow.xaml.cs">
+      <DependentUpon>BonusTypeModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Modification\BranchModifyWindow.xaml.cs">
+      <DependentUpon>BranchModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Modification\DepartmentModifyWindow.xaml.cs">
+      <DependentUpon>DepartmentModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\DepartmentsPage.xaml.cs">
+      <DependentUpon>DepartmentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Modification\PositionModifyWindow.xaml.cs">
+      <DependentUpon>PositionModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\PositionsPage.xaml.cs">
+      <DependentUpon>PositionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Modification\ShiftModifyWindow.xaml.cs">
+      <DependentUpon>ShiftModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modification\ShiftOverrideModifyWindow.xaml.cs">
+      <DependentUpon>ShiftOverrideModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\ShiftsPage.xaml.cs">
+      <DependentUpon>ShiftsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\TerminalFetchWindow.xaml.cs">
+      <DependentUpon>TerminalFetchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Modification\TerminalModifyWindow.xaml.cs">
+      <DependentUpon>TerminalModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\TerminalsPage.xaml.cs">
+      <DependentUpon>TerminalsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\Modification\TransactionRuleModifyPage.xaml.cs">
+      <DependentUpon>TransactionRuleModifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Structure\TransactionRulesPage.xaml.cs">
+      <DependentUpon>TransactionRulesPage.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\AttendanceSummaryReport.resx">
+      <DependentUpon>AttendanceSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\EarningsReport.resx">
+      <DependentUpon>EarningsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\EarningsSummaryReport.resx">
+      <DependentUpon>EarningsSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MedicalConsentReport.resx">
+      <DependentUpon>MedicalConsentReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MedicalListReport.resx">
+      <DependentUpon>MedicalListReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MedicalProposalReport.resx">
+      <DependentUpon>MedicalProposalReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Assembly\csc.snk" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Csc.Components.Common\Csc.Components.Common.csproj">
+      <Project>{a966afb3-b653-4211-a78f-ec7664123b0f}</Project>
+      <Name>Csc.Components.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Assets\Csc.IntelliSchool.Assets.csproj">
+      <Project>{16ed5015-3025-4010-8fbb-fdc414bac6a9}</Project>
+      <Name>Csc.IntelliSchool.Assets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Business\Csc.IntelliSchool.Business.csproj">
+      <Project>{131e9e90-5949-4619-bcfc-854d9c386f42}</Project>
+      <Name>Csc.IntelliSchool.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Data\Csc.IntelliSchool.Data.csproj">
+      <Project>{efcd9931-d5c5-4c5e-a1c1-7f35af922aa4}</Project>
+      <Name>Csc.IntelliSchool.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Modules.PeopleModule\Csc.IntelliSchool.Modules.PeopleModule.csproj">
+      <Project>{49cd1108-ae49-42ef-a65c-f8bb1f690691}</Project>
+      <Name>Csc.IntelliSchool.Modules.PeopleModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.Wpf\Csc.Wpf.csproj">
+      <Project>{5c2ac4ca-cab4-468e-9b37-c25bed412179}</Project>
+      <Name>Csc.Wpf</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ChargesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Attendance\AttendanceMatrixPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Communication\ContactDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DepartmentVacationsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Documents\DocumentModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Documents\DocumentsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Attendance\AttendanceSummaryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\EarningsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\EarningsSummaryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningChargesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningAttendanceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningBonusesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningDeductionsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningDepartmentVacationsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningHistoryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningInfoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningLoansControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningSummaryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningAllowancesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningVacationsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\View\EarningWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\ChargeTypesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\Modification\ChargeTypeModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\ChargeModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\AllowanceModifyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Modification\BonusModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\DeductionModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\LoanModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\VacationModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\MonthlyCalculatorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Earning\TerminalTransactionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AllowancesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BonusesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\AllowanceTypesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Lookup\Modification\AllowanceTypeModifyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShiftOverridesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VacationsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeductionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Common\EmployeeFilterWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LoansPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Common\EmployeeSelectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Common\EmployeeSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EmployeesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\Modification\ShiftOverrideTypeModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\ShiftOverrideTypesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalApplySalariesWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalCertificateModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalClaimModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalClaimsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalInsurancePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalRecalculateWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalRequestWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\ProgramItemsSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MedicalInsurance\MedicalProposalListWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\DepartmentVacationModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeDependantModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeModifyEmploymentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeModifyOfficialDocumentsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeModifyEducationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeModifyPersonalControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeModifySalaryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeReenrollWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeSalaryUpdatesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\Employee\EmployeeTerminationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OfficialDocumentsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\Modification\VacationTypeModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\VacationTypesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\DeductionTypesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\Modification\DeductionTypeModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\BonusTypesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\BranchesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lookup\Modification\BonusTypeModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\Modification\BranchModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\Modification\DepartmentModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\DepartmentsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\Modification\PositionModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\PositionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\Modification\ShiftModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modification\ShiftOverrideModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\ShiftsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\TerminalFetchWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\Modification\TerminalModifyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\TerminalsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\Modification\TransactionRuleModifyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Structure\TransactionRulesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE7C9DB6-7DD6-43FB-9005-3AB1501D7847}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Csc.IntelliSchool.WebService</RootNamespace>
+    <AssemblyName>Csc.IntelliSchool.WebService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Services\Account\Service.svc" />
+    <Content Include="Services\CommonData\Service.svc" />
+    <Content Include="Services\Employees\Service.svc" />
+    <Content Include="Services\FileHandler\Service.svc" />
+    <Content Include="Services\SystemAdmin\Service.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Services\- Core\ReferencePreservingDataContractSerializerOperationBehavior.cs" />
+    <Compile Include="Services\- Model\RemoteFileType.cs" />
+    <Compile Include="Services\Account\Interface\IAccountService.cs" />
+    <Compile Include="Services\Account\AccountService.cs" />
+    <Compile Include="Services\Account\Service.svc.cs">
+      <DependentUpon>Service.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\- Core\ReferencePreservingDataContractFormatAttribute.cs" />
+    <Compile Include="Services\CommonData\CommonDataService.Personal.cs" />
+    <Compile Include="Services\CommonData\Interface\ICommonDataService.Personal.cs" />
+    <Compile Include="Services\CommonData\Interface\ICommonDataService.General.cs" />
+    <Compile Include="Services\CommonData\Interface\ICommonDataService.Contact.cs" />
+    <Compile Include="Services\CommonData\Interface\ICommonDataService.cs" />
+    <Compile Include="Services\CommonData\CommonDataService.General.cs" />
+    <Compile Include="Services\CommonData\CommonDataService.Contact.cs" />
+    <Compile Include="Services\CommonData\CommonDataService.cs" />
+    <Compile Include="Services\CommonData\Service.svc.cs">
+      <DependentUpon>Service.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\- Model\RemoteFile.cs" />
+    <Compile Include="Services\Employees\EmployeesService.EmployeeDependant.cs" />
+    <Compile Include="Services\Employees\EmployeesService.MedicalCertificates.cs" />
+    <Compile Include="Services\Employees\EmployeesService.MedicalRequests.cs" />
+    <Compile Include="Services\Employees\EmployeesService.MedicalClaims.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Vacations.cs" />
+    <Compile Include="Services\Employees\EmployeesService.TransactionRules.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Shifts.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Terminals.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Lists.cs" />
+    <Compile Include="Services\Employees\EmployeesService.DepartmentVacations.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Documents.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Branches.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Loans.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Deductions.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Bonuses.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Departments.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Positions.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.EmployeeDependants.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.MedicalRequest.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.MedicalClaims.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.MedicalCertificates.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Vacations.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Terminals.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Shifts.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.TransactionRules.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.DepartmentVacations.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Documents.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Branches.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Deductions.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Departments.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Loans.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Bonuses.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Positions.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Lists.cs" />
+    <Compile Include="Services\Employees\MedicalRequestParam.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Communication.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Earnings.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.MedicalInsurance.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.OfficialDocuments.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Transactions.cs" />
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Attendance.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Attendance.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Flags.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Communication.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Employees.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Earnings.cs" />
+    <Compile Include="Services\Employees\EmployeesService.MedicalInsurance.cs" />
+    <Compile Include="Services\Employees\EmployeesService.OfficialDocuments.cs" />
+    <Compile Include="Services\Employees\EmployeesService.Transactions.cs" />
+    <Compile Include="Services\Employees\Service.svc.cs">
+      <DependentUpon>Service.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Employees\Interface\IEmployeesService.Employees.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FileHandler\Interface\IFileHandlerService.cs" />
+    <Compile Include="Services\FileHandler\Service.svc.cs">
+      <DependentUpon>Service.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ServiceManager.cs" />
+    <Compile Include="Services\ServiceExtensions.cs" />
+    <Compile Include="Services\SystemAdmin\Interfaces\ISystemAdminService.Log.cs" />
+    <Compile Include="Services\SystemAdmin\Interfaces\ISystemAdminService.cs" />
+    <Compile Include="Services\SystemAdmin\SystemAdminService.Log.cs" />
+    <Compile Include="Services\SystemAdmin\Service.svc.cs">
+      <DependentUpon>Service.svc</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Assembly\csc.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Csc.Components.Common\Csc.Components.Common.csproj">
+      <Project>{a966afb3-b653-4211-a78f-ec7664123b0f}</Project>
+      <Name>Csc.Components.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.Components.Imaging\Csc.Components.Imaging.csproj">
+      <Project>{dd324827-3ba0-4244-90ff-2892b9975964}</Project>
+      <Name>Csc.Components.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.Components.Security\Csc.Components.Security.csproj">
+      <Project>{c3173d90-ce78-4d28-98fb-378594e1644e}</Project>
+      <Name>Csc.Components.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csc.IntelliSchool.Data\Csc.IntelliSchool.Data.csproj">
+      <Project>{efcd9931-d5c5-4c5e-a1c1-7f35af922aa4}</Project>
+      <Name>Csc.IntelliSchool.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Assembly\csc.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>30868</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:30868/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

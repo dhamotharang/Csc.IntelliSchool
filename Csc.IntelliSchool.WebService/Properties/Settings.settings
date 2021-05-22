@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Csc.IntelliSchool.WebService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FileHandler_PhotoMaxWidth" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">128</Value>
+    </Setting>
+    <Setting Name="FileHandler_PhotoMaxHeight" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">128</Value>
+    </Setting>
+    <Setting Name="FileHandler_PhotoDefaultExtension" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">png</Value>
+    </Setting>
+    <Setting Name="FileHandler_BufferSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1048576</Value>
+    </Setting>
+    <Setting Name="FileHandler_DataDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/App_Data</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

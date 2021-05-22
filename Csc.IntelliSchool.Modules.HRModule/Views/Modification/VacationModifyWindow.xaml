@@ -1,0 +1,107 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.VacationModifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+        xmlns:data="clr-namespace:Csc.Wpf.Data;assembly=Csc.Wpf"
+               xmlns:wpfctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf"
+        Loaded="WindowBase_Loaded"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        
+        Header="" Height="Auto" Width="400">
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+
+      <TextBlock Text="Employee:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding Employee.Person.FullName, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" Grid.Row="0" Grid.Column="1" 
+                 VerticalAlignment="Center" Grid.ColumnSpan="2" Style="{StaticResource HeaderTextBlockStyle}" />
+
+
+      <TextBlock Text="Start Date:" FontWeight="Bold"  VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="StartDatePicker" SelectionChanged="StartDatePicker_SelectionChanged" DisplayFormat="Short" 
+                         Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="StartDate" Converter="{StaticResource DateTimeNullConverter}">
+            <Binding.ValidationRules>
+              <val:Required />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+      <tlk:RadToggleButton x:Name="SingleToggleButton" Margin="5 0 0 0" Click="SingleToggleButton_Click" Content="Single" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Width="60" />
+
+      <TextBlock Text="End Date:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="2" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="EndDatePicker"  SelectionChanged="EndDatePicker_SelectionChanged" IsReadOnly="{Binding IsChecked, ElementName=SingleToggleButton}" DisplayFormat="Short" 
+                         Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadDatePicker.Resources>
+          <data:BindingProxy x:Key="TargetProxy" Data="{Binding StartDate, Converter={StaticResource DateTimeNullConverter}}" />
+          <data:BindingProxy x:Key="SourceProxy" Data="{Binding SelectedValue, ElementName=EndDatePicker, Mode=TwoWay}" />
+        </tlk:RadDatePicker.Resources>
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="EndDate"  Converter="{StaticResource DateTimeNullConverter}">
+            <Binding.ValidationRules>
+              <val:DateRange Required="True" >
+                <val:DateRange.StartDate>
+                  <data:DependencyValue Value="{Binding Data,  Source={StaticResource TargetProxy}}" BindingToTrigger="{Binding Data, Source={StaticResource SourceProxy}}" />
+                </val:DateRange.StartDate>
+              </val:DateRange>
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+
+      <TextBlock Text="Days:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+      <TextBlock x:Name="DaysTextBlock" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding DayCount}"/>
+
+      <TextBlock Text="Type:" VerticalAlignment="Center" Grid.Row="4" Margin="0 0 5 0" />
+      <tlk:RadComboBox x:Name="TypeComboBox" DisplayMemberPath="Name"  SelectionChanged="TypeComboBox_SelectionChanged"
+                     SelectedValuePath="TypeID" SelectedValue="{Binding TypeID, Converter={StaticResource NullZeroConverter}}"
+                     VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+      <wpfctl:InfoIcon
+           IsEnabled="{Binding Text, RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource NullBoolConverter}}"
+           Text="{Binding SelectedItem.Notes, ElementName=TypeComboBox, Converter={StaticResource DeclineEmptyStringConverter}}" Margin="5 0 0 0"
+           Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" />
+      <tlk:RadButton x:Name="AddTypeButton" ToolTip="Add New Item" Grid.Row="4" Grid.Column="3" Margin="5 0 0 0" HorizontalAlignment="Center"
+                   Click="AddTypeButton_Click" VerticalAlignment="Center" Style="{StaticResource GridButtonStyle}">
+        <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/add.png" Stretch="Uniform" Width="16" Height="16" />
+      </tlk:RadButton>
+
+
+      <CheckBox x:Name="PaidCheckBox" Content="Paid vacation (will not be deducted from salary)"
+                Grid.Row="5" Grid.ColumnSpan="4" IsChecked="{Binding IsPaid}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+      <TextBlock Text="Notes:"  VerticalAlignment="Center" Grid.Row="6" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox  Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Text="{Binding Notes}" />
+      
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <tlk:RadButton x:Name="DeleteButton" Click="DeleteButton_Click" Style="{StaticResource WindowButtonStyle}"
+                     Content="Delete" Grid.Row="7" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+      <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

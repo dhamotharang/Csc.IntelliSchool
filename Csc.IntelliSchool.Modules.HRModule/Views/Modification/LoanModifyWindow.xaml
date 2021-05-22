@@ -1,0 +1,142 @@
+﻿<ns:WindowBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.LoanModifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+        xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+        xmlns:data="clr-namespace:Csc.Wpf.Data;assembly=Csc.Wpf"
+        Loaded="WindowBase_Loaded"
+        DataContext="{Binding Item, RelativeSource={RelativeSource Mode=Self}}"
+        
+        Header="" Height="Auto" Width="400">
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="200" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <!--//////////////////////////// BEGIN CONTROLS ////////////////////////////-->
+
+      <TextBlock Text="Employee:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="0" Margin="0 0 5 0" />
+      <TextBlock Text="{Binding Employee.Person.FullName, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" Grid.Row="0" Grid.Column="1" 
+                 VerticalAlignment="Center" Grid.ColumnSpan="2" Style="{StaticResource HeaderTextBlockStyle}" />
+
+      <TextBlock Text="Request Date:" FontWeight="Bold"  VerticalAlignment="Center" Grid.Row="1" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="RequestDatePicker" DisplayFormat="Short" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="RequestDate">
+            <Binding.ValidationRules>
+              <val:Required />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+
+      <TextBlock Text="Total Amount:" FontWeight="Bold"  VerticalAlignment="Center" Grid.Row="2" Margin="0 0 5 0" />
+      <tlk:RadNumericUpDown x:Name="TotalAmountNumericUpDown" ValueChanged="TotalAmountNumericUpDown_ValueChanged" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" NumberDecimalDigits="0" SmallChange="10" LargeChange="100" Minimum="0">
+        <tlk:RadNumericUpDown.Value>
+          <Binding Path="TotalAmount" TargetNullValue="{x:Null}">
+            <Binding.ValidationRules>
+              <val:RequiredNumber NonZero="True" />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadNumericUpDown.Value>
+      </tlk:RadNumericUpDown>
+
+      <TextBlock Text="Start Month:" FontWeight="Bold"  VerticalAlignment="Center" Grid.Row="3" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="StartMonthPicker" SelectionChanged="StartMonthPicker_SelectionChanged" DisplayFormat="Short" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="StartMonth">
+            <Binding.ValidationRules>
+              <val:Required />
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+      <tlk:RadButton x:Name="SingleButton" Margin="5 0 0 0" Click="SingleButton_Click" Content="Single" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Width="60" />
+
+      <TextBlock Text="End Month:" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="4" Margin="0 0 5 0" />
+      <tlk:RadDatePicker x:Name="EndMonthPicker"  SelectionChanged="EndMonthPicker_SelectionChanged" DisplayFormat="Short" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">
+        <tlk:RadDatePicker.Resources>
+          <data:BindingProxy x:Key="TargetProxy" Data="{Binding StartMonth}" />
+          <data:BindingProxy x:Key="SourceProxy" Data="{Binding SelectedValue, ElementName=EndMonthPicker, Mode=TwoWay}" />
+        </tlk:RadDatePicker.Resources>
+        <tlk:RadDatePicker.SelectedValue>
+          <Binding Path="EndMonth">
+            <Binding.ValidationRules>
+              <val:DateRange>
+                <val:DateRange.StartDate>
+                  <data:DependencyValue Value="{Binding Data,  Source={StaticResource TargetProxy}}" BindingToTrigger="{Binding Data, Source={StaticResource SourceProxy}}" />
+                </val:DateRange.StartDate>
+              </val:DateRange>
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadDatePicker.SelectedValue>
+      </tlk:RadDatePicker>
+
+      <TextBlock Text="Monthly Payment:" FontWeight="Bold"  VerticalAlignment="Center" Grid.Row="5" Margin="0 0 5 0" />
+      <tlk:RadNumericUpDown x:Name="InstallmentNumericUpDown" ValueChanged="InstallmentNumericUpDown_ValueChanged" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" NumberDecimalDigits="0" SmallChange="10" LargeChange="100" Minimum="0">
+        <tlk:RadNumericUpDown.Resources>
+          <data:BindingProxy x:Key="TargetProxy" Data="{Binding TotalAmount}" />
+        </tlk:RadNumericUpDown.Resources>
+        <tlk:RadNumericUpDown.Value>
+          <Binding Path="Installment" TargetNullValue="{x:Null}">
+            <Binding.ValidationRules>
+              <val:RequiredNumber NonZero="True">
+                <val:RequiredNumber.Maximum>
+                  <data:DependencyValue Value="{Binding Data, Source={StaticResource TargetProxy}}" />
+                </val:RequiredNumber.Maximum>
+              </val:RequiredNumber>
+            </Binding.ValidationRules>
+          </Binding>
+        </tlk:RadNumericUpDown.Value>
+      </tlk:RadNumericUpDown>
+
+      <TextBlock Text="Notes:"  VerticalAlignment="Center" Grid.Row="6" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox  Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Text="{Binding Notes}" />
+
+      <tlk:RadGridView x:Name="InstallmentsGridView" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3"
+                     FrozenColumnCount="1" ShowGroupPanel="True">
+        <tlk:RadGridView.ControlPanelItems>
+          <tlk:ControlPanelItem ButtonTooltip="Grid Options">
+            <tlk:ControlPanelItem.Content>
+              <ctl:GridColumnFilterPanel x:Name="GridColumnFilterPanel" GridView="{Binding}" />
+            </tlk:ControlPanelItem.Content>
+          </tlk:ControlPanelItem>
+        </tlk:RadGridView.ControlPanelItems>
+        <tlk:RadGridView.SortDescriptors>
+          <tlk:SortDescriptor Member="Month" SortDirection="Ascending" />
+        </tlk:RadGridView.SortDescriptors>
+        <tlk:RadGridView.Columns>
+          <tlk:GridViewDataColumn Header="Month" UniqueName="Month" DataMemberBinding="{Binding Month, StringFormat='{}{0:MM/yyyy}'}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+          <tlk:GridViewDataColumn Header="Amount" DataMemberBinding="{Binding Amount, StringFormat=N0}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        </tlk:RadGridView.Columns>
+      </tlk:RadGridView>
+
+      <!--//////////////////////////// BEGIN OPTIONS ////////////////////////////-->
+      <tlk:RadButton x:Name="DeleteButton" Click="DeleteButton_Click" Style="{StaticResource WindowButtonStyle}"
+                     Content="Delete" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+      <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <tlk:RadButton x:Name="PreviewButton" Click="PreviewButton_Click" Margin="0 0 5 0" Content="Preview" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Style="{StaticResource WindowButtonStyle}" />
+        <tlk:RadButton x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="5 0 0 0" Style="{StaticResource WindowButtonStyle}" />
+      </StackPanel>
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>

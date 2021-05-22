@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16ED5015-3025-4010-8FBB-FDC414BAC6A9}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Csc.IntelliSchool.Assets</RootNamespace>
+    <AssemblyName>Csc.IntelliSchool.Assets</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Assembly\csc.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Resources\Account.Designer.cs">
+      <DependentUpon>Account.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\HumanResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HumanResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Admin.Designer.cs">
+      <DependentUpon>Admin.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Text.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Text.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Resources\Account.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Account.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HumanResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HumanResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Admin.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Admin.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Text.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Assembly\csc.snk" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\12\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\12\hr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\12\shortcut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\actions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\calculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\medical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128\windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\actions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\calculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\collapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\consent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\earning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\fingerprint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\idea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\medical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\true.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\actions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\attendance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\calculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\collapse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\consent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\earning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\false.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\fingerprint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\footer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\idea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\medical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\refund.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\true.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\20\windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\actions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\calculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\consent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\hr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\medical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\shortcut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\true.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\actions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\calculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\consent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\medical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\true.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Local\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\lookup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\12\lookup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\info.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,52 @@
+<ResourceDictionary
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="http://schemas.telerik.com/2008/xaml/compile"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="c"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation">
+
+  <Style x:Key="VerticalHeaderCellStyle" TargetType="tlk:GridViewHeaderCell">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="tlk:GridViewHeaderCell">
+          <ContentPresenter>
+            <ContentPresenter.LayoutTransform>
+              <RotateTransform Angle="-45" />
+            </ContentPresenter.LayoutTransform>
+          </ContentPresenter>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!--////////////////////////////////////////////////////////////////////////// -->
+
+  <Style x:Key="SuccessGridViewCellStyle"  TargetType="tlk:GridViewCell">
+    <Setter Property="Background" Value="{StaticResource SuccessBrush}"/>
+  </Style>
+  <Style x:Key="FailGridViewCellStyle"  TargetType="tlk:GridViewCell">
+    <Setter Property="Background" Value="{tlk:Windows8Resource ResourceKey=ValidationBrush}"/>
+  </Style>
+
+  <!--////////////////////////////////////////////////////////////////////////// -->
+
+  <Style x:Key="ChildrenGridViewRowStyle" TargetType="tlk:GridViewRow">
+    <Setter Property="IsExpandable" Value="True" />
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding Path=ChildObjects.Count}" Value="0">
+        <Setter Property="IsExpandable" Value="False" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="ChildrenGridViewAlternateRowStyle" TargetType="tlk:GridViewRow">
+    <Setter Property="IsExpandable" Value="True" />
+    <Setter Property="Background" Value="#2A5bb7e3" />
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding Path=ChildObjects.Count}" Value="0">
+        <Setter Property="IsExpandable" Value="False" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+</ResourceDictionary>

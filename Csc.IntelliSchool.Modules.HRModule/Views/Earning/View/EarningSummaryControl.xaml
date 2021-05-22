@@ -1,0 +1,564 @@
+﻿<ns:UserControlBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.Earning.EarningSummaryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:val="clr-namespace:Csc.Wpf.Data.Validation;assembly=Csc.Wpf"
+             xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+             xmlns:ctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf"
+             xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"  MinHeight="20" Loaded="UserControlBase_Loaded"
+             Initialized="UserControlBase_Initialized" DataContextChanged="UserControlBase_DataContextChanged"
+             d:DesignHeight="500" d:DesignWidth="700"
+                     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="30" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left">
+      <TextBlock Text="Month:" Margin="0 0 5 0" VerticalAlignment="Center" />
+      <tlk:RadDatePicker x:Name="MonthDatePicker" DateSelectionMode="Month" Width="200" SelectionChanged="MonthDatePicker_SelectionChanged" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+      <tlk:RadSplitButton x:Name="RecalculateBasicButton" Click="RecalculateBasicButton_Click">
+        <tlk:RadSplitButton.Content>
+          <ctl:RightImageText Text="Recalculate (Basic)" Image="/Csc.IntelliSchool.Assets;component/Images/20/calculate.png" />
+        </tlk:RadSplitButton.Content>
+        <tlk:RadSplitButton.DropDownContent>
+          <tlk:RadContextMenu>
+            <tlk:RadContextMenu.Items>
+              <tlk:RadMenuItem x:Name="RecalculateFullMenuItem" Header="Recalculate (Full)" Click="RecalculateFullMenuItem_Click" >
+                <!--<tlk:RadMenuItem.Icon>
+                  <Image Source="/Csc.IntelliSchool.Assets;component/Images/20/calculate.png" Width="20" Height="20" Stretch="Uniform" />
+                </tlk:RadMenuItem.Icon>-->
+              </tlk:RadMenuItem>
+            </tlk:RadContextMenu.Items>
+          </tlk:RadContextMenu>
+        </tlk:RadSplitButton.DropDownContent>
+      </tlk:RadSplitButton>
+
+      <tlk:RadButton x:Name="ReloadButton" ToolTip="Reload" Click="ReloadButton_Click" VerticalAlignment="Center" Style="{StaticResource GridButtonStyle}">
+        <tlk:RadButton.Content>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/refresh.png" Stretch="Uniform" Width="16" Height="16" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+    </StackPanel>
+
+    <Rectangle Grid.Row="1" Height="2" Fill="{StaticResource AccentBrushLight }" />
+
+    <Grid Grid.Row="2" VerticalAlignment="Top"
+           DataContext="{Binding Item, RelativeSource={RelativeSource AncestorType=ns:UserControlBase}}"
+          IsEnabled="{Binding Item, RelativeSource={RelativeSource AncestorType=ns:UserControlBase},Converter={StaticResource NullBoolConverter}}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="0.3*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="0.3*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="0.3*" />
+      </Grid.ColumnDefinitions>
+
+      <!-- FIRST COLUMN///////////////////////////////////////////////////////////////////// -->
+      <Grid Grid.Column="0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="10" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="Auto"  />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Salary ///////////////////////////////////////////////// -->
+        <TextBlock Text="Salary" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource StrongTextBlockStyle}" />
+
+        <TextBlock Text="Salary:" Margin="0 0 5 0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="SalaryNumericUpDown" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="SalaryNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Salary">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <StackPanel Grid.Row="1" Grid.Column="3" Margin="3 0 0 0"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+          <TextBlock x:Name="DailySalaryTextBlock"
+                     Text="{Binding DailySalary, StringFormat=N0}" VerticalAlignment="Center" />
+          <TextBlock Text="/day" VerticalAlignment="Center" Margin="3 0 0 0" />
+        </StackPanel>
+
+        <TextBlock Text="Social:" Margin="0 0 5 0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="SocialNumericUpDown" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="SalaryItemNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Social">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock Text="-" Grid.Row="2" Grid.Column="3"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Medical:" Margin="0 0 5 0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="MedicalNumericUpDown" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="SalaryItemNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Medical">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock Text="-" Grid.Row="3" Grid.Column="3"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Taxes:" Margin="0 0 5 0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="TaxesNumericUpDown" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="SalaryItemNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Taxes">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock Text="-" Grid.Row="4" Grid.Column="3"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Allowances:" Margin="0 0 5 0" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="AllowancesNumericUpDown" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="SalaryItemNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Allowances">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock Text="+" Grid.Row="5" Grid.Column="3"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Charges:" Margin="0 0 5 0" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="ChargesNumericUpDown" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="SalaryItemNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Charges">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock Text="-" Grid.Row="6" Grid.Column="3"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+
+        <Rectangle Height="1" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Fill="Black" />
+        <TextBlock Text="Gross:" Margin="0 0 5 0" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" />
+        <TextBlock x:Name="GrossTextBlock" Text="{Binding Gross, StringFormat=N0}"
+                   Grid.Row="7" Grid.Column="2"  VerticalAlignment="Center"
+                   Margin="0 0 20 0"  HorizontalAlignment="Right" FontWeight="Bold" />
+        <TextBlock Text="=" Grid.Row="7" Grid.Column="3"  VerticalAlignment="Center" Margin="3 0 0 0" />
+      </Grid>
+
+      <Rectangle Grid.Row="0" Grid.Column="1" Margin="3 10 3 0" Width="2" Fill="{StaticResource AccentBrushLight }" />
+
+      <!-- SECOND COLUMN///////////////////////////////////////////////////////////////////// -->
+      <Grid Grid.Column="2">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="10" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="Auto"  />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Bonuses ///////////////////////////////////////////////// -->
+
+        <TextBlock Text="Bonuses" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource StrongTextBlockStyle}" />
+
+        <TextBlock Text="Points:" Margin="0 0 5 0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="BonusPointsNumericUpDown" Grid.Row="1" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="2" ValueChanged="BonusNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="BonusPoints">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="BonusPointsValueTextBlock" Margin="3 0 0 0"
+                   Text="{Binding BonusPointsValue, StringFormat=N0}"
+                   Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" />
+
+        <TextBlock Text="Values:" Margin="0 0 5 0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="BonusValuesNumericUpDown" Grid.Row="2" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="BonusNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="BonusValues">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock Text="+" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Total:" Margin="0 0 5 0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" />
+        <Rectangle Height="1" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Fill="Black" />
+        <TextBlock x:Name="BonusTotalValueTextBlock"
+                   Text="{Binding BonusTotalValue, StringFormat=N0}"
+                   Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"
+                   Margin="0 0 20 0"  HorizontalAlignment="Right" FontWeight="Bold" />
+        <TextBlock Text="=" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0 0 0" />
+
+
+        <TextBlock Text="Deductions" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource StrongTextBlockStyle}" />
+
+        <TextBlock Text="Points:" Margin="0 0 5 0" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="DeductionPointsNumericUpDown" Grid.Row="5" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="2" ValueChanged="DeductionNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="DeductionPoints">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="DeductionPointsValueTextBlock" Margin="3 0 0 0"
+                   Text="{Binding DeductionPointsValue, StringFormat=N0}"
+                   Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" />
+
+        <TextBlock Text="Values:" Margin="0 0 5 0" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="DeductionValuesNumericUpDown" Grid.Row="6" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="DeductionNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="DeductionValues">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock Text="+" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Total:" Margin="0 0 5 0" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" />
+        <Rectangle Height="1" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Fill="Black" />
+        <TextBlock x:Name="DeductionTotalValueTextBlock" Margin="0 0 20 0"  HorizontalAlignment="Right"
+                   Text="{Binding DeductionTotalValue, StringFormat=N0}" FontWeight="Bold" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" />
+        <TextBlock Text="=" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <!-- Loans ///////////////////////////////////////////////// -->
+        <TextBlock Text="Loans" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource StrongTextBlockStyle}" />
+        <TextBlock Text="Amount:" Margin="0 0 5 0" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="LoansNumericUpDown" Grid.Row="9" Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="LoansNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Loans">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+      </Grid>
+
+      <Rectangle Grid.Row="0" Grid.Column="3" Margin="3 10 3 0" Width="2" Fill="{StaticResource AccentBrushLight }" />
+
+      <!-- THIRD COLUMN///////////////////////////////////////////////////////////////////// -->
+      <Grid Grid.Column="4">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+          <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="10" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="Auto"  />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Absences ///////////////////////////////////////////////// -->
+
+        <TextBlock Text="Absences" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource StrongTextBlockStyle}" />
+
+        <TextBlock Text="Days:" Margin="0 0 5 0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="AbsenceDaysNumericUpDown" Grid.Row="1" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="AbsenceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="AbsenceDays">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="AbsenceDaysValueTextBlock" Margin="3 0 0 0"
+                   Text="{Binding AbsenceDaysValue, StringFormat=N0}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" />
+
+        
+        <TextBlock Text="Extra Days:" Margin="0 0 5 0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="AbsenceExtraDaysNumericUpDown" Grid.Row="2" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="AbsenceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="AbsenceExtraDays">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="AbsenceExtraDaysValueTextBlock" Margin="3 0 0 0"
+                   Text="{Binding AbsenceExtraDaysValue, StringFormat=N0}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" />
+        <TextBlock Text="+" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Unpaid Vacations:" Margin="0 0 5 0" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="UnpaidVacationsNumericUpDown" Grid.Row="3"  Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="AbsenceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="UnpaidVacationDays">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="UnpaidVacationsValueTextBlock" Margin="3 0 0 0"
+                   Text="{Binding UnpaidVacationsValue, StringFormat=N0}" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" />
+        <TextBlock Text="+" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+
+        <TextBlock Text="Paid Vacations:" Margin="0 0 5 0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="PaidVacationsNumericUpDown" Grid.Row="4"  Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="AbsenceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="PaidVacationDays">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+
+        <TextBlock Text="Unemployment:" Margin="0 0 5 0" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="UnemploymentDaysNumericUpDown" Grid.Row="5"  Grid.Column="2" VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="AbsenceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="UnemploymentDays">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="UnemploymentValueTextBlock" Margin="3 0 0 0"
+                   Text="{Binding UnemploymentValue, StringFormat=N0}" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" />
+        <TextBlock Text="+" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Total:" Margin="0 0 5 0" FontWeight="Bold" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" />
+        <Rectangle Height="1" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Fill="Black" />
+        <TextBlock x:Name="AbsenceTotalValueTextBlock" Margin="0 0 20 0" HorizontalAlignment="Right" FontWeight="Bold"
+                   Text="{Binding AbsenceTotalValue, StringFormat=N0}" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" />
+        <TextBlock Text="=" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <!-- Attendance ///////////////////////////////////////////////// -->
+
+        <TextBlock Text="Attendance" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource StrongTextBlockStyle}" />
+
+        <TextBlock Text="Points:" Margin="0 0 5 0" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="AttendancePointsNumericUpDown" Grid.Row="8" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="2" ValueChanged="AttendanceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="AttendancePoints">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="AttendanceValueTextBlock" Margin="3 0 0 0" Text="{Binding AttendanceValue, StringFormat=N0}"
+                   Grid.Row="8" Grid.Column="3" VerticalAlignment="Center" />
+
+        <TextBlock Text="Overtime:" Margin="0 0 5 0" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="OvertimePointsNumericUpDown" Grid.Row="9" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="2" ValueChanged="AttendanceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="OvertimePoints">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="OvertimeValueTextBlock" Margin="3 0 0 0" Text="{Binding OvertimeValue, StringFormat=N0}"
+                   Grid.Row="9" Grid.Column="3" VerticalAlignment="Center" />
+        <TextBlock Text="-" Grid.Row="9" Grid.Column="4" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="TimeOffs:" Margin="0 0 5 0" Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="TimeOffPointsNumericUpDown" Grid.Row="10" Grid.Column="2"   VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="2" ValueChanged="AttendanceNumericUpDown_ValueChanged">
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="TimeOffPoints">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        <TextBlock x:Name="TimeOffValueTextBlock" Margin="3 0 0 0" Text="{Binding TimeOffValue, StringFormat=N0}"
+                   Grid.Row="10" Grid.Column="3" VerticalAlignment="Center" />
+        <TextBlock Text="+" Grid.Row="10" Grid.Column="4" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <TextBlock Text="Total:" Margin="0 0 5 0" Grid.Row="11" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" />
+        <Rectangle Height="1" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Fill="Black" />
+        <TextBlock x:Name="AttendanceTotalValueTextBlock" FontWeight="Bold" Margin="0 0 20 0" HorizontalAlignment="Right"
+                   Text="{Binding AttendanceTotalValue, StringFormat=N0}" Grid.Row="11" Grid.Column="2" VerticalAlignment="Center" />
+        <TextBlock Text="=" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0 0 0" />
+
+        <!-- Other ///////////////////////////////////////////////// -->
+        <TextBlock Text="Other" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource StrongTextBlockStyle}" />
+        
+        <TextBlock Text="Adjustment:" Margin="0 0 5 0" Grid.Row="13" Grid.Column="1" VerticalAlignment="Center" />
+        <tlk:RadNumericUpDown x:Name="AdjustmentNumericUpDown" Grid.Row="13" Grid.Column="2" IsReadOnly="True"
+                              VerticalAlignment="Center" Minimum="0" NumberDecimalDigits="0" ValueChanged="AdjustmentNumericUpDown_ValueChanged">
+          <!--<tlk:RadNumericUpDown.IsReadOnly>
+            <Binding Path="IsChecked" ElementName="AdvancedModeCheckBox" Converter="{StaticResource ReverseBoolConverter}" />
+          </tlk:RadNumericUpDown.IsReadOnly>-->
+          <tlk:RadNumericUpDown.Value>
+            <Binding Path="Adjustment">
+              <Binding.ValidationRules>
+                <val:Required />
+              </Binding.ValidationRules>
+            </Binding>
+          </tlk:RadNumericUpDown.Value>
+        </tlk:RadNumericUpDown>
+        
+      </Grid>
+
+      <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Margin="0 3" Height="2" Fill="{StaticResource AccentBrushLight }" />
+
+      <Rectangle Grid.Row="2" Grid.Column="1" Margin="3 0" Width="2" Fill="{StaticResource AccentBrushLight }" />
+
+      <!-- Calculated Cell ///////////////////////////////////////////////////////////////////// -->
+      <Grid Grid.Row="2" Grid.Column="2" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Calculated:" Margin="0 0 5 0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+          <TextBlock Text="{Binding LastUpdated, StringFormat=d, Mode=OneWay}" Style="{StaticResource HighlightedValueTextBlockStyle}" />
+          <TextBlock Text=" at "/>
+          <TextBlock Text="{Binding LastUpdated, StringFormat=t}" Style="{StaticResource HighlightedValueTextBlockStyle}" />
+        </StackPanel>
+      </Grid>
+
+      <Rectangle Grid.Row="2" Grid.Column="3" Margin="3 0" Width="2" Fill="{StaticResource AccentBrushLight }" />
+      
+      <!-- Net Cell ///////////////////////////////////////////////////////////////////// -->
+      <Grid Grid.Row="2" Grid.Column="4" VerticalAlignment="Top" Height="25">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Net:" VerticalAlignment="Center" Margin="0 0 5 0" Style="{StaticResource StrongTextBlockStyle}" />
+        <TextBlock x:Name="NetTextBlock" Text="{Binding Net, StringFormat=N0}" Grid.Column="1" Margin="0 0 10 0" 
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource HeaderTextBlockStyle}" />
+      </Grid>
+
+      <Rectangle Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Margin="0 3" Height="2" Fill="{StaticResource AccentBrushLight }" />
+
+      <Rectangle Grid.Row="4" Grid.Column="1" Margin="3 0" Width="2" Fill="{StaticResource AccentBrushLight }" />
+
+      <!-- Footer Row ///////////////////////////////////////////////////////////////////// -->
+      <CheckBox x:Name="AdvancedModeCheckBox" Content="Advanced Mode" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+      <Grid Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Notes:" Margin="0 0 5 0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" />
+        <tlk:RadWatermarkTextBox x:Name="NotesTextBox" Text="{Binding Notes}" Grid.Column="1" Margin="0 0 5 0" VerticalAlignment="Center" />
+
+        <tlk:RadButton x:Name="UpdateButton" Click="UpdateButton_Click" Content="Update" Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource WindowButtonStyle}" />
+
+      </Grid>
+
+    </Grid>
+  </Grid>
+</ns:UserControlBase>

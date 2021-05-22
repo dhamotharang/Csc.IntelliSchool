@@ -1,0 +1,294 @@
+﻿<ns:PageBase x:Class="Csc.IntelliSchool.Modules.HRModule.Views.Attendance.AttendanceMatrixPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+      xmlns:ctl="clr-namespace:Csc.Wpf.Controls;assembly=Csc.Wpf"
+      xmlns:hlpr="clr-namespace:Csc.IntelliSchool.Modules.HRModule.Assets.Helpers"
+      xmlns:tlkCtl="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls"
+      mc:Ignorable="d" Loaded="PageBase_Loaded" d:DesignHeight="500" d:DesignWidth="1400"
+      Title="Attendance Report" DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+  <ns:PageBase.Resources>
+    <tlk:RadContextMenu x:Key="ItemsContextMenu" Opening="ItemsContextMenu_Opening">
+      <tlk:RadMenuItem x:Name="ReloadMenuItem" Header="Reload" Click="ReloadMenuItem_Click">
+        <tlk:RadMenuItem.Icon>
+          <Image Source="/Csc.IntelliSchool.Assets;component/Images/16/refresh.png" Width="16" Height="16" Stretch="Uniform" />
+        </tlk:RadMenuItem.Icon>
+      </tlk:RadMenuItem>
+    </tlk:RadContextMenu>
+    <hlpr:EmployeeAttendanceValueConverter x:Key="ValueConverter" Detailed="False" />
+  </ns:PageBase.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition MinHeight="30" Height="Auto" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <WrapPanel x:Name="LoadPanel" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Lists:" VerticalAlignment="Center" />
+        <tlk:RadComboBox x:Name="ListsComboBox" VerticalAlignment="Center" Width="200" Margin="5 0 0 0" DisplayMemberPath="Name" AllowMultipleSelection="True" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Branch:" VerticalAlignment="Center" Margin="0 0 5 0" />
+        <tlk:RadComboBox x:Name="BranchComboBox" SelectedValuePath="BranchID" SelectedIndex="0" ItemsSource="{Binding Branches}" DisplayMemberPath="Name" VerticalAlignment="Center" Width="150" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Department:" VerticalAlignment="Center" Margin="0 0 5 0" />
+        <tlk:RadComboBox x:Name="DepartmentComboBox" SelectedValuePath="DepartmentID" SelectedIndex="0" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" VerticalAlignment="Center" Width="150" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Position:" VerticalAlignment="Center" Margin="0 0 5 0" />
+        <tlk:RadComboBox x:Name="PositionComboBox" SelectedValuePath="PositionID" SelectedIndex="0" ItemsSource="{Binding Positions}" DisplayMemberPath="Name" VerticalAlignment="Center" Width="150" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0 0 5 0">
+        <TextBlock Text="Month:" VerticalAlignment="Center"  Margin="0 0 5 0" />
+        <tlk:RadDatePicker x:Name="MonthDatePicker" Width="150" VerticalAlignment="Center"  Margin="0 0 5 0" />
+
+        <tlk:RadButton x:Name="LoadButton" Content="Load" VerticalAlignment="Center" Style="{StaticResource WindowButtonStyle}" Click="LoadButton_Click" />
+      </StackPanel>
+    </WrapPanel>
+
+
+    <Rectangle Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  Height="2" Fill="{StaticResource AccentBrushLight }" />
+    
+    <StackPanel Grid.Row="1" Height="30" Visibility="Visible" Orientation="Horizontal" VerticalAlignment="Center">
+      <TextBlock Text="Name:" VerticalAlignment="Center" Margin="0 0 5 0" />
+      <tlk:RadWatermarkTextBox x:Name="NameTextBox" VerticalAlignment="Center" Width="200" KeyUp="NameTextBox_KeyUp" />
+      <tlk:RadButton x:Name="FilterButton" Content="Filter" VerticalAlignment="Center" Margin="5 0 0 0" Width="70" Click="FilterButton_Click" />
+    </StackPanel>
+
+    <!-- Second Row (Left) -->
+    <StackPanel  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+      <tlk:RadButton x:Name="ReloadButton" Click="ReloadButton_Click">
+        <tlk:RadButton.Content>
+          <ctl:LeftImageText Text="Reload" Image="/Csc.IntelliSchool.Assets;component/Images/20/refresh.png" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+
+      <CheckBox x:Name="InCheckBox" Content="Clock-In" VerticalAlignment="Center" IsChecked="True"  Margin="10 0 0 0" Click="ColumnCheckBox_Click" />
+      <CheckBox x:Name="OutCheckBox" Content="Clock-Out" VerticalAlignment="Center" IsChecked="False"  Margin="5 0 0 0" Click="ColumnCheckBox_Click" />
+      <CheckBox x:Name="TimeOffCheckBox" Content="Time-Offs" VerticalAlignment="Center" IsChecked="False"  Margin="5 0 0 0" Click="ColumnCheckBox_Click" />
+      <CheckBox x:Name="DetailsCheckBox" Content="Detailed" VerticalAlignment="Center" IsChecked="False"  Margin="5 0 0 0" Click="DetailsCheckBox_Click" />
+    </StackPanel>
+
+    <!-- Second Row (Right) -->
+    <!--<StackPanel  Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+      <tlk:RadButton x:Name="ExportButton" Click="ExportButton_Click">
+        <tlk:RadButton.Content>
+        <ctl:RightImageText Text="Export" Image="/Csc.IntelliSchool.Assets;component/Images/20/save.png" />
+        </tlk:RadButton.Content>
+      </tlk:RadButton>
+    </StackPanel>-->
+
+    <tlk:RadGridView x:Name="ItemsGridView" Grid.Row="3"  FrozenColumnCount="2" Loaded="ItemsGridView_Loaded" 
+                     tlk:RadContextMenu.ContextMenu="{StaticResource ItemsContextMenu}"
+                     ItemsSource="{Binding Items}">
+      <tlk:RadGridView.ControlPanelItems>
+        <tlk:ControlPanelItem ButtonTooltip="Grid Options">
+          <tlk:ControlPanelItem.Content>
+            <ctl:GridColumnFilterPanel x:Name="GridColumnFilterPanel"  GridView="{Binding}" />
+          </tlk:ControlPanelItem.Content>
+        </tlk:ControlPanelItem>
+      </tlk:RadGridView.ControlPanelItems>
+      <tlk:RadGridView.ColumnGroups>
+        <tlk:GridViewColumnGroup Name="Name" Header="Name" />
+        <tlk:GridViewColumnGroup Name="Employment" Header="Employment" />
+        <tlk:GridViewColumnGroup Name="Position" Header="Position" />
+        <tlk:GridViewColumnGroup Header="" Name="1" />
+        <tlk:GridViewColumnGroup Header="" Name="2" />
+        <tlk:GridViewColumnGroup Header="" Name="3" />
+        <tlk:GridViewColumnGroup Header="" Name="4" />
+        <tlk:GridViewColumnGroup Header="" Name="5" />
+        <tlk:GridViewColumnGroup Header="" Name="6" />
+        <tlk:GridViewColumnGroup Header="" Name="7" />
+        <tlk:GridViewColumnGroup Header="" Name="8" />
+        <tlk:GridViewColumnGroup Header="" Name="9" />
+        <tlk:GridViewColumnGroup Header="" Name="10" />
+        <tlk:GridViewColumnGroup Header="" Name="11" />
+        <tlk:GridViewColumnGroup Header="" Name="12" />
+        <tlk:GridViewColumnGroup Header="" Name="13" />
+        <tlk:GridViewColumnGroup Header="" Name="14" />
+        <tlk:GridViewColumnGroup Header="" Name="15" />
+        <tlk:GridViewColumnGroup Header="" Name="16" />
+        <tlk:GridViewColumnGroup Header="" Name="17" />
+        <tlk:GridViewColumnGroup Header="" Name="18" />
+        <tlk:GridViewColumnGroup Header="" Name="19" />
+        <tlk:GridViewColumnGroup Header="" Name="20" />
+        <tlk:GridViewColumnGroup Header="" Name="21" />
+        <tlk:GridViewColumnGroup Header="" Name="22" />
+        <tlk:GridViewColumnGroup Header="" Name="23" />
+        <tlk:GridViewColumnGroup Header="" Name="24" />
+        <tlk:GridViewColumnGroup Header="" Name="25" />
+        <tlk:GridViewColumnGroup Header="" Name="26" />
+        <tlk:GridViewColumnGroup Header="" Name="27" />
+        <tlk:GridViewColumnGroup Header="" Name="28" />
+        <tlk:GridViewColumnGroup Header="" Name="29" />
+        <tlk:GridViewColumnGroup Header="" Name="30" />
+        <tlk:GridViewColumnGroup Header="" Name="31" />
+      </tlk:RadGridView.ColumnGroups>
+      <tlk:RadGridView.SortDescriptors>
+        <tlk:SortDescriptor Member="Employee.Person.FullName" />
+      </tlk:RadGridView.SortDescriptors>
+      <tlk:RadGridView.Columns>
+        <tlk:GridViewDataColumn Header="ID" ColumnGroupName="Name" DataMemberBinding="{Binding EmployeeID}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+
+        
+        <tlk:GridViewDataColumn Header="Name" ColumnGroupName="Name" UniqueName="Name" DataMemberBinding="{Binding Employee.Person.FullName}" IsGroupable="True">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:CountFunction Caption="Count: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+
+        <tlk:GridViewDataColumn Header="Hire" ColumnGroupName="Employment" DataMemberBinding="{Binding Employee.HireDate, StringFormat=d}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Termn" ColumnGroupName="Employment" 
+                                DataMemberBinding="{Binding Employee.TerminationDate, StringFormat=d}" 
+                                IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right">
+          <tlk:GridViewDataColumn.AggregateFunctions>
+            <tlk:CountFunction Caption="Count: " ResultFormatString="{}{0:N0}" />
+          </tlk:GridViewDataColumn.AggregateFunctions>
+        </tlk:GridViewDataColumn>
+
+        <tlk:GridViewDataColumn Header="Yrs" ColumnGroupName="Employment" DataMemberBinding="{Binding Employee.HireYears}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+        <tlk:GridViewDataColumn Header="Mos" ColumnGroupName="Employment" DataMemberBinding="{Binding Employee.HireMonths}" IsGroupable="False" TextAlignment="Right" HeaderTextAlignment="Right" />
+
+        <tlk:GridViewDataColumn Header="Department" ColumnGroupName="Position" DataMemberBinding="{Binding Employee.Department.Name}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="Position" ColumnGroupName="Position" DataMemberBinding="{Binding Employee.Position.Name}" IsGroupable="True" />
+        <tlk:GridViewDataColumn Header="List" UniqueName="List" ColumnGroupName="Position" DataMemberBinding="{Binding Employee.List.Name}" IsGroupable="True" />
+
+
+        <tlk:GridViewDataColumn ColumnGroupName="1" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[0], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="1" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[0], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="1" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[0], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="2" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[1], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="2" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[1], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="2" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[1], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="3" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[2], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="3" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[2], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="3" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[2], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="4" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[3], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="4" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[3], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="4" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[3], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="5" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[4], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="5" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[4], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="5" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[4], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="6" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[5], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="6" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[5], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="6" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[5], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="7" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[6], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="7" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[6], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="7" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[6], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="8" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[7], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="8" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[7], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="8" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[7], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="9" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[8], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="9" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[8], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="9" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[8], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="10" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[9], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="10" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[9], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="10" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[9], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="11" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[10], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="11" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[10], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="11" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[10], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="12" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[11], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="12" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[11], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="12" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[11], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="13" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[12], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="13" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[12], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="13" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[12], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="14" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[13], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="14" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[13], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="14" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[13], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="15" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[14], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="15" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[14], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="15" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[14], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="16" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[15], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="16" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[15], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="16" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[15], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="17" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[16], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="17" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[16], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="17" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[16], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="18" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[17], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="18" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[17], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="18" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[17], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="19" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[18], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="19" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[18], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="19" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[18], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="20" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[19], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="20" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[19], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="20" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[19], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="21" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[20], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="21" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[20], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="21" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[20], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="22" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[21], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="22" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[21], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="22" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[21], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="23" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[22], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="23" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[22], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="23" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[22], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="24" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[23], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="24" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[23], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="24" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[23], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="25" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[24], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="25" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[24], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="25" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[24], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="26" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[25], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="26" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[25], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="26" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[25], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="27" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[26], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="27" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[26], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="27" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[26], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="28" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[27], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="28" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[27], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="28" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[27], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="29" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[28], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="29" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[28], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="29" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[28], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="30" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[29], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="30" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[29], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="30" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[29], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+
+        <tlk:GridViewDataColumn ColumnGroupName="31" Header="In"    MinWidth="24" DataMemberBinding="{Binding Attendance[30], ConverterParameter=In, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="31" Header="Out" IsVisible="False"   MinWidth="24" DataMemberBinding="{Binding Attendance[30], ConverterParameter=Out, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+        <tlk:GridViewDataColumn ColumnGroupName="31" Header="TO" IsVisible="False"    MinWidth="24" DataMemberBinding="{Binding Attendance[30], ConverterParameter=TO, Converter={StaticResource ValueConverter}}" IsGroupable="False" TextAlignment="Center" HeaderTextAlignment="Center" />
+      </tlk:RadGridView.Columns>
+    </tlk:RadGridView>
+
+    <tlk:RadDataPager x:Name="DataPager" Grid.Row="4" DisplayMode="All" Source="{Binding Items, ElementName=ItemsGridView}" PageSize="0" />
+  </Grid>
+</ns:PageBase>

@@ -1,0 +1,128 @@
+﻿<Window x:Class="Csc.IntelliSchool.MainWindow"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        Title="CSC IntelliSchool" WindowState="Maximized" 
+        MinWidth="800" MinHeight="600"
+        Height="350" Width="525"
+        Loaded="Window_Loaded" Icon="Assets/Images/Icon.ico">
+  <Window.Resources>
+    <HierarchicalDataTemplate x:Key="ViewDataTemplate" ItemsSource="{Binding ChildViews}"  >
+      <TextBlock Text="{Binding Name}" ToolTip="{Binding Description}" />
+    </HierarchicalDataTemplate>
+  </Window.Resources>
+  
+  
+  <Grid x:Name="ContentGrid">
+    <ns:ViewRoot x:Name="ViewRoot">
+      <ns:ViewRoot.Content>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+
+          <!-- HEADER -->
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                  Grid.Row="0" Grid.ColumnSpan="2" Background="{tlk:Windows8Resource ResourceKey=AccentBrush}">
+            <TextBlock Text="IntelliSchool" Foreground="White" VerticalAlignment="Center" Margin="10" FontSize="30" HorizontalAlignment="Left" />
+
+            <TextBlock Text="{Binding CurrentView.Name, ElementName=ViewRoot}" Grid.Column="1" Foreground="White" 
+                 FontFamily="{tlk:Windows8Resource ResourceKey=FontFamilyStrong}"
+                 FontSize="{tlk:Windows8Resource ResourceKey=FontSizeXXL}"
+                 VerticalAlignment="Center" Margin="10" HorizontalAlignment="Left" />
+          </StackPanel>
+
+          <!--<tlk:RadBreadcrumb  Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Views, ElementName=ViewRoot}" TextModePath="Path">
+            <tlk:RadBreadcrumb.HeaderTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding Name}" />
+              </DataTemplate>
+            </tlk:RadBreadcrumb.HeaderTemplate>
+            <tlk:RadBreadcrumb.ItemTemplate>
+              <HierarchicalDataTemplate ItemsSource="{Binding ChildViews}">
+                <HierarchicalDataTemplate.ItemTemplate>
+                  <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                  </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+                <TextBlock Text="{Binding Name}" />
+              </HierarchicalDataTemplate>
+            </tlk:RadBreadcrumb.ItemTemplate>
+          </tlk:RadBreadcrumb>-->
+
+          <!--<tlk:RadMenu x:Name="NavigationMenu" Grid.Row="1" IconColumnWidth="0" Grid.ColumnSpan="2" ItemsSource="{Binding Views, ElementName=ViewRoot}" ItemClick="NavigationMenu_ItemClick">
+            <tlk:RadMenu.ItemTemplate>
+              <HierarchicalDataTemplate ItemsSource="{Binding ChildViews}" >
+                <TextBlock Text="{Binding Name}" />
+              </HierarchicalDataTemplate>
+            </tlk:RadMenu.ItemTemplate>
+          </tlk:RadMenu>-->
+
+
+          <tlk:RadOutlookBar x:Name="NavigationOutlookBar" Grid.Row="2" Width="200" MinimizedWidth="38" IsVerticalResizerVisible="False" SelectionChanged="NavigationOutlookBar_SelectionChanged" />
+
+          <!-- NAVIGATION -->
+          <!--<tlk:RadExpander x:Name="NavigationExpander" Grid.Row="2" IsExpanded="False" 
+                           tlk:AnimationManager.IsAnimationEnabled="False"
+                           Header="Navigation" ExpandDirection="Right" Background="{tlk:Windows8Resource ResourceKey=AccentBrush}" Foreground="White">
+            <Grid Width="200">
+              <tlk:RadTreeView x:Name="NavigationTreeView" Loaded="NavigationTreeView_Loaded" ItemsSource="{Binding Views, ElementName=ViewRoot}" Foreground="White" ItemsIndent="10" ItemClick="NavigationTreeView_ItemClick">
+                <tlk:RadTreeView.ItemTemplate>
+                  <HierarchicalDataTemplate ItemsSource="{Binding ChildViews}" >
+                    <TextBlock Text="{Binding Name}" />
+                  </HierarchicalDataTemplate>
+                </tlk:RadTreeView.ItemTemplate>
+              </tlk:RadTreeView>
+            </Grid>
+          </tlk:RadExpander>-->
+
+          <!-- CONTENT -->
+          <Frame x:Name="Frame" Content="{Binding CurrentPage, ElementName=ViewRoot}" 
+                 Grid.Row="2" Grid.Column="1" Margin="10" NavigationUIVisibility="Hidden" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+            <Frame.Template>
+              <ControlTemplate TargetType="Frame">
+                <tlk:RadTransitionControl Content="{TemplateBinding Content}" Transition="Fade" ContentTemplate="{TemplateBinding ContentTemplate}">
+                </tlk:RadTransitionControl>
+              </ControlTemplate>
+            </Frame.Template>
+          </Frame>
+
+          <tlk:RadDropDownButton x:Name="UserDropDownButton" Grid.Column="1" Height="40"
+                             HorizontalAlignment="Right" VerticalContentAlignment="Center" 
+                             HorizontalContentAlignment="Left"  
+                             Content="Hello, [User]" 
+                             FontFamily="{tlk:Windows8Resource ResourceKey=FontFamilyLight}"
+                             FontSize="{tlk:Windows8Resource ResourceKey=FontSizeXXL}"
+                             Background="Transparent" BorderBrush="Transparent" Foreground="White">
+            <tlk:RadDropDownButton.DropDownContent>
+              <tlk:RadContextMenu x:Name="UserContextMenu" Width="150">
+                <tlk:RadContextMenu.Items>
+                <tlk:RadMenuItem x:Name="ProfileMenuItem" Header="Profile" Click="ProfileMenuItem_Click"  />
+                <tlk:RadMenuItem x:Name="ChangePasswordMenuItem" Header="Change Password" Click="ChangePasswordMenuItem_Click"  />
+                <tlk:RadMenuItem x:Name="SignoutMenuItem" Header="Signout" Click="SignoutMenuItem_Click"  />
+                </tlk:RadContextMenu.Items>
+              </tlk:RadContextMenu>
+            </tlk:RadDropDownButton.DropDownContent>
+          </tlk:RadDropDownButton>
+
+
+          <!-- FOOTER -->
+          <Grid x:Name="FooterGrid" Grid.Row="3" Grid.ColumnSpan="2" Background="{tlk:Windows8Resource ResourceKey=AccentBrush}">
+          </Grid>
+        </Grid>
+      </ns:ViewRoot.Content>
+    </ns:ViewRoot>
+
+
+    <tlk:RadBusyIndicator IsBusy="{Binding IsBusy, ElementName=ViewRoot}"
+                          IsIndeterminate="True" BusyContent="" />
+  </Grid>
+</Window>

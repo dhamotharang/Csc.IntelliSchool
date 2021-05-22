@@ -1,0 +1,31 @@
+﻿<ns:WindowBase
+        x:Class="Csc.IntelliSchool.Views.Account.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:tlk="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:ns="clr-namespace:Csc.Wpf;assembly=Csc.Wpf"
+        
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Header="Login" Height="160" Width="300" Loaded="WindowBase_Loaded">
+  <Grid>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+        <RowDefinition Height="30" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <TextBlock Text="Username:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0" Grid.Row="0" />
+      <tlk:RadWatermarkTextBox x:Name="UsernameTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" KeyUp="UsernameTextBox_KeyUp"  />
+
+      <TextBlock Text="Password:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0" Grid.Row="1" />
+      <PasswordBox x:Name="PasswordTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" KeyUp="PasswordTextBox_KeyUp" />
+
+      <tlk:RadButton x:Name="LoginButton" Content="Login" Width="70" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Click="LoginButton_Click" />
+    </Grid>
+    <tlk:RadBusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy, RelativeSource={RelativeSource AncestorType=ns:WindowBase}}" BusyContent="" IsIndeterminate="True" />
+  </Grid>
+</ns:WindowBase>
